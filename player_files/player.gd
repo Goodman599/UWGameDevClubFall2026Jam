@@ -89,6 +89,9 @@ func on_grounded_state_changed(just_landed : bool):
 		can_coyote_jump = true
 		$CoyoteTimer.start()
 
+func add_velocity(incoming_velocity : Vector2):
+	velocity += incoming_velocity
+
 
 func _on_coyote_timer_timeout() -> void:
 	can_coyote_jump = false
