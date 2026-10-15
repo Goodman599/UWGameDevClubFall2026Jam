@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b8krm3600icxw"]
+
+[ext_resource type="Script" uid="uid://cogmwc0slhoku" path="res://game_objects/explodable_component.gd" id="1_fse7u"]
+
+[node name="ExplodableComponent" type="Node2D" unique_id=902603782]
+script = ExtResource("1_fse7u")
+
+[node name="ExplosionDetectionArea" type="Area2D" parent="." unique_id=1756107568]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionDetectionArea" unique_id=1075704933]
+debug_color = Color(0.99215686, 0, 0.2627451, 0.23921569)

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b8jonm2sx0nfb"]
+
+[ext_resource type="Script" uid="uid://d1ivimd2ih01o" path="res://game_objects/platform_files/platform.gd" id="1_mqikw"]
+[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_oacvb"]
+[ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_oacvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6env"]
+size = Vector2(128, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6gs"]
+size = Vector2(144, 400)
+
+[node name="VerticalPlatform" type="Node2D" unique_id=889834616]
+script = ExtResource("1_mqikw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=895035086]
+position = Vector2(-3.8146973e-06, 0)
+scale = Vector2(0.99999994, 3)
+texture = ExtResource("2_oacvb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=560734454]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=999541776]
+shape = SubResource("RectangleShape2D_p6env")
+
+[node name="ExplodableComponent" parent="." unique_id=902603782 instance=ExtResource("3_oacvb")]
+
+[node name="CollisionShape2D" parent="ExplodableComponent/ExplosionDetectionArea" parent_id_path=PackedInt32Array(902603782, 1756107568) index="0" unique_id=1075704933]
+shape = SubResource("RectangleShape2D_6l6gs")
+
+[editable path="ExplodableComponent"]
