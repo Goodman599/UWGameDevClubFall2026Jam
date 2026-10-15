@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED := 300.0
 const JUMP_VELOCITY := -600.0
 const TERMINAL_VELOCITY := 1000.0
@@ -16,6 +15,11 @@ var can_coyote_jump := false
 const JUMP_BUFFER_WINODW := 0.1 # In seconds
 var can_buffer_jump := false
 var was_on_floor_last_frame : bool # Used to start/stop CoyoteTimer and JumpBufferTimer
+
+@export var object_spawn_parent : Node2D
+const PLATFORM_PLACE_OFFSET := 150.0
+const HORIZONTAL_PLATFORM := preload("res://game_objects/platform_files/horizontal_platform.tscn")
+const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_platform.tscn")
 
 var aiming_platform := false
 var platform_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1)}
@@ -40,6 +44,17 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb:
 		aiming_platform = true
+		
+		# Aim in the direction the player is holding already
+		if Input.is_action_pressed("up"):
+			platform_aim_direction = Vector2i(0, -1)
+		elif Input.is_action_pressed("right"):
+			platform_aim_direction = Vector2i(1, 0)
+		elif Input.is_action_pressed("down"):
+			platform_aim_direction = Vector2i(0, 1)
+		elif Input.is_action_pressed("left"):
+			platform_aim_direction = Vector2i(-1, 0)
+			
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform:
 		aiming_bomb = true
 	if aiming_platform:
@@ -60,6 +75,8 @@ func _physics_process(delta: float) -> void:
 		if direction:
 			velocity.x = direction * SPEED
 		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+	else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
@@ -118,7 +135,15 @@ func add_velocity(incoming_velocity : Vector2):
 
 func aim_platform():
 	# Record the direction pressed (NESW)
-	pass
+	# Because this is only NESW, we will just take the most recent input
+	if Input.is_action_just_pressed("up"):
+		platform_aim_direction = Vector2i(0, -1)
+	elif Input.is_action_just_pressed("right"):
+		platform_aim_direction = Vector2i(1, 0)
+	elif Input.is_action_just_pressed("down"):
+		platform_aim_direction = Vector2i(0, 1)
+	elif Input.is_action_just_pressed("left"):
+		platform_aim_direction = Vector2i(-1, 0)
 
 func aim_bomb():
 	# Record the direction pressed (NESW + diagonals)
@@ -126,7 +151,17 @@ func aim_bomb():
 
 func create_platform():
 	# Place a platform based on recorded direction while aiming
-	pass
+	if platform_aim_direction.x != 0: # Platform to the side -> Wall
+		var platform = VERTICAL_PLATFORM.instantiate()
+		platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
+		object_spawn_parent.add_child(platform)
+	elif platform_aim_direction.y != 0: # Platform to the top/bottom -> Floor
+		var platform = HORIZONTAL_PLATFORM.instantiate()
+		platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
+		object_spawn_parent.add_child(platform)
+	
+	# Reset for the next place
+	platform_aim_direction = Vector2i(0, 0)
 
 func create_bomb():
 	# Place a bomb based on recorded direction while aiming
