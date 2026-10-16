@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bcsp1hlm0im4k"]
 
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://3w7eu5fawrvb" path="res://ui_files/scrap_ui.tscn" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://80e7j42bq2d5" path="res://game_objects/scrap_files/scrap_metal.tscn" id="4_1bvp3"]
 
@@ -10,6 +11,8 @@
 size = Vector2(1416, 208)
 
 [node name="Main" type="Node2D" unique_id=431489269]
+
+[node name="ScrapUI" parent="." unique_id=296093440 instance=ExtResource("1_1bvp3")]
 
 [node name="Player" parent="." unique_id=1773731800 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("1_0xm2m")]
 position = Vector2(952, 600)

@@ -56,7 +56,7 @@ func magnetize_to_player() -> void:
 		print(self, ": Scrap didn't find player!")
 
 func collect() -> void:
-	# add_scrap_resource() 
+	GameManager.add_scrap_resource() 
 	queue_free()
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
