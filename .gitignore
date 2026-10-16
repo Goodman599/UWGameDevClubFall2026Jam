@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+level_files/.DS_Store
+.DS_Store

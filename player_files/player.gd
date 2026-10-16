@@ -2,13 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED := 300.0
-const JUMP_VELOCITY := -650.0
+const JUMP_VELOCITY := -450.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
-const AIR_DRAG := 10.0 # Used when falling faster than terminal velocity
+const AIR_DRAG := 1000.0 # Used when falling faster than terminal velocity
 
-const MAX_JUMP_HOLD_DURATION = 0.5 # In seconds
-const JUMP_HOLD_BOOST := -1000.0
+const MAX_JUMP_HOLD_DURATION = 0.3 # In seconds
+const JUMP_HOLD_BOOST := -1500.0
 var can_jump_hold := true
 
 const COYOTE_WINDOW := 0.15 # In seconds
@@ -104,12 +104,12 @@ func fall(delta : float):
 	
 	if velocity.y < terminal_velocity:
 		velocity += get_gravity() * delta
-	
+		
 		if velocity.y > terminal_velocity:
 			velocity.y = terminal_velocity
 	
 	else: # If falling faster than terminal velocity, slow down
-		velocity.y = move_toward(velocity.y, terminal_velocity, AIR_DRAG)
+		velocity.y = move_toward(velocity.y, terminal_velocity, AIR_DRAG * delta)
 
 func attempt_jump() -> void:
 	var can_jump := false
@@ -221,12 +221,14 @@ func create_platform():
 	if platform_aim_direction.x == 0: # No X offset aka directly above/below
 		if platform_hologram_H.valid_hologram:
 			platform_hologram_H.set_hologram(false)
+			GameManager.remove_scrap_resource(Platform.SCRAP_COST)
 		else:
 			platform_hologram_H.queue_free()
 		platform_hologram_V.queue_free()
 	else:
 		if platform_hologram_V.valid_hologram:
 			platform_hologram_V.set_hologram(false)
+			GameManager.remove_scrap_resource(Platform.SCRAP_COST)
 		else:
 			platform_hologram_V.queue_free()
 		platform_hologram_H.queue_free()
@@ -236,7 +238,7 @@ func create_platform():
 	platform_hologram_V = null
 	platform_aim_direction = Vector2i(0, 0)
 	
-	GameManager.remove_scrap_resource(Platform.SCRAP_COST)
+	
 
 func create_bomb():
 	# Place a bomb based on recorded direction while aiming
