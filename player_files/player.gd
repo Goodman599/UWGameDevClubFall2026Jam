@@ -68,6 +68,9 @@ func _physics_process(delta: float) -> void:
 		last_pressed_direction = Vector2i(0, 1)
 	elif Input.is_action_just_pressed("left"):
 		last_pressed_direction = Vector2i(-1, 0)
+	else: # defaults to right if nothing pressed yet
+		last_pressed_direction = Vector2i(1, 0) 
+
 	
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
