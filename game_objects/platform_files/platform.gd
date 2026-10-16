@@ -50,8 +50,12 @@ func spawn_scrap(count : int) -> void:
 		return
 	
 	for i in range(count):
+		var rect : Rect2 = $CollisionBox/CollisionShape2D.shape.get_rect()
+		var x = randf_range(rect.position.x, rect.position.x + rect.size.x)
+		var y = randf_range(rect.position.y, rect.position.y + rect.size.y)
+		var rand_point = global_position + Vector2(x, y)
 		var new_scrap = SCRAP_SCENE.instantiate()
-		new_scrap.global_position = global_position
+		new_scrap.global_position = rand_point
 		object_spawn_parent.call_deferred("add_child", new_scrap)
 
 
