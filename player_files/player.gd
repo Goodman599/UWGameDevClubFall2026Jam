@@ -62,9 +62,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
-		aiming_platform = true
-		TimeStop.stop_time()
-		create_platform_hologram()
+		if GameManager.scrap >= Platform.SCRAP_COST:
+			aiming_platform = true
+			TimeStop.stop_time()
+			create_platform_hologram()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
 		aiming_bomb = true
 		TimeStop.stop_time()
@@ -234,6 +235,8 @@ func create_platform():
 	platform_hologram_H = null
 	platform_hologram_V = null
 	platform_aim_direction = Vector2i(0, 0)
+	
+	GameManager.remove_scrap_resource(Platform.SCRAP_COST)
 
 func create_bomb():
 	# Place a bomb based on recorded direction while aiming
