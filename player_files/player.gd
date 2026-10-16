@@ -8,7 +8,7 @@ const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
 const AIR_DRAG := 10.0 # Used when falling faster than terminal velocity
 
 const MAX_JUMP_HOLD_DURATION = 0.5 # In seconds
-const JUMP_HOLD_BOOST := -10.0
+const JUMP_HOLD_BOOST := -1000.0
 var can_jump_hold := true
 
 const COYOTE_WINDOW := 0.15 # In seconds
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		attempt_jump()
 	if can_jump_hold and Input.is_action_pressed("jump"):
-		velocity.y += JUMP_HOLD_BOOST
+		velocity.y += JUMP_HOLD_BOOST * delta
 	
 	
 	# Aim in the direction the player is holding already
@@ -63,18 +63,22 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
 		aiming_platform = true
+		TimeStop.stop_time()
 		create_platform_hologram()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
 		aiming_bomb = true
+		TimeStop.stop_time()
 	if aiming_platform:
 		aim_platform()
 	if aiming_bomb:
 		aim_bomb()
 	if Input.is_action_just_released("create_platform") and aiming_platform:
 		aiming_platform = false
+		TimeStop.resume_time()
 		create_platform()
 	if Input.is_action_just_released("create_bomb") and aiming_bomb:
 		aiming_bomb = false
+		TimeStop.resume_time()
 		create_bomb()
 	
 	# If aiming, then all direction inputs must become aiming instead of movement
@@ -85,8 +89,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-	else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	elif is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 

@@ -17,10 +17,13 @@ texture = ExtResource("1_vhd13")
 shape = SubResource("RectangleShape2D_jreem")
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=1386171254]
+one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=1701669291]
+one_shot = true
 
 [node name="JumpHoldTimer" type="Timer" parent="." unique_id=829855306]
+one_shot = true
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]
