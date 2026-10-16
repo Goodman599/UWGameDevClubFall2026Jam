@@ -24,6 +24,15 @@ const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_p
 var platform_hologram_H : Platform
 var platform_hologram_V : Platform
 
+const BOMB := preload("res://game_objects/bomb_files/bomb.tscn")
+const BOMB_PLACE_DISTANCE := 250.0
+const BOMB_SURFACE_OFFSET := 4.0
+var bomb_target_surface : Node2D = null
+var bomb_target_position := Vector2.ZERO
+var bomb_target_normal := Vector2.ZERO
+var bomb_has_valid_target := false
+var placed_bomb: Bomb = null
+
 var last_pressed_direction : Vector2i # {(1, 0), (-1, 0), (0, 1), (0, -1)}, used for immediate press & releases
 var aiming_platform := false
 var platform_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1)}
@@ -67,8 +76,12 @@ func _physics_process(delta: float) -> void:
 			TimeStop.stop_time()
 			create_platform_hologram()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
-		aiming_bomb = true
-		TimeStop.stop_time()
+		if is_instance_valid(placed_bomb):
+			placed_bomb.detonate()
+			placed_bomb = null
+		else:
+			aiming_bomb = true
+			TimeStop.stop_time()
 	if aiming_platform:
 		aim_platform()
 	if aiming_bomb:
@@ -188,8 +201,72 @@ func aim_platform():
 		platform_hologram_V.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
 
 func aim_bomb():
-	# Record the direction pressed (NESW + diagonals)
-	pass
+	var x := 0
+	var y := 0
+
+	if Input.is_action_pressed("left"):
+		x -= 1
+	if Input.is_action_pressed("right"):
+		x += 1
+	if Input.is_action_pressed("up"):
+		y -= 1
+	if Input.is_action_pressed("down"):
+		y += 1
+
+	var held_direction := Vector2i(x, y)
+
+	if held_direction != Vector2i.ZERO:
+		bomb_aim_direction = held_direction
+	elif bomb_aim_direction == Vector2i.ZERO:
+		bomb_aim_direction = last_pressed_direction
+
+	if bomb_aim_direction == Vector2i.ZERO:
+		bomb_has_valid_target = false
+		return
+
+	var direction := Vector2(bomb_aim_direction).normalized()
+
+	var from := global_position
+	var to := from + direction * BOMB_PLACE_DISTANCE
+
+	var query := PhysicsRayQueryParameters2D.create(from, to)
+	query.exclude = [get_rid()]
+
+	var result := get_world_2d().direct_space_state.intersect_ray(query)
+
+	bomb_has_valid_target = false
+	bomb_target_surface = null
+
+	if result.is_empty():
+		return
+
+	var collider = result["collider"]
+	var surface := find_bomb_surface(collider)
+
+	if surface == null:
+		return
+
+	bomb_target_surface = surface
+	bomb_target_position = result["position"]
+	bomb_target_normal = result["normal"]
+	bomb_has_valid_target = true
+
+func find_bomb_surface(node: Node) -> Node2D:
+	var current := node
+
+	while current != null:
+		if current is Platform:
+			return current as Node2D
+
+		if current is Node2D and current.is_in_group(&"bomb_surface"):
+			return current as Node2D
+
+		current = current.get_parent()
+
+	if node.owner is Platform:
+		return node.owner as Node2D
+
+	return null
 
 func create_platform_hologram():
 	if platform_aim_direction == Vector2i(0, 0):
@@ -239,8 +316,42 @@ func create_platform():
 	GameManager.remove_scrap_resource(Platform.SCRAP_COST)
 
 func create_bomb():
-	# Place a bomb based on recorded direction while aiming
-	pass
+	if !bomb_has_valid_target:
+		reset_bomb_aim()
+		return
+
+	if bomb_target_surface == null:
+		reset_bomb_aim()
+		return
+
+	var bomb := BOMB.instantiate() as Bomb
+
+	bomb_target_surface.add_child(bomb)
+
+	bomb.global_position = (
+		bomb_target_position
+		+ bomb_target_normal * BOMB_SURFACE_OFFSET
+	)
+
+	bomb.global_rotation = bomb_target_normal.angle() + PI / 2.0
+
+	# Store which direction this surface faces.
+	bomb.surface_normal = bomb_target_normal.normalized()
+
+	# Give the bomb access to the player for launching.
+	bomb.player = self
+
+	# Keep track of the currently active bomb.
+	placed_bomb = bomb
+
+	reset_bomb_aim()
+
+func reset_bomb_aim():
+	bomb_aim_direction = Vector2i.ZERO
+	bomb_target_surface = null
+	bomb_target_position = Vector2.ZERO
+	bomb_target_normal = Vector2.ZERO
+	bomb_has_valid_target = false
 
 func _on_coyote_timer_timeout() -> void:
 	can_coyote_jump = false
