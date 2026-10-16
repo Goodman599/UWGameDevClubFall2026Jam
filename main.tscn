@@ -18,7 +18,7 @@ size = Vector2(1416, 208)
 position = Vector2(952, 600)
 object_spawn_parent = NodePath("..")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1152679281]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1152679281 groups=["bomb_surface"]]
 position = Vector2(360, 824)
 script = SubResource("GDScript_h2yge")
 

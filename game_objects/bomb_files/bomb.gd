@@ -1,0 +1,75 @@
+class_name Bomb
+extends Node2D
+
+@export var explosion_radius := 100.0
+@export var player_launch_speed := 800.0
+
+var surface_normal := Vector2.ZERO
+var player: Player = null
+
+
+func detonate():
+	var circle := CircleShape2D.new()
+	circle.radius = explosion_radius
+
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = circle
+	query.transform = Transform2D(0.0, global_position)
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+
+	var results := get_world_2d().direct_space_state.intersect_shape(query)
+
+	var already_exploded: Array[Node] = []
+
+	for result in results:
+		var collider := result["collider"] as Node
+
+		# Explode anything with an ExplodableComponent.
+		var target := find_explodable_parent(collider)
+
+		if target != null and target not in already_exploded:
+			already_exploded.append(target)
+
+			var component := find_explodable_component(target)
+
+			if component != null:
+				component.exploded()
+
+		# Launch the player if they're inside the blast.
+		if player != null and is_node_or_parent(collider, player):
+			player.add_velocity(surface_normal * player_launch_speed)
+
+	queue_free()
+
+
+func find_explodable_parent(node: Node) -> Node:
+	var current := node
+
+	while current != null:
+		if find_explodable_component(current) != null:
+			return current
+
+		current = current.get_parent()
+
+	return null
+
+
+func find_explodable_component(node: Node) -> ExplodableComponent:
+	for child in node.get_children():
+		if child is ExplodableComponent:
+			return child as ExplodableComponent
+
+	return null
+
+
+func is_node_or_parent(node: Node, target: Node) -> bool:
+	var current := node
+
+	while current != null:
+		if current == target:
+			return true
+
+		current = current.get_parent()
+
+	return false

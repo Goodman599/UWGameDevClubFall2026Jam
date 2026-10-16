@@ -27,9 +27,9 @@ position = Vector2(-3.8146973e-06, 0)
 scale = Vector2(0.99999994, 3)
 texture = ExtResource("2_oacvb")
 
-[node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454]
+[node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454 groups=["bomb_surface"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBox" unique_id=999541776]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBox" unique_id=999541776 groups=["bomb_surface"]]
 shape = SubResource("RectangleShape2D_p6env")
 
 [node name="ExplodableComponent" parent="." unique_id=902603782 instance=ExtResource("3_oacvb")]
