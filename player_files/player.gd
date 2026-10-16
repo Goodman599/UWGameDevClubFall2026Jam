@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const SPEED := 300.0
@@ -21,10 +22,14 @@ const PLATFORM_PLACE_OFFSET := 150.0
 const HORIZONTAL_PLATFORM := preload("res://game_objects/platform_files/horizontal_platform.tscn")
 const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_platform.tscn")
 
+var last_pressed_direction : Vector2i # {(1, 0), (-1, 0), (0, 1), (0, -1)}, used for immediate press & releases
 var aiming_platform := false
 var platform_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1)}
 var aiming_bomb := false
 var bomb_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1)}
+
+func _ready() -> void:
+	GameManager.player_node = self
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -42,19 +47,20 @@ func _physics_process(delta: float) -> void:
 	if can_jump_hold and Input.is_action_pressed("jump"):
 		velocity.y += JUMP_HOLD_BOOST
 	
+	
+	# Aim in the direction the player is holding already
+	if Input.is_action_just_pressed("up"):
+		last_pressed_direction = Vector2i(0, -1)
+	elif Input.is_action_just_pressed("right"):
+		last_pressed_direction = Vector2i(1, 0)
+	elif Input.is_action_just_pressed("down"):
+		last_pressed_direction = Vector2i(0, 1)
+	elif Input.is_action_just_pressed("left"):
+		last_pressed_direction = Vector2i(-1, 0)
+	
+	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb:
 		aiming_platform = true
-		
-		# Aim in the direction the player is holding already
-		if Input.is_action_pressed("up"):
-			platform_aim_direction = Vector2i(0, -1)
-		elif Input.is_action_pressed("right"):
-			platform_aim_direction = Vector2i(1, 0)
-		elif Input.is_action_pressed("down"):
-			platform_aim_direction = Vector2i(0, 1)
-		elif Input.is_action_pressed("left"):
-			platform_aim_direction = Vector2i(-1, 0)
-			
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform:
 		aiming_bomb = true
 	if aiming_platform:
@@ -150,15 +156,21 @@ func aim_bomb():
 	pass
 
 func create_platform():
+	if platform_aim_direction == Vector2i(0, 0):
+		if last_pressed_direction == Vector2i(0, 0):
+			return
+		platform_aim_direction = last_pressed_direction
+	
+	var platform : Platform
 	# Place a platform based on recorded direction while aiming
 	if platform_aim_direction.x != 0: # Platform to the side -> Wall
-		var platform = VERTICAL_PLATFORM.instantiate()
-		platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
-		object_spawn_parent.add_child(platform)
-	elif platform_aim_direction.y != 0: # Platform to the top/bottom -> Floor
-		var platform = HORIZONTAL_PLATFORM.instantiate()
-		platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
-		object_spawn_parent.add_child(platform)
+		platform = VERTICAL_PLATFORM.instantiate()
+	else: # Platform to the top/bottom -> Floor
+		platform = HORIZONTAL_PLATFORM.instantiate()
+		
+	platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
+	platform.object_spawn_parent = object_spawn_parent
+	object_spawn_parent.add_child(platform)
 	
 	# Reset for the next place
 	platform_aim_direction = Vector2i(0, 0)

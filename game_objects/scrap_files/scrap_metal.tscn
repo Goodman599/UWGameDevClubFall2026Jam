@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://80e7j42bq2d5"]
+
+[ext_resource type="Script" uid="uid://dw6tan1wfv20f" path="res://game_objects/scrap_files/scrap_metal.gd" id="1_8s01s"]
+[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="1_158w3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7vrg"]
+size = Vector2(96, 96)
+
+[node name="ScrapMetal" type="RigidBody2D" unique_id=635839251]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_8s01s")
+
+[node name="ScrapSprite" type="Sprite2D" parent="." unique_id=494889253]
+position = Vector2(-1.4305115e-06, -1.4305115e-06)
+scale = Vector2(0.49999994, 0.49999994)
+texture = ExtResource("1_158w3")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1102035546]
+shape = SubResource("RectangleShape2D_jreem")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=1638642823]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1452172083]
+shape = SubResource("RectangleShape2D_y7vrg")
+debug_color = Color(0.06901402, 0.6498834, 0, 0.41960785)
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
