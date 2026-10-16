@@ -6,13 +6,43 @@ const SCRAP_SCENE := preload("res://game_objects/scrap_files/scrap_metal.tscn")
 
 var object_spawn_parent : Node2D
 
+var is_hologram := false
+var valid_hologram : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$ExplodableComponent.explode.connect(destroy)
+	$HologramSprite.hide()
+
+func set_hologram(value : bool):
+	is_hologram = value
+	if is_hologram:
+		$CollisionBox.set_process_mode(PROCESS_MODE_DISABLED)
+		
+		$PlatformSprite.hide()
+		
+		# The Detection area doesn't update until the frame after the hologram is spawned in
+		await get_tree().physics_frame
+		
+		$HologramSprite.show()
+		
+		if $HologramDetectionArea.get_overlapping_bodies().is_empty():
+			valid_hologram = true
+			$HologramSprite.self_modulate = Color(0, 1, 0, 0.5)
+		else:
+			valid_hologram = false
+			$HologramSprite.self_modulate = Color(1, 0, 0, 0.5)
+			
+	else:
+		$CollisionBox.set_process_mode(PROCESS_MODE_INHERIT)
+		$HologramSprite.hide()
+		$PlatformSprite.show()
+
 
 func destroy() -> void:
-	spawn_scrap(SCRAP_REFUND)
-	queue_free()
+	if !is_hologram:
+		spawn_scrap(SCRAP_REFUND)
+		queue_free()
 
 func spawn_scrap(count : int) -> void:
 	if !object_spawn_parent:
@@ -23,4 +53,15 @@ func spawn_scrap(count : int) -> void:
 		var new_scrap = SCRAP_SCENE.instantiate()
 		new_scrap.global_position = global_position
 		object_spawn_parent.call_deferred("add_child", new_scrap)
-		
+
+
+
+func _on_hologram_detection_area_body_entered(_body: Node2D) -> void:
+	valid_hologram = false
+	$HologramSprite.self_modulate = Color(1, 0, 0, 0.5)
+
+
+func _on_hologram_detection_area_body_exited(_body: Node2D) -> void:
+	if $HologramDetectionArea.get_overlapping_bodies().is_empty():
+		valid_hologram = true
+		$HologramSprite.self_modulate = Color(0, 1, 0, 0.5)
