@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED := 300.0
-const JUMP_VELOCITY := -600.0
+const JUMP_VELOCITY := -650.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
 const AIR_DRAG := 10.0 # Used when falling faster than terminal velocity
@@ -21,6 +21,8 @@ var was_on_floor_last_frame : bool # Used to start/stop CoyoteTimer and JumpBuff
 const PLATFORM_PLACE_OFFSET := 150.0
 const HORIZONTAL_PLATFORM := preload("res://game_objects/platform_files/horizontal_platform.tscn")
 const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_platform.tscn")
+var platform_hologram_H : Platform
+var platform_hologram_V : Platform
 
 var last_pressed_direction : Vector2i # {(1, 0), (-1, 0), (0, 1), (0, -1)}, used for immediate press & releases
 var aiming_platform := false
@@ -59,9 +61,10 @@ func _physics_process(delta: float) -> void:
 		last_pressed_direction = Vector2i(-1, 0)
 	
 	
-	if Input.is_action_just_pressed("create_platform") and !aiming_bomb:
+	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
 		aiming_platform = true
-	if Input.is_action_just_pressed("create_bomb") and !aiming_platform:
+		create_platform_hologram()
+	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
 		aiming_bomb = true
 	if aiming_platform:
 		aim_platform()
@@ -89,7 +92,7 @@ func _physics_process(delta: float) -> void:
 
 func fall(delta : float):
 	var terminal_velocity : float
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down") and !aiming_bomb and !aiming_platform:
 		terminal_velocity = ACCELERATED_TERMINAL_VELOCITY
 	else:
 		terminal_velocity = TERMINAL_VELOCITY
@@ -143,36 +146,89 @@ func aim_platform():
 	# Record the direction pressed (NESW)
 	# Because this is only NESW, we will just take the most recent input
 	if Input.is_action_just_pressed("up"):
+		if platform_aim_direction.y == 0: # If was a wall before
+			if !platform_hologram_H: # If a hologram hasn't been created yet (possible edgecase)
+				platform_aim_direction = Vector2i(0, -1)
+				create_platform_hologram()
+			platform_hologram_V.hide()
+			platform_hologram_H.show()
 		platform_aim_direction = Vector2i(0, -1)
 	elif Input.is_action_just_pressed("right"):
+		if platform_aim_direction.x == 0: # If was a floor before
+			if !platform_hologram_H: # If a hologram hasn't been created yet (possible edgecase)
+				platform_aim_direction = Vector2i(1, 0)
+				create_platform_hologram()
+			platform_hologram_H.hide()
+			platform_hologram_V.show()
 		platform_aim_direction = Vector2i(1, 0)
 	elif Input.is_action_just_pressed("down"):
+		if platform_aim_direction.y == 0: # If was a wall before
+			if !platform_hologram_H: # If a hologram hasn't been created yet (possible edgecase)
+				platform_aim_direction = Vector2i(0, 1)
+				create_platform_hologram()
+			platform_hologram_V.hide()
+			platform_hologram_H.show()
 		platform_aim_direction = Vector2i(0, 1)
 	elif Input.is_action_just_pressed("left"):
+		if platform_aim_direction.x == 0: # If was a floor before
+			if !platform_hologram_H: # If a hologram hasn't been created yet (possible edgecase)
+				platform_aim_direction = Vector2i(-1, 0)
+				create_platform_hologram()
+			platform_hologram_H.hide()
+			platform_hologram_V.show()
 		platform_aim_direction = Vector2i(-1, 0)
+			
+	if platform_hologram_H:
+		platform_hologram_H.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
+		platform_hologram_V.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
 
 func aim_bomb():
 	# Record the direction pressed (NESW + diagonals)
 	pass
 
-func create_platform():
+func create_platform_hologram():
 	if platform_aim_direction == Vector2i(0, 0):
 		if last_pressed_direction == Vector2i(0, 0):
 			return
 		platform_aim_direction = last_pressed_direction
 	
-	var platform : Platform
-	# Place a platform based on recorded direction while aiming
-	if platform_aim_direction.x != 0: # Platform to the side -> Wall
-		platform = VERTICAL_PLATFORM.instantiate()
-	else: # Platform to the top/bottom -> Floor
-		platform = HORIZONTAL_PLATFORM.instantiate()
-		
-	platform.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
-	platform.object_spawn_parent = object_spawn_parent
-	object_spawn_parent.add_child(platform)
+	platform_hologram_V = VERTICAL_PLATFORM.instantiate()
+	platform_hologram_H = HORIZONTAL_PLATFORM.instantiate()
 	
+	
+	platform_hologram_V.object_spawn_parent = object_spawn_parent
+	object_spawn_parent.add_child(platform_hologram_V)
+	platform_hologram_V.set_hologram(true)
+	
+	platform_hologram_H.object_spawn_parent = object_spawn_parent
+	object_spawn_parent.add_child(platform_hologram_H)
+	platform_hologram_H.set_hologram(true)
+	
+	if platform_aim_direction.x == 0: # No X offset aka directly above/below
+		platform_hologram_V.hide()
+	else:
+		platform_hologram_H.hide()
+	
+func create_platform():
+	if !platform_hologram_H: # No hologram was generated in the first palce (edgecase)
+		return
+		
+	if platform_aim_direction.x == 0: # No X offset aka directly above/below
+		if platform_hologram_H.valid_hologram:
+			platform_hologram_H.set_hologram(false)
+		else:
+			platform_hologram_H.queue_free()
+		platform_hologram_V.queue_free()
+	else:
+		if platform_hologram_V.valid_hologram:
+			platform_hologram_V.set_hologram(false)
+		else:
+			platform_hologram_V.queue_free()
+		platform_hologram_H.queue_free()
+		
 	# Reset for the next place
+	platform_hologram_H = null
+	platform_hologram_V = null
 	platform_aim_direction = Vector2i(0, 0)
 
 func create_bomb():
