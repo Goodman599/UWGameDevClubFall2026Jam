@@ -9,3 +9,12 @@ script = ExtResource("1_e7rrv")
 [node name="ScrapIcon" type="Sprite2D" parent="." unique_id=97376541]
 position = Vector2(81, 82)
 texture = ExtResource("1_nfcvu")
+
+[node name="ScrapCounter" type="RichTextLabel" parent="." unique_id=266070296]
+offset_left = 169.0
+offset_top = 46.0
+offset_right = 280.0
+offset_bottom = 118.0
+theme_override_font_sizes/normal_font_size = 48
+fit_content = true
+scroll_active = false
