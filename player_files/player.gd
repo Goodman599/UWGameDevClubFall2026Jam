@@ -10,11 +10,14 @@ const AIR_DRAG := 1000.0 # Used when falling faster than terminal velocity
 const MAX_JUMP_HOLD_DURATION = 0.3 # In seconds
 const JUMP_HOLD_BOOST := -1500.0
 var can_jump_hold := true
+var jump_hold_timer := MAX_JUMP_HOLD_DURATION
 
 const COYOTE_WINDOW := 0.15 # In seconds
 var can_coyote_jump := false
+var coyote_timer := COYOTE_WINDOW
 const JUMP_BUFFER_WINODW := 0.1 # In seconds
 var can_buffer_jump := false
+var jump_buffer_timer := JUMP_BUFFER_WINODW
 var was_on_floor_last_frame : bool # Used to start/stop CoyoteTimer and JumpBufferTimer
 
 @export var object_spawn_parent : Node2D
@@ -41,6 +44,7 @@ var bomb_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1), (1
 
 func _ready() -> void:
 	GameManager.player_node = self
+	last_pressed_direction = Vector2(1, 0)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -68,8 +72,6 @@ func _physics_process(delta: float) -> void:
 		last_pressed_direction = Vector2i(0, 1)
 	elif Input.is_action_just_pressed("left"):
 		last_pressed_direction = Vector2i(-1, 0)
-	else: # defaults to right if nothing pressed yet
-		last_pressed_direction = Vector2i(1, 0) 
 
 	
 	
@@ -141,12 +143,15 @@ func attempt_jump() -> void:
 		can_coyote_jump = false # Any successful jump means no more coyote jumps 
 								# (would be a double jump otherwise)
 		can_jump_hold = true
-		$JumpHoldTimer.wait_time = MAX_JUMP_HOLD_DURATION
-		$JumpHoldTimer.start()
+		
+		# Force correct
+		if TimeStop.is_time_stopped:
+			velocity.y += -35.53302002
+		
+		start_jump_hold_timer()
 	else:
-		$JumpBufferTimer.wait_time = JUMP_BUFFER_WINODW
 		can_buffer_jump = true
-		$JumpBufferTimer.start()
+		start_jump_buffer_timer()
 
 func on_grounded_state_changed(just_landed : bool):
 	if just_landed:
@@ -156,9 +161,8 @@ func on_grounded_state_changed(just_landed : bool):
 			can_buffer_jump = false
 			attempt_jump()
 	else:
-		$CoyoteTimer.wait_time = COYOTE_WINDOW
 		can_coyote_jump = true
-		$CoyoteTimer.start()
+		start_coyote_timer()
 
 func add_velocity(incoming_velocity : Vector2):
 	velocity += incoming_velocity
@@ -358,13 +362,29 @@ func reset_bomb_aim():
 	bomb_target_normal = Vector2.ZERO
 	bomb_has_valid_target = false
 
-func _on_coyote_timer_timeout() -> void:
+func start_coyote_timer() -> void:
+	coyote_timer = COYOTE_WINDOW
+	while coyote_timer > 0.002: # Yes this is a magic number. No you cannot touch it
+		coyote_timer -= get_physics_process_delta_time()
+		await get_tree().physics_frame
 	can_coyote_jump = false
 
 
-func _on_jump_buffer_timer_timeout() -> void:
+func start_jump_buffer_timer() -> void:
+	jump_buffer_timer = JUMP_BUFFER_WINODW
+	while jump_buffer_timer > 0.002: # Yes this is a magic number. No you cannot touch it
+		jump_buffer_timer -= get_physics_process_delta_time()
+		await get_tree().physics_frame
 	can_buffer_jump = false
 
 
-func _on_jump_hold_timer_timeout() -> void:
+func start_jump_hold_timer() -> void:
+	jump_hold_timer = MAX_JUMP_HOLD_DURATION
+	while jump_hold_timer > 0.002: # Yes this is a magic number. No you cannot touch it
+		jump_hold_timer -= get_physics_process_delta_time()
+		await get_tree().physics_frame
 	can_jump_hold = false
+	
+	# Force correct
+	if TimeStop.is_time_stopped:
+		velocity.y += -19.99952698
