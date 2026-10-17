@@ -38,7 +38,7 @@ func detonate():
 
 		# Launch the player if they're inside the blast.
 		if player != null and is_node_or_parent(collider, player):
-			player.add_velocity(surface_normal * player_launch_speed)
+			player.apply_velocity(surface_normal * player_launch_speed)
 
 	queue_free()
 

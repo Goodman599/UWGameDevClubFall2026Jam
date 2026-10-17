@@ -34,7 +34,9 @@ var bomb_target_surface : Node2D = null
 var bomb_target_position := Vector2.ZERO
 var bomb_target_normal := Vector2.ZERO
 var bomb_has_valid_target := false
-var placed_bomb: Bomb = null
+var placed_bomb : Bomb = null
+var applied_velocity := Vector2(0, 0)
+const APPLIED_VELOCITY_DRAG := 750.0
 
 var last_pressed_direction : Vector2i # {(1, 0), (-1, 0), (0, 1), (0, -1)}, used for immediate press & releases
 var aiming_platform := false
@@ -110,8 +112,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	velocity.x += applied_velocity.x
 	move_and_slide()
+	velocity.x -= applied_velocity.x
+	
+	if applied_velocity.x != 0:
+		applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_DRAG * delta)
 
 func fall(delta : float):
 	var terminal_velocity : float
@@ -164,8 +171,9 @@ func on_grounded_state_changed(just_landed : bool):
 		can_coyote_jump = true
 		start_coyote_timer()
 
-func add_velocity(incoming_velocity : Vector2):
-	velocity += incoming_velocity
+func apply_velocity(incoming_velocity : Vector2):
+	applied_velocity += incoming_velocity
+	velocity.y += incoming_velocity.y
 
 func aim_platform():
 	# Record the direction pressed (NESW)
