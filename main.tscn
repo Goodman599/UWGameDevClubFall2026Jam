@@ -42,3 +42,27 @@ position = Vector2(602, 726)
 
 [node name="ScrapMetal4" parent="." unique_id=1277384016 instance=ExtResource("4_1bvp3")]
 position = Vector2(443, 702)
+
+[node name="ScrapMetal5" parent="." unique_id=618503282 instance=ExtResource("4_1bvp3")]
+position = Vector2(824, 720)
+
+[node name="ScrapMetal6" parent="." unique_id=1444753603 instance=ExtResource("4_1bvp3")]
+position = Vector2(720, 721)
+
+[node name="ScrapMetal7" parent="." unique_id=1091802731 instance=ExtResource("4_1bvp3")]
+position = Vector2(905, 720)
+
+[node name="ScrapMetal8" parent="." unique_id=1182034189 instance=ExtResource("4_1bvp3")]
+position = Vector2(746, 696)
+
+[node name="ScrapMetal9" parent="." unique_id=253286559 instance=ExtResource("4_1bvp3")]
+position = Vector2(1256, 704)
+
+[node name="ScrapMetal10" parent="." unique_id=157136599 instance=ExtResource("4_1bvp3")]
+position = Vector2(1152, 705)
+
+[node name="ScrapMetal11" parent="." unique_id=43485812 instance=ExtResource("4_1bvp3")]
+position = Vector2(1337, 704)
+
+[node name="ScrapMetal12" parent="." unique_id=155063657 instance=ExtResource("4_1bvp3")]
+position = Vector2(1178, 680)

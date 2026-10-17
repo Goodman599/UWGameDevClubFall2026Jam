@@ -1,6 +1,8 @@
 class_name Bomb
 extends Node2D
 
+const SCRAP_COST := 1
+
 @export var explosion_radius := 100.0
 @export var player_launch_speed := 800.0
 

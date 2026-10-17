@@ -88,8 +88,9 @@ func _physics_process(delta: float) -> void:
 			placed_bomb.detonate()
 			placed_bomb = null
 		else:
-			aiming_bomb = true
-			TimeStop.stop_time()
+			if GameManager.scrap >= Bomb.SCRAP_COST:
+				aiming_bomb = true
+				TimeStop.stop_time()
 	if aiming_platform:
 		aim_platform()
 	if aiming_bomb:
@@ -347,7 +348,11 @@ func create_bomb():
 	if bomb_target_surface == null:
 		reset_bomb_aim()
 		return
-
+	
+	if GameManager.scrap < Bomb.SCRAP_COST:
+		reset_bomb_aim()
+		return
+	
 	var bomb := BOMB.instantiate() as Bomb
 
 	bomb_target_surface.add_child(bomb)
@@ -367,6 +372,9 @@ func create_bomb():
 
 	# Keep track of the currently active bomb.
 	placed_bomb = bomb
+	
+	# Deduct the cost
+	GameManager.remove_scrap_resource(Bomb.SCRAP_COST)
 
 	reset_bomb_aim()
 
