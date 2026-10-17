@@ -37,6 +37,7 @@ var bomb_has_valid_target := false
 var placed_bomb : Bomb = null
 var applied_velocity := Vector2(0, 0)
 const APPLIED_VELOCITY_DRAG := 750.0
+const APPLIED_VELOCITY_FRICTION := 1500.0
 
 var last_pressed_direction : Vector2i # {(1, 0), (-1, 0), (0, 1), (0, -1)}, used for immediate press & releases
 var aiming_platform := false
@@ -118,8 +119,11 @@ func _physics_process(delta: float) -> void:
 	velocity.x -= applied_velocity.x
 	
 	if applied_velocity.x != 0:
-		applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_DRAG * delta)
-
+		if is_on_floor():
+			applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_FRICTION * delta)
+		else:
+			applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_DRAG * delta)
+			
 func fall(delta : float):
 	var terminal_velocity : float
 	if Input.is_action_pressed("down") and !aiming_bomb and !aiming_platform:
@@ -173,7 +177,10 @@ func on_grounded_state_changed(just_landed : bool):
 
 func apply_velocity(incoming_velocity : Vector2):
 	applied_velocity += incoming_velocity
-	velocity.y += incoming_velocity.y
+	if incoming_velocity.y < 0:
+		velocity.y = incoming_velocity.y
+	else:
+		velocity.y += incoming_velocity.y
 
 func aim_platform():
 	# Record the direction pressed (NESW)
