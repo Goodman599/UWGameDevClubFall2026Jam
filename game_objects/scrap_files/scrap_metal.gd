@@ -16,8 +16,15 @@ const TOP_SPEED_TO_PLAYER := 7500.0
 var speed_to_player := 0.0
 var player_node : Player
 
+@export var is_static := false # Determines if it will launch randomly and magnetize to the player
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if !is_static:
+		launch()
+		
+		
+func launch():
 	var rng = RandomNumberGenerator.new()
 	var random_launch_angle := rng.randf() * (2 * PI) # Because Godot works in radian
 	var random_launch_velocity := rng.randf_range(MIN_LAUNCH_VELOCITY, MAX_LAUNCH_VELOCITY)
@@ -28,6 +35,7 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(MAGNETIZE_DELAY).timeout
 	magnetize_to_player()
+
 
 func _physics_process(delta: float) -> void:
 	if is_magnetizing:

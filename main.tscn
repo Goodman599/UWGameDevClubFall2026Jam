@@ -12,7 +12,8 @@
 position = Vector2(181, 815)
 object_spawn_parent = NodePath("..")
 
-[node name="Map" parent="." unique_id=1424486311 instance=ExtResource("5_lquwl")]
+[node name="Map" parent="." unique_id=1424486311 node_paths=PackedStringArray("camera_node") instance=ExtResource("5_lquwl")]
+camera_node = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=891497987]
 position = Vector2(960, 540)

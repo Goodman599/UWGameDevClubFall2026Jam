@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://trtople2pdwl"]
+
+[ext_resource type="Script" uid="uid://mdoy5dg1hyvo" path="res://level_files/room.gd" id="1_8gfxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6r3s6"]
+size = Vector2(960, 540)
+
+[node name="Room" type="Area2D" unique_id=594688412]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8gfxe")
+coordinate_position = null
+respawn_offset = null
+starting_scrap_count = null
+
+[node name="BoundingBox" type="CollisionShape2D" parent="." unique_id=492741312]
+position = Vector2(960, 540)
+shape = SubResource("RectangleShape2D_6r3s6")
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1306906192]
+scale = Vector2(5, 5)
