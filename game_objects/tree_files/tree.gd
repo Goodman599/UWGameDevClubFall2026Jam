@@ -17,12 +17,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if player_touching and grow_cooldown <= 0 and enabled:
-		if GameManager.scrap <= 1:
+		TimeStop.resume_time(true)
+		if GameManager.scrap <= 1: # deposit process finished
 			player_node.set_physics_process(true)
 			if perfect_score_threshold <= score:
 				$AnimatedSprite2D.play("blossoming_tree")
-		else: 
-			player_node.set_physics_process(false)
+		else: # depositing scrap
+			player_node.set_physics_process(false) # player can't leave the tree during the process
 			GameManager.remove_scrap_resource(1)
 			score += 1
 			grow_cooldown += 1 / GROW_RATE
