@@ -416,7 +416,25 @@ func start_jump_hold_timer() -> void:
 		velocity.y += -19.99952698
 		
 # called when growing tree
-# prevents player from moving until tree is finished growing
-func grow_tree() -> void:
-	pass # TODO
+# turns off physics process until tree is finished growing
+# ends bomb/platform placement if currently placing
+func tree_growing() -> void:			
+	set_physics_process(false)
+	if aiming_platform:
+		if platform_hologram_H:
+			platform_hologram_H.valid_hologram = false
+		elif platform_hologram_V:
+			platform_hologram_V.valid_hologram = false
+		create_platform()
+		aiming_platform = false
+	if aiming_bomb:
+		bomb_has_valid_target = false
+		create_bomb()
+		aiming_bomb = false
+	TimeStop.resume_time(true)
+
+# called when tree is finished growing
+# turns back on physics process
+func tree_finished() -> void:
+	set_physics_process(true)
 	
