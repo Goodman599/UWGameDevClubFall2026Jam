@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3w7eu5fawrvb" path="res://ui_files/scrap_ui.tscn" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://80e7j42bq2d5" path="res://game_objects/scrap_files/scrap_metal.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://b5hjco574uhhx" path="res://misc_scripts/camera_2d.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://baqh3stspn22w" path="res://game_objects/tree_files/tree.tscn" id="5_lquwl"]
 
 [sub_resource type="GDScript" id="GDScript_h2yge"]
@@ -31,6 +32,10 @@ texture = ExtResource("2_h2yge")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1654358915]
 position = Vector2(644, 40)
 shape = SubResource("RectangleShape2D_jreem")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=242689121]
+position = Vector2(961, 540)
+script = ExtResource("4_7mycd")
 
 [node name="ScrapMetal" parent="." unique_id=635839251 instance=ExtResource("4_1bvp3")]
 position = Vector2(521, 726)

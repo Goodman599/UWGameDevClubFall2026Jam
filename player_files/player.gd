@@ -28,7 +28,7 @@ var platform_hologram_H : Platform
 var platform_hologram_V : Platform
 
 const BOMB := preload("res://game_objects/bomb_files/bomb.tscn")
-const BOMB_PLACE_DISTANCE := 250.0
+const BOMB_PLACE_DISTANCE := 100.0
 const BOMB_SURFACE_OFFSET := 4.0
 var bomb_target_surface : Node2D = null
 var bomb_target_position := Vector2.ZERO
@@ -357,23 +357,26 @@ func create_bomb():
 
 	bomb_target_surface.add_child(bomb)
 
+	# Immediately put the actual bomb at its final gameplay position.
 	bomb.global_position = (
 		bomb_target_position
 		+ bomb_target_normal * BOMB_SURFACE_OFFSET
 	)
 
+	# Rotate the bomb to match the surface.
 	bomb.global_rotation = bomb_target_normal.angle() + PI / 2.0
 
-	# Store which direction this surface faces.
+	# Store which direction the surface faces.
 	bomb.surface_normal = bomb_target_normal.normalized()
 
-	# Give the bomb access to the player for launching.
+	# Give the bomb access to the player.
 	bomb.player = self
 
-	# Keep track of the currently active bomb.
+	# Only animate the visual sprite.
+	bomb.play_placement_animation()
+
 	placed_bomb = bomb
-	
-	# Deduct the cost
+
 	GameManager.remove_scrap_resource(Bomb.SCRAP_COST)
 
 	reset_bomb_aim()
