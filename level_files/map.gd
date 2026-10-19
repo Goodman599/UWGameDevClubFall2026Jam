@@ -1,6 +1,7 @@
 class_name Map
 extends Node2D
 
+@export var player_made_objects_node : Node2D
 @export var camera_node : Camera2D
 const CAMERA_TWEEN_DURATION := 0.5
 
@@ -9,6 +10,8 @@ var current_room : Room
 var most_recent_junk_pile_room : Room # Junk piles should respawn on death (especially when backtracking)
 									  # But if you die in the same room you just destroyed a junk pile, it shouldn't respawn to save time.
 
+var last_room : Room
+var in_between_rooms := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +19,7 @@ func _ready() -> void:
 	var room_parent = $Rooms
 	for room : Room in room_parent.get_children():
 		room.player_entered_room.connect(on_player_room_enter)
+		room.player_exited_room.connect(on_player_room_exit)
 		room.scrap_pile.explodable_component.explode.connect(on_scrap_pile_destruction.bind(room))
 
 
@@ -51,7 +55,6 @@ func restart_room(room : Room) -> void:
 				continue # Skip the current room since other code already handles that
 			room_i.respawn_junk()
 	
-	
 	if !(Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties or Room.potential_special_properties.ENTER_WITH_NO_SCRAP in room.special_properties): # Level 1, for example, needs you to have no scrap
 		if !room.big_junk_destroyed:
 			GameManager.add_scrap_resource(1) # You should always have 1 scrap for the junk pile when entering a room from the front
@@ -59,11 +62,22 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.global_position = room.respawn_point.global_position
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
+	
+	for object in player_made_objects_node.get_children():
+		object.queue_free()
 
 func on_player_room_enter(room : Room) -> void:
+	last_room = current_room
 	current_room = room
 	set_room_camera_position(room)
-
+	
+func on_player_room_exit(room : Room) -> void:
+	# Exiting a room has 2 cases: Going forward & backtrack
+	# If we exit the last room we were in, that means we went forward. No issues
+	# If we backtracked, we would exit the current room
+	if room == current_room:
+		on_player_room_enter(last_room)
+		
 func on_scrap_pile_destruction(room : Room) -> void:
 	most_recent_junk_pile_room = room
 

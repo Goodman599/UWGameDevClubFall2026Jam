@@ -362,7 +362,7 @@ func create_bomb():
 	
 	var bomb := BOMB.instantiate() as Bomb
 
-	bomb_target_surface.add_child(bomb)
+	object_spawn_parent.add_child(bomb)
 
 	bomb.global_position = (
 		bomb_target_position

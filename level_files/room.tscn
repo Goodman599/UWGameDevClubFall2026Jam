@@ -29,6 +29,7 @@ object_spawn_parent = NodePath("../Scrap")
 
 [node name="Scrap" type="Node2D" parent="." unique_id=463183284]
 
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="explode" from="ScrapPile/ExplodableComponent" to="." method="_on_scrap_pile_explodable_component_explode"]
 
 [editable path="ScrapPile"]

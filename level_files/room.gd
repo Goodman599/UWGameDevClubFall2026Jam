@@ -3,6 +3,7 @@ class_name Room
 extends Area2D
 
 signal player_entered_room(room : Room)
+signal player_exited_room(room : Room)
 
 const SCREEN_SIZE := Vector2(1920, 1080)
 
@@ -77,6 +78,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_entered_room.emit(self)
 
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_exited_room.emit(self)
 
 func _on_scrap_pile_explodable_component_explode() -> void:
 	big_junk_destroyed = true
