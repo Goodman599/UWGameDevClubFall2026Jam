@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3w7eu5fawrvb" path="res://ui_files/scrap_ui.tscn" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://80e7j42bq2d5" path="res://game_objects/scrap_files/scrap_metal.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://baqh3stspn22w" path="res://game_objects/tree_files/tree.tscn" id="5_lquwl"]
 
 [sub_resource type="GDScript" id="GDScript_h2yge"]
 
@@ -66,3 +67,6 @@ position = Vector2(1337, 704)
 
 [node name="ScrapMetal12" parent="." unique_id=155063657 instance=ExtResource("4_1bvp3")]
 position = Vector2(1178, 680)
+
+[node name="Tree" parent="." unique_id=1674240212 instance=ExtResource("5_lquwl")]
+position = Vector2(1707, 571)

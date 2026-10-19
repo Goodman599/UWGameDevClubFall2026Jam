@@ -411,3 +411,9 @@ func start_jump_hold_timer() -> void:
 	# Force correct
 	if TimeStop.is_time_stopped:
 		velocity.y += -19.99952698
+		
+# called when growing tree
+# prevents player from moving until tree is finished growing
+func grow_tree() -> void:
+	pass # TODO
+	
