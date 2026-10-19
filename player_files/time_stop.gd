@@ -44,11 +44,15 @@ func resume_time(instant: bool = false) -> void:
 # (polish, not a priority)
 # fades in the time stop shader 
 func start_shader() -> void:
-	pass # TODO
+	var tween = create_tween()
+	tween.set_ignore_time_scale(true)
+	tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.25, ENTER_TIME_SLOW_SPAN)
 
 # (polish, not a priority)
 # fades out the time stop shader
 # set instant to true to remove without a fade out
 func end_shader(instant: bool = false) -> void:
-	pass # TODO
+	var tween = create_tween()
+	tween.set_ignore_time_scale(true)
+	tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.0, EXIT_TIME_SLOW_SPAN)
 	

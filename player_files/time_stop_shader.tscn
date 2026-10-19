@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ds66cqfx0ldvo"]
+
+[ext_resource type="Shader" uid="uid://boeam4xbsctno" path="res://player_files/time_stop_shader.gdshader" id="1_7s8wb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndiaq"]
+shader = ExtResource("1_7s8wb")
+shader_parameter/intensity = 0.0
+shader_parameter/edge_intensity = 0.50000002375
+shader_parameter/edge_spread = 1.0
+shader_parameter/blue_tint = Color(0, 0.35, 1, 1)
+
+[node name="TimeStopShader" type="CanvasLayer" unique_id=2032691790]
+
+[node name="Shader" type="ColorRect" parent="." unique_id=1690221864]
+material = SubResource("ShaderMaterial_ndiaq")
+offset_right = 1920.0
+offset_bottom = 1080.0
