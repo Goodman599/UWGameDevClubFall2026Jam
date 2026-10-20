@@ -23,7 +23,6 @@ metadata/_edit_group_ = true
 
 [node name="Player" parent="PlayerSpawnPoint" unique_id=1773731800 instance=ExtResource("2_ouh47")]
 process_mode = 4
-visible = true
 position = Vector2(-0.4, 0)
 scale = Vector2(0.2, 0.2)
 script = null
@@ -48,6 +47,7 @@ metadata/_edit_lock_ = true
 [node name="Tree" parent="." unique_id=1674240212 instance=ExtResource("4_skok3")]
 
 [node name="Scrap" type="Node2D" parent="." unique_id=463183284]
+metadata/_edit_lock_ = true
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="explode" from="ScrapPile/ExplodableComponent" to="." method="_on_scrap_pile_explodable_component_explode"]
