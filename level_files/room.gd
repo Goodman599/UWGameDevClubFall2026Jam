@@ -7,8 +7,6 @@ signal player_exited_room(room : Room)
 
 const SCREEN_SIZE := Vector2(1920, 1080)
 
-@export var next_room : Room
-
 const room_size := SCREEN_SIZE
 		
 @export var room_size_multiplier := Vector2(1, 1):
