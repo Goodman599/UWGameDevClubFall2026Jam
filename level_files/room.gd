@@ -22,6 +22,7 @@ var big_junk_destroyed := false
 @onready var bounding_box : CollisionShape2D = $BoundingBox
 @onready var respawn_point : Marker2D = $PlayerSpawnPoint
 @onready var scrap_pile : Node2D = $ScrapPile
+@onready var scrap_tree : JunkTree = $Tree
 
 enum potential_special_properties {
 	NO_SCRAP_PILE, # Level 1, for example, needs you to have no scrap
@@ -88,6 +89,9 @@ func _on_scrap_pile_explodable_component_explode() -> void:
 
 func respawn_junk():
 	big_junk_destroyed = false
+	if scrap_tree and scrap_tree.fully_bloomed == false: # doesn't reset if perfect score achieved
+		scrap_tree.reset()
+	
 	if get_node_or_null("ScrapPile"):
 		$ScrapPile.respawn()
 	

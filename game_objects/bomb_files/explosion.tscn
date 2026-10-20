@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://brjkmfxldxpu2"]
+
+[ext_resource type="Script" uid="uid://c0ou3dobdchji" path="res://game_objects/bomb_files/explosion.gd" id="1_wlg0e"]
+[ext_resource type="Shader" uid="uid://cmcjb7ueyhtdn" path="res://game_objects/bomb_files/explosion.gdshader" id="2_sa6gj"]
+[ext_resource type="Texture2D" uid="uid://doka606nljbua" path="res://game_objects/bomb_files/bomb.png" id="3_l0rr7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0rr7"]
+shader = ExtResource("2_sa6gj")
+shader_parameter/inner_radius = 0.5
+shader_parameter/blue_thickness = 0.5
+shader_parameter/black_thickness = 0.05
+shader_parameter/opacity = 1.0
+
+[node name="Node2D" type="Node2D" unique_id=872285629]
+script = ExtResource("1_wlg0e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1092312542]
+material = SubResource("ShaderMaterial_l0rr7")
+texture = ExtResource("3_l0rr7")

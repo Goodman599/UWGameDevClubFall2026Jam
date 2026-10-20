@@ -8,6 +8,7 @@ const SCRAP_COST := 1
 
 var surface_normal := Vector2.ZERO
 var player: Player = null
+const EXPLOSION := preload("res://game_objects/bomb_files/explosion.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -47,7 +48,11 @@ func detonate():
 		# Launch the player if they're inside the blast.
 		if player != null and is_node_or_parent(collider, player):
 			player.apply_velocity(surface_normal * player_launch_speed)
-
+	
+	var new_explosion = EXPLOSION.instantiate()
+	new_explosion.hide()
+	new_explosion.global_position = self.global_position
+	player.object_spawn_parent.add_child(new_explosion)
 	queue_free()
 
 
