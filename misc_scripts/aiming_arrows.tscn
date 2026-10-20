@@ -287,6 +287,7 @@ load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ct
 script = ExtResource("1_4ftpn")
 
 [node name="Orthogonal" type="Node2D" parent="." unique_id=1686889207]
+visible = false
 
 [node name="W" parent="Orthogonal" unique_id=161312503 instance=ExtResource("1_u3cn7")]
 material = SubResource("ShaderMaterial_soe3k")
@@ -312,6 +313,7 @@ rotation = 4.712389
 texture = SubResource("CompressedTexture2D_kir7l")
 
 [node name="Diagonal" type="Node2D" parent="." unique_id=1846314502]
+visible = false
 
 [node name="NW" parent="Diagonal" unique_id=1744998643 instance=ExtResource("1_u3cn7")]
 material = SubResource("ShaderMaterial_mfigx")

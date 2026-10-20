@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://yfm4dkwefson" path="res://game_objects/scrap_files/scrap.png" id="2_8s01s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(64, 64)
+size = Vector2(64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7vrg"]
-size = Vector2(96, 96)
+size = Vector2(96, 48)
 
 [node name="ScrapMetal" type="RigidBody2D" unique_id=635839251]
 collision_layer = 4
@@ -15,7 +15,7 @@ collision_mask = 3
 script = ExtResource("1_8s01s")
 
 [node name="ScrapSprite" type="Sprite2D" parent="." unique_id=494889253]
-position = Vector2(-1.04904175e-05, -4.7683716e-07)
+position = Vector2(-9.094947e-13, -7.9999995)
 scale = Vector2(0.33333334, 0.33333334)
 texture = ExtResource("2_8s01s")
 

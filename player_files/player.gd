@@ -27,7 +27,9 @@ const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_p
 var platform_hologram_H : Platform
 var platform_hologram_V : Platform
 
+
 const BOMB := preload("res://game_objects/bomb_files/bomb.tscn")
+const BOMB_HOLOGRAM := preload("res://game_objects/bomb_files/bomb_hologram.tscn")
 const BOMB_PLACE_DISTANCE := 150.0
 const BOMB_SURFACE_OFFSET := 4.0
 var bomb_target_surface : Node2D = null
@@ -36,6 +38,8 @@ var bomb_target_normal := Vector2.ZERO
 var bomb_has_valid_target := false
 var placed_bomb : Bomb = null
 var applied_velocity := Vector2(0, 0)
+@onready var bomb_hologram : Node2D = BOMB_HOLOGRAM.instantiate()
+
 const APPLIED_VELOCITY_DRAG := 750.0
 const APPLIED_VELOCITY_FRICTION := 1500.0
 
@@ -51,6 +55,8 @@ var growing_tree := false
 func _ready() -> void:
 	GameManager.player_node = self
 	last_pressed_direction = Vector2(1, 0)
+	add_child(bomb_hologram)
+	bomb_hologram.hide()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -280,6 +286,7 @@ func aim_bomb():
 
 	if bomb_aim_direction == Vector2i.ZERO:
 		bomb_has_valid_target = false
+		bomb_hologram.hide()
 		return
 	
 	$AimingArrows.highlight(bomb_aim_direction)
@@ -302,18 +309,29 @@ func aim_bomb():
 	bomb_target_surface = null
 
 	if result.is_empty():
+		bomb_hologram.hide()
 		return
 
 	var collider = result["collider"]
 	var surface := find_bomb_surface(collider)
 
 	if surface == null:
+		bomb_hologram.hide()
 		return
 
 	bomb_target_surface = surface
 	bomb_target_position = result["position"]
 	bomb_target_normal = result["normal"]
 	bomb_has_valid_target = true
+	
+	bomb_hologram.show()
+	bomb_hologram.global_position = (
+		bomb_target_position
+		+ bomb_target_normal * BOMB_SURFACE_OFFSET
+	)
+
+	# Rotate the hologram to match the surface.
+	bomb_hologram.global_rotation = bomb_target_normal.angle() + PI / 2.0
 
 func find_bomb_surface(node: Node) -> Node2D:
 	var current := node
@@ -377,6 +395,7 @@ func create_platform():
 	$AimingArrows.disappear()
 	
 func create_bomb():
+	bomb_hologram.hide()
 	if !bomb_has_valid_target:
 		reset_bomb_aim()
 		return

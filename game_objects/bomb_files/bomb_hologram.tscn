@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ckj6kubmuv0h3"]
+
+[ext_resource type="Texture2D" uid="uid://doka606nljbua" path="res://game_objects/bomb_files/bomb.png" id="2_haxqm"]
+
+[node name="BombHologram" type="Node2D" unique_id=625780472]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1333695020]
+self_modulate = Color(0, 0.8509804, 1, 0.5019608)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_haxqm")
