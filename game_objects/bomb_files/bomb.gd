@@ -9,8 +9,14 @@ const SCRAP_COST := 1
 var surface_normal := Vector2.ZERO
 var player: Player = null
 
+@onready var sprite: Sprite2D = $Sprite2D
 
 func detonate():
+	var camera := get_viewport().get_camera_2d()
+
+	if camera is GameCamera:
+		camera.shake(16.0)
+		
 	var circle := CircleShape2D.new()
 	circle.radius = explosion_radius
 
@@ -75,3 +81,19 @@ func is_node_or_parent(node: Node, target: Node) -> bool:
 		current = current.get_parent()
 
 	return false
+
+func play_placement_animation() -> void:
+	# Start the sprite slightly away from the surface.
+	sprite.position = Vector2(0.0, -20.0)
+
+	var tween := create_tween()
+
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		sprite,
+		"position",
+		Vector2.ZERO,
+		0.12
+	)

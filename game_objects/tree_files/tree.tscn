@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://baqh3stspn22w"]
+
+[ext_resource type="Script" uid="uid://bkpbn8mjub8uy" path="res://game_objects/tree_files/tree.gd" id="1_xbhje"]
+[ext_resource type="Texture2D" uid="uid://dv64uphq2b5eq" path="res://game_objects/tree_files/temp_sprout.png" id="2_rnu6r"]
+[ext_resource type="Texture2D" uid="uid://bb4qpt8v1xm3t" path="res://game_objects/tree_files/temp_tree.png" id="3_7qsop"]
+[ext_resource type="Texture2D" uid="uid://6hgm63hinah7" path="res://game_objects/tree_files/temp_blossom.png" id="4_7qsop"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7yv6r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7qsop")
+}],
+"loop": 1,
+"name": &"blossoming_tree",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rnu6r")
+}],
+"loop": 1,
+"name": &"sprout",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7qsop")
+}],
+"loop": 1,
+"name": &"tree",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yv6r"]
+size = Vector2(190, 43.625)
+
+[node name="Tree" type="Node2D" unique_id=1674240212]
+script = ExtResource("1_xbhje")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_7yv6r")
+animation = &"sprout"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=8844438]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1436547889]
+position = Vector2(-1, 115.8125)
+shape = SubResource("RectangleShape2D_7yv6r")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
