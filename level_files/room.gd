@@ -89,7 +89,7 @@ func _on_scrap_pile_explodable_component_explode() -> void:
 
 func respawn_junk():
 	big_junk_destroyed = false
-	if scrap_tree.fully_bloomed == false: # doesn't reset if perfect score achieved
+	if scrap_tree and scrap_tree.fully_bloomed == false: # doesn't reset if perfect score achieved
 		scrap_tree.reset()
 	
 	if get_node_or_null("ScrapPile"):
