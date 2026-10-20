@@ -33,13 +33,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yv6r"]
-size = Vector2(128, 78)
+size = Vector2(108, 68)
 
 [node name="Tree" type="Node2D" unique_id=1674240212]
 script = ExtResource("1_xbhje")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
-position = Vector2(-7.695737e-06, 1.2814999e-06)
+position = Vector2(0, 63.25)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
 animation = &"sprout"
@@ -48,7 +48,7 @@ animation = &"sprout"
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1436547889]
-position = Vector2(0, 43)
+position = Vector2(2, 109.25)
 shape = SubResource("RectangleShape2D_7yv6r")
 
 [node name="DepositPlayer" type="AudioStreamPlayer" parent="." unique_id=757448123]

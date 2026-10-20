@@ -9,6 +9,7 @@ var object_spawn_parent : Node2D
 
 var is_hologram := false
 var valid_hologram : bool
+var is_destroyed := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,7 +43,8 @@ func set_hologram(value : bool):
 
 
 func destroy() -> void:
-	if !is_hologram:
+	if !is_hologram and !is_destroyed:
+		is_destroyed = true
 		spawn_scrap(SCRAP_REFUND)
 		$DestructionPlayer.play()
 		hide()

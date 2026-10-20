@@ -1,6 +1,6 @@
 extends Node
 
-var player_node : CharacterBody2D = null
+var player_node : Player = null
 var map_node : Map 
 var scrap : int
 var scrap_ui : ScrapUI

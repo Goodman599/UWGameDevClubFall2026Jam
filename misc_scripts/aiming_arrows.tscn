@@ -1,40 +1,338 @@
 [gd_scene format=3 uid="uid://4jqg6g7budga"]
 
+[ext_resource type="Script" uid="uid://cenqod2oy2ayl" path="res://misc_scripts/aiming_arrows.gd" id="1_4ftpn"]
 [ext_resource type="PackedScene" uid="uid://ddi8tw5wkuk6t" path="res://misc_scripts/arrow.tscn" id="1_u3cn7"]
 
+[sub_resource type="Shader" id="Shader_4ftpn"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_soe3k"]
+shader = SubResource("Shader_4ftpn")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2ssc"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_ptcur"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymopt"]
+shader = SubResource("Shader_ptcur")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_toykc"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_u3cn7"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ftpn"]
+shader = SubResource("Shader_u3cn7")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ja744"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_ccfuk"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj8ni"]
+shader = SubResource("Shader_ccfuk")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kir7l"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_3ra2b"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfigx"]
+shader = SubResource("Shader_3ra2b")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m3tas"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_ocw56"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xln22"]
+shader = SubResource("Shader_ocw56")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pat4t"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_t6446"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd84m"]
+shader = SubResource("Shader_t6446")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ku28o"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
+[sub_resource type="Shader" id="Shader_3rn5t"]
+code = "shader_type canvas_item;
+
+// Toggle to turn the color replacement on or off
+uniform bool enabled = true;
+
+uniform vec4 target_color : source_color = vec4(0.0, 0.584, 1.0, 1.0);
+uniform vec4 replacement_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float tolerance : hint_range(0.0, 0.5) = 0.1;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Only perform the color swap if 'enabled' is true and the pixel isn't transparent
+    if (enabled && current_color.a > 0.0) {
+        float diff = distance(current_color.rgb, target_color.rgb);
+        
+        if (diff < tolerance) {
+            current_color.rgb = replacement_color.rgb;
+        }
+    }
+    
+    COLOR = current_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u08wr"]
+shader = SubResource("Shader_3rn5t")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tij1j"]
+load_path = "res://.godot/imported/arrow.png-e763dbd910cf63149f2016c0c0fc908c.ctex"
+
 [node name="AimingArrows" type="Node2D" unique_id=1318538409]
+script = ExtResource("1_4ftpn")
 
 [node name="Orthogonal" type="Node2D" parent="." unique_id=1686889207]
 
-[node name="Arrow" parent="Orthogonal" unique_id=161312503 instance=ExtResource("1_u3cn7")]
-position = Vector2(-96, 0)
+[node name="W" parent="Orthogonal" unique_id=161312503 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_soe3k")
+position = Vector2(-80, 0)
+texture = SubResource("CompressedTexture2D_u2ssc")
 
-[node name="Arrow2" parent="Orthogonal" unique_id=880398615 instance=ExtResource("1_u3cn7")]
-position = Vector2(-1.364242e-12, -95.99999)
+[node name="N" parent="Orthogonal" unique_id=880398615 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_ymopt")
+position = Vector2(-5.6843636e-14, -80)
 rotation = 1.5707964
+texture = SubResource("CompressedTexture2D_toykc")
 
-[node name="Arrow3" parent="Orthogonal" unique_id=1752888595 instance=ExtResource("1_u3cn7")]
-position = Vector2(96, 1.1368679e-12)
+[node name="E" parent="Orthogonal" unique_id=1752888595 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_4ftpn")
+position = Vector2(80, 5.684348e-13)
 rotation = 3.1415927
+texture = SubResource("CompressedTexture2D_ja744")
 
-[node name="Arrow4" parent="Orthogonal" unique_id=593617229 instance=ExtResource("1_u3cn7")]
-position = Vector2(-4.5474735e-13, 95.99999)
+[node name="S" parent="Orthogonal" unique_id=593617229 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_qj8ni")
+position = Vector2(-5.421011e-20, 80)
 rotation = 4.712389
+texture = SubResource("CompressedTexture2D_kir7l")
 
-[node name="diagonal" type="Node2D" parent="." unique_id=1846314502]
+[node name="Diagonal" type="Node2D" parent="." unique_id=1846314502]
 
-[node name="Arrow" parent="diagonal" unique_id=1744998643 instance=ExtResource("1_u3cn7")]
-position = Vector2(-96.00001, -96.00001)
+[node name="NW" parent="Diagonal" unique_id=1744998643 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_mfigx")
+position = Vector2(-80.00001, -80.00001)
 rotation = 0.7853982
+texture = SubResource("CompressedTexture2D_m3tas")
 
-[node name="Arrow2" parent="diagonal" unique_id=1409096693 instance=ExtResource("1_u3cn7")]
-position = Vector2(96, -96)
+[node name="NE" parent="Diagonal" unique_id=1409096693 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_xln22")
+position = Vector2(80.00001, -80.00001)
 rotation = 2.3561945
+texture = SubResource("CompressedTexture2D_pat4t")
 
-[node name="Arrow3" parent="diagonal" unique_id=883476884 instance=ExtResource("1_u3cn7")]
-position = Vector2(96.00001, 96)
+[node name="SE" parent="Diagonal" unique_id=883476884 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_yd84m")
+position = Vector2(79.99999, 80)
 rotation = 3.926991
+texture = SubResource("CompressedTexture2D_ku28o")
 
-[node name="Arrow4" parent="diagonal" unique_id=35316903 instance=ExtResource("1_u3cn7")]
-position = Vector2(-96, 96)
+[node name="SW" parent="Diagonal" unique_id=35316903 instance=ExtResource("1_u3cn7")]
+material = SubResource("ShaderMaterial_u08wr")
+position = Vector2(-80, 80)
 rotation = 5.4977875
+texture = SubResource("CompressedTexture2D_tij1j")

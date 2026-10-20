@@ -87,6 +87,7 @@ func _physics_process(delta: float) -> void:
 				aiming_platform = true
 				TimeStop.stop_time()
 				create_platform_hologram()
+				$AimingArrows.show_orthogonal()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
 		if !growing_tree:
 			if is_instance_valid(placed_bomb):
@@ -96,6 +97,7 @@ func _physics_process(delta: float) -> void:
 				if GameManager.scrap >= Bomb.SCRAP_COST:
 					aiming_bomb = true
 					TimeStop.stop_time()
+					$AimingArrows.show_diagonal()
 	if aiming_platform:
 		aim_platform()
 	if aiming_bomb:
@@ -239,10 +241,22 @@ func aim_platform():
 			platform_hologram_H.hide()
 			platform_hologram_V.show()
 		platform_aim_direction = Vector2i(-1, 0)
-			
+	elif last_pressed_direction != Vector2i.ZERO:
+		if !platform_hologram_H: # If a hologram hasn't been created yet (possible edgecase)
+			platform_aim_direction = last_pressed_direction
+			create_platform_hologram()
+		platform_aim_direction = last_pressed_direction
+		if platform_aim_direction.x == 0: # No X offset aka directly above/below
+			platform_hologram_H.show()
+			platform_hologram_V.hide()
+		else:
+			platform_hologram_H.hide()
+			platform_hologram_V.show()
+		
 	if platform_hologram_H:
 		platform_hologram_H.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
 		platform_hologram_V.global_position = global_position + platform_aim_direction * PLATFORM_PLACE_OFFSET
+		$AimingArrows.highlight(platform_aim_direction)
 
 func aim_bomb():
 	var x := 0
@@ -267,11 +281,17 @@ func aim_bomb():
 	if bomb_aim_direction == Vector2i.ZERO:
 		bomb_has_valid_target = false
 		return
-
+	
+	$AimingArrows.highlight(bomb_aim_direction)
+	
 	var direction := Vector2(bomb_aim_direction).normalized()
 
 	var from := global_position
-	var to := from + direction * BOMB_PLACE_DISTANCE
+	var to : Vector2 
+	if bomb_aim_direction.x != 0 and bomb_aim_direction.y != 0:
+		to = from + direction * sqrt(2 * pow(BOMB_PLACE_DISTANCE, 2))
+	else:
+		to = from + direction * BOMB_PLACE_DISTANCE
 
 	var query := PhysicsRayQueryParameters2D.create(from, to)
 	query.exclude = [get_rid()]
@@ -313,10 +333,6 @@ func find_bomb_surface(node: Node) -> Node2D:
 	return null
 
 func create_platform_hologram():
-	if platform_aim_direction == Vector2i(0, 0):
-		if last_pressed_direction == Vector2i(0, 0):
-			return
-		platform_aim_direction = last_pressed_direction
 	
 	platform_hologram_V = VERTICAL_PLATFORM.instantiate()
 	platform_hologram_H = HORIZONTAL_PLATFORM.instantiate()
@@ -358,9 +374,8 @@ func create_platform():
 	platform_hologram_H = null
 	platform_hologram_V = null
 	platform_aim_direction = Vector2i(0, 0)
+	$AimingArrows.disappear()
 	
-	
-
 func create_bomb():
 	if !bomb_has_valid_target:
 		reset_bomb_aim()
@@ -408,6 +423,7 @@ func reset_bomb_aim():
 	bomb_target_position = Vector2.ZERO
 	bomb_target_normal = Vector2.ZERO
 	bomb_has_valid_target = false
+	$AimingArrows.disappear()
 
 func start_coyote_timer() -> void:
 	coyote_timer = COYOTE_WINDOW
@@ -416,14 +432,12 @@ func start_coyote_timer() -> void:
 		await get_tree().physics_frame
 	can_coyote_jump = false
 
-
 func start_jump_buffer_timer() -> void:
 	jump_buffer_timer = JUMP_BUFFER_WINODW
 	while jump_buffer_timer > 0.002: # Yes this is a magic number. No you cannot touch it
 		jump_buffer_timer -= get_physics_process_delta_time()
 		await get_tree().physics_frame
 	can_buffer_jump = false
-
 
 func start_jump_hold_timer() -> void:
 	jump_hold_timer = MAX_JUMP_HOLD_DURATION
@@ -453,7 +467,6 @@ func tree_growing() -> void:
 func tree_finished() -> void:
 	growing_tree = false
 	
-
 func force_stop_aiming():
 	if aiming_platform:
 		if platform_hologram_H:

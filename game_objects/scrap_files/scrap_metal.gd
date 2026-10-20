@@ -67,6 +67,9 @@ func magnetize_to_player() -> void:
 		print(self, ": Scrap didn't find player!")
 
 func collect() -> void:
+	if collected:
+		return
+	
 	GameManager.add_scrap_resource() 
 	$ScrapCollectionPlayer.play()
 	collected = true

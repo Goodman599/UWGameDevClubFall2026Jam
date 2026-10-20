@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://3w7eu5fawrvb"]
 
 [ext_resource type="Script" uid="uid://dkxi4l44opjeg" path="res://ui_files/scrap_ui.gd" id="1_e7rrv"]
-[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="1_nfcvu"]
+[ext_resource type="Texture2D" uid="uid://yfm4dkwefson" path="res://game_objects/scrap_files/scrap.png" id="2_e7rrv"]
 
 [node name="ScrapUI" type="CanvasLayer" unique_id=296093440]
 script = ExtResource("1_e7rrv")
 
 [node name="ScrapIcon" type="Sprite2D" parent="." unique_id=97376541]
-position = Vector2(81, 82)
-texture = ExtResource("1_nfcvu")
+position = Vector2(72, 64)
+scale = Vector2(0.50000006, 0.50000006)
+texture = ExtResource("2_e7rrv")
 
 [node name="ScrapCounter" type="RichTextLabel" parent="." unique_id=266070296]
 offset_left = 169.0
