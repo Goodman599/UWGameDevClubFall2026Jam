@@ -28,7 +28,7 @@ var platform_hologram_H : Platform
 var platform_hologram_V : Platform
 
 const BOMB := preload("res://game_objects/bomb_files/bomb.tscn")
-const BOMB_PLACE_DISTANCE := 100.0
+const BOMB_PLACE_DISTANCE := 150.0
 const BOMB_SURFACE_OFFSET := 4.0
 var bomb_target_surface : Node2D = null
 var bomb_target_position := Vector2.ZERO

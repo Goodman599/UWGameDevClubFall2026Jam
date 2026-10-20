@@ -5,6 +5,7 @@
 
 [node name="Bomb" type="Node2D" unique_id=625780472]
 script = ExtResource("1_2f5yr")
+explosion_radius = 150.0
 player_launch_speed = 1200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1333695020]

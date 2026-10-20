@@ -63,6 +63,10 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
+	# Delete scrap on the floor
+	for scrap in room.get_node("Scrap").get_children():
+		scrap.queue_free()
+	
 	for object in player_made_objects_node.get_children():
 		object.queue_free()
 
