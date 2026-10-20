@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dl4howmdppkeh"]
 
 [ext_resource type="Script" uid="uid://bvbi3epahcp4a" path="res://player_files/player.gd" id="1_8868v"]
-[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="1_vhd13"]
+[ext_resource type="Texture2D" uid="uid://bt375wnhek520" path="res://player_files/robot.png" id="2_6rly7"]
 [ext_resource type="PackedScene" uid="uid://ds66cqfx0ldvo" path="res://player_files/time_stop_shader.tscn" id="3_cvfxa"]
 [ext_resource type="PackedScene" uid="uid://4jqg6g7budga" path="res://misc_scripts/aiming_arrows.tscn" id="4_6rly7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(128, 128)
+size = Vector2(80, 128)
 
 [node name="Player" type="CharacterBody2D" unique_id=1773731800]
 collision_layer = 2
@@ -14,7 +14,9 @@ collision_mask = 9
 script = ExtResource("1_8868v")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=325302692]
-texture = ExtResource("1_vhd13")
+position = Vector2(0, -24)
+scale = Vector2(0.33333334, 0.30555555)
+texture = ExtResource("2_6rly7")
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="." unique_id=2065976699]
 shape = SubResource("RectangleShape2D_jreem")

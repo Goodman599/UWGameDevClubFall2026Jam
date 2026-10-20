@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://baqh3stspn22w"]
 
 [ext_resource type="Script" uid="uid://bkpbn8mjub8uy" path="res://game_objects/tree_files/tree.gd" id="1_xbhje"]
-[ext_resource type="Texture2D" uid="uid://dv64uphq2b5eq" path="res://game_objects/tree_files/temp_sprout.png" id="2_rnu6r"]
-[ext_resource type="Texture2D" uid="uid://bb4qpt8v1xm3t" path="res://game_objects/tree_files/temp_tree.png" id="3_7qsop"]
-[ext_resource type="Texture2D" uid="uid://6hgm63hinah7" path="res://game_objects/tree_files/temp_blossom.png" id="4_7qsop"]
+[ext_resource type="Texture2D" uid="uid://2arf7afof7en" path="res://game_objects/tree_files/tree_blossom.png" id="2_rnu6r"]
+[ext_resource type="Texture2D" uid="uid://dqdnqkdeei6wk" path="res://game_objects/tree_files/tree_sprout.png" id="3_7qsop"]
+[ext_resource type="Texture2D" uid="uid://bb8j57x82swnr" path="res://game_objects/tree_files/tree.png" id="4_u213v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7yv6r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_7qsop")
+"texture": ExtResource("2_rnu6r")
 }],
 "loop": 1,
 "name": &"blossoming_tree",
@@ -17,7 +17,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rnu6r")
+"texture": ExtResource("3_7qsop")
 }],
 "loop": 1,
 "name": &"sprout",
@@ -25,7 +25,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_7qsop")
+"texture": ExtResource("4_u213v")
 }],
 "loop": 1,
 "name": &"tree",
@@ -33,14 +33,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yv6r"]
-size = Vector2(190, 68)
+size = Vector2(128, 78)
 
 [node name="Tree" type="Node2D" unique_id=1674240212]
 script = ExtResource("1_xbhje")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
 position = Vector2(-7.695737e-06, 1.2814999e-06)
-scale = Vector2(1.0086956, 1.0074074)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
 animation = &"sprout"
 
@@ -48,7 +48,7 @@ animation = &"sprout"
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1436547889]
-position = Vector2(-1, 102)
+position = Vector2(0, 43)
 shape = SubResource("RectangleShape2D_7yv6r")
 
 [node name="DepositPlayer" type="AudioStreamPlayer" parent="." unique_id=757448123]

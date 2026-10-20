@@ -52,7 +52,9 @@ func start_shader() -> void:
 # fades out the time stop shader
 # set instant to true to remove without a fade out
 func end_shader(instant: bool = false) -> void:
-	var tween = create_tween()
-	tween.set_ignore_time_scale(true)
-	tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.0, EXIT_TIME_SLOW_SPAN)
-	
+	if !instant:
+		var tween = create_tween()
+		tween.set_ignore_time_scale(true)
+		tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.0, EXIT_TIME_SLOW_SPAN)
+	else:
+		GameManager.player_node.get_node("TimeStopShader/Shader").material.set_shader_parameter("intensity", 0.0)

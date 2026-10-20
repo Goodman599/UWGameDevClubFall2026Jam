@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2quija2xg7x"
-path="res://.godot/imported/Auto Tile.png-363f55288df68e892fcf88134485982e.ctex"
+uid="uid://bueij45frb2d4"
+path="res://.godot/imported/pipe.png-0620283dba4c11541a2d1b444c58742a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_files/Auto Tile.png"
-dest_files=["res://.godot/imported/Auto Tile.png-363f55288df68e892fcf88134485982e.ctex"]
+source_file="res://level_files/level_assets/pipe.png"
+dest_files=["res://.godot/imported/pipe.png-0620283dba4c11541a2d1b444c58742a.ctex"]
 
 [params]
 

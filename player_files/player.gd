@@ -446,6 +446,15 @@ func tree_growing() -> void:
 	stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	
+	force_stop_aiming()
+
+# called when tree is finished growing
+# turns back on physics process
+func tree_finished() -> void:
+	growing_tree = false
+	
+
+func force_stop_aiming():
 	if aiming_platform:
 		if platform_hologram_H:
 			platform_hologram_H.valid_hologram = false
@@ -458,9 +467,3 @@ func tree_growing() -> void:
 		create_bomb()
 		aiming_bomb = false
 	TimeStop.resume_time(true)
-
-# called when tree is finished growing
-# turns back on physics process
-func tree_finished() -> void:
-	growing_tree = false
-	

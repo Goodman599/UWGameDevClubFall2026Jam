@@ -28,6 +28,9 @@ func _ready() -> void:
 
 
 func on_player_death():
+	if TimeStop.is_time_stopped:
+		GameManager.player_node.force_stop_aiming()
+		
 	fade_to_black()
 	GameManager.player_node.set_physics_process(false)
 	await fade_tween.finished

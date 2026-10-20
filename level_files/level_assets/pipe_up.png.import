@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2g12c8mlyy7a"
-path="res://.godot/imported/Gear-fullview.png-3ea939f4c599c0507e67e30bd58d2a4c.ctex"
+uid="uid://ce08q0mm02f4h"
+path="res://.godot/imported/pipe_up.png-f33e5b443b8c99b1fc7eea60072f5310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_files/Gear-fullview.png"
-dest_files=["res://.godot/imported/Gear-fullview.png-3ea939f4c599c0507e67e30bd58d2a4c.ctex"]
+source_file="res://level_files/level_assets/pipe_up.png"
+dest_files=["res://.godot/imported/pipe_up.png-f33e5b443b8c99b1fc7eea60072f5310.ctex"]
 
 [params]
 

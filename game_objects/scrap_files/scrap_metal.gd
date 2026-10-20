@@ -16,6 +16,8 @@ const TOP_SPEED_TO_PLAYER := 7500.0
 var speed_to_player := 0.0
 var player_node : Player
 
+var collected := false
+
 @export var is_static := false # Determines if it will launch randomly and magnetize to the player
 
 # Called when the node enters the scene tree for the first time.
@@ -67,6 +69,7 @@ func magnetize_to_player() -> void:
 func collect() -> void:
 	GameManager.add_scrap_resource() 
 	$ScrapCollectionPlayer.play()
+	collected = true
 	hide()
 	await $ScrapCollectionPlayer.finished
 	queue_free()

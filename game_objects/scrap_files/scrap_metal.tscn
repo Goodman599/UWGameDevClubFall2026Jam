@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://80e7j42bq2d5"]
 
 [ext_resource type="Script" uid="uid://dw6tan1wfv20f" path="res://game_objects/scrap_files/scrap_metal.gd" id="1_8s01s"]
-[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="1_158w3"]
+[ext_resource type="Texture2D" uid="uid://yfm4dkwefson" path="res://game_objects/scrap_files/scrap.png" id="2_8s01s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
 size = Vector2(64, 64)
@@ -15,9 +15,9 @@ collision_mask = 3
 script = ExtResource("1_8s01s")
 
 [node name="ScrapSprite" type="Sprite2D" parent="." unique_id=494889253]
-position = Vector2(-1.4305115e-06, -1.4305115e-06)
-scale = Vector2(0.49999994, 0.49999994)
-texture = ExtResource("1_158w3")
+position = Vector2(-1.04904175e-05, -4.7683716e-07)
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("2_8s01s")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1102035546]
 shape = SubResource("RectangleShape2D_jreem")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jfbriyys2yds"
-path="res://.godot/imported/temp_solid_death.png-b7cf711caf2fc5479273f87af720e8fc.ctex"
+uid="uid://2e0xyloib86t"
+path="res://.godot/imported/pipe3way.png-4bc8fd191429fb653bd8ed4ee84fa745.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_files/temp_solid_death.png"
-dest_files=["res://.godot/imported/temp_solid_death.png-b7cf711caf2fc5479273f87af720e8fc.ctex"]
+source_file="res://level_files/level_assets/pipe3way.png"
+dest_files=["res://.godot/imported/pipe3way.png-4bc8fd191429fb653bd8ed4ee84fa745.ctex"]
 
 [params]
 

@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cxvn865pb7al8"]
 
-[ext_resource type="Texture2D" uid="uid://b2g12c8mlyy7a" path="res://level_files/Gear-fullview.png" id="1_ha3t4"]
+[ext_resource type="Texture2D" uid="uid://cuc6a4nvybvkk" path="res://level_files/level_assets/gear.png" id="1_ha3t4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynn12"]
 texture = ExtResource("1_ha3t4")
-texture_region_size = Vector2i(280, 280)
+texture_region_size = Vector2i(256, 256)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-140, -140, 140, -140, 140, 140, -140, 140)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-70, 70, -70, -70, 70, -70, 70, 70)
 
 [sub_resource type="TileSet" id="TileSet_jreem"]
-tile_size = Vector2i(280, 280)
+tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 8
 sources/0 = SubResource("TileSetAtlasSource_ynn12")
 
 [node name="SpinnerTilemap" type="TileMapLayer" unique_id=593172244 groups=["death"]]
-scale = Vector2(0.229, 0.229)
+scale = Vector2(0.25, 0.25)
 tile_set = SubResource("TileSet_jreem")

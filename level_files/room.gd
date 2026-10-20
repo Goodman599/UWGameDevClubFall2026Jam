@@ -98,7 +98,7 @@ func respawn_junk():
 			var current_scrap = free_scrap_positions[spawn_pos]
 			
 			# If the slot is empty or the scrap node was freed/collected:
-			if not is_instance_valid(current_scrap):
+			if not is_instance_valid(current_scrap) or current_scrap.collected:
 				var new_scrap: Scrap = SCRAP_SCENE.instantiate()
 				new_scrap.is_static = true
 				new_scrap.position = spawn_pos
