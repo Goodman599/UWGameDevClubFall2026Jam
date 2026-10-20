@@ -71,6 +71,7 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
 	is_backtracking = false
+	room.get_node("Tree").enabled = true
 	
 	# Delete scrap on the floor
 	for scrap in room.get_node("Scrap").get_children():
@@ -88,9 +89,11 @@ func get_last_room() -> Room:
 func on_player_room_enter(room : Room) -> void:
 	if get_last_room() == room: # We backtracked
 		is_backtracking = true
+		room.get_node("Tree").enabled = false
 		room_history.pop_back()
 	else:
 		is_backtracking = false
+		room.get_node("Tree").enabled = true
 		room_history.append(room)
 	current_room = room
 	set_room_camera_position(room)
@@ -101,6 +104,7 @@ func on_player_room_exit(room : Room) -> void:
 	# If we backtracked, we would exit the current room
 	if room == current_room and get_last_room():
 		is_backtracking = true
+		room.get_node("Tree").enabled = false
 		on_player_room_enter(get_last_room())
 		
 func on_scrap_pile_destruction(room : Room) -> void:

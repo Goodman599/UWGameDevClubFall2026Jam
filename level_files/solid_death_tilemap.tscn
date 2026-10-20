@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bac0c004pfo8y"]
 
-[ext_resource type="Texture2D" uid="uid://teh1pefp76u3" path="res://level_files/level_assets/laser_side_body.png" id="1_q8w25"]
-[ext_resource type="Texture2D" uid="uid://dpmnq3a1hnu47" path="res://level_files/level_assets/laser_side_left.png" id="2_prmgf"]
-[ext_resource type="Texture2D" uid="uid://b3y0nd4qce7of" path="res://level_files/level_assets/laser_side_right.png" id="3_2vneh"]
-[ext_resource type="Texture2D" uid="uid://piuxh82mwisj" path="res://level_files/level_assets/laser_up_body.png" id="4_7fkfp"]
-[ext_resource type="Texture2D" uid="uid://bbc33ptee0dy5" path="res://level_files/level_assets/laser_up_bottom.png" id="5_p87t6"]
-[ext_resource type="Texture2D" uid="uid://bipdxexjqhiie" path="res://level_files/level_assets/laser_up_top.png" id="6_vf4fw"]
+[ext_resource type="Texture2D" uid="uid://dx2505fpsijf" path="res://level_files/level_assets/laser_side_body.png" id="1_q8w25"]
+[ext_resource type="Texture2D" uid="uid://bhp27bpp023f0" path="res://level_files/level_assets/laser_side_left.png" id="2_prmgf"]
+[ext_resource type="Texture2D" uid="uid://bh5m1am5ytxxx" path="res://level_files/level_assets/laser_side_right.png" id="3_2vneh"]
+[ext_resource type="Texture2D" uid="uid://dnw7xlcdpjsu2" path="res://level_files/level_assets/laser_up_body.png" id="4_7fkfp"]
+[ext_resource type="Texture2D" uid="uid://bvkmcjptvaj56" path="res://level_files/level_assets/laser_up_bottom.png" id="5_p87t6"]
+[ext_resource type="Texture2D" uid="uid://cknkfrta1tpo7" path="res://level_files/level_assets/laser_up_top.png" id="6_vf4fw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qljks"]
 texture = ExtResource("1_q8w25")
