@@ -48,6 +48,7 @@ func destroy() -> void:
 		spawn_scrap(SCRAP_REFUND)
 		$DestructionPlayer.play()
 		hide()
+		$CollisionBox.set_process_mode(PROCESS_MODE_DISABLED)
 		await $DestructionPlayer.finished
 		queue_free()
 
