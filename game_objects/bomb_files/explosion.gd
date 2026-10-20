@@ -4,9 +4,9 @@ extends Node2D
 const RADIUS := 150.0 # radius of regular size, in pixels TODO
 const BLACK_THICKNESS := 0.003
 const BLUE_THICKNESS := 0.03
-const LIFETIME := 0.14
-const FINAL_OPACITY := 0.0
-const SPRITE_RADIUS := 250.0
+const LIFETIME := 0.14 # in seconds
+const FINAL_OPACITY := 0.5 # scale of 0 to 1
+const SPRITE_RADIUS := 250.0 # radius of sprite the shader covers
 
 var current_scale : float
 var lifetime : float

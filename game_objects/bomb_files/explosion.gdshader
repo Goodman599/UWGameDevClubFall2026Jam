@@ -9,9 +9,6 @@ uniform float opacity : hint_range(0.0, 1.0) = 1.0;
 // rad+white+black+black may not be supposed to exceed 1
 
 void fragment() {
-	// set opacity
-	COLOR.a *= opacity;
-	
     // Get distance from center (0.5, 0.5)
     float dist = distance(UV, vec2(0.5));
 	
@@ -28,4 +25,6 @@ void fragment() {
     color.rgb = mix(color.rgb, vec3(0.0), outline2); // Overlay black outline
 
     COLOR = color;
+	// set opacity
+	COLOR.a *= opacity;
 }
