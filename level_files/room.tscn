@@ -19,6 +19,7 @@ shape = SubResource("RectangleShape2D_skok3")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1306906192]
 scale = Vector2(5, 5)
+metadata/_edit_group_ = true
 
 [node name="Player" parent="PlayerSpawnPoint" unique_id=1773731800 instance=ExtResource("2_ouh47")]
 process_mode = 4
@@ -26,9 +27,23 @@ visible = true
 position = Vector2(-0.4, 0)
 scale = Vector2(0.2, 0.2)
 script = null
+metadata/_edit_lock_ = true
 
 [node name="ScrapPile" parent="." unique_id=1780945925 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("2_6r3s6")]
 object_spawn_parent = NodePath("../Scrap")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="ScrapPile" index="0" unique_id=914382358]
+metadata/_edit_lock_ = true
+
+[node name="ExplodableComponent" parent="ScrapPile" index="1" unique_id=902603782]
+metadata/_edit_lock_ = true
+
+[node name="ExplosionDetectionArea" parent="ScrapPile/ExplodableComponent" index="0" unique_id=1756107568]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="ScrapPile/ExplodableComponent/ExplosionDetectionArea" index="0" unique_id=1075704933]
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="." unique_id=1674240212 instance=ExtResource("4_skok3")]
 
