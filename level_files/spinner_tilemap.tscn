@@ -6,7 +6,7 @@
 texture = ExtResource("1_ha3t4")
 texture_region_size = Vector2i(280, 280)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-140, -140, 140, -140, 140, 140, -140, 140)
 
 [sub_resource type="TileSet" id="TileSet_jreem"]
 tile_size = Vector2i(280, 280)
