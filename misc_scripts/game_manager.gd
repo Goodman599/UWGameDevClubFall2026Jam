@@ -1,6 +1,7 @@
 extends Node
 
-var player_node: CharacterBody2D = null
+var player_node : CharacterBody2D = null
+var map_node : Map 
 var scrap : int
 var scrap_ui : ScrapUI
 
@@ -23,3 +24,6 @@ func remove_scrap_resource(amount: int = 1) -> void:
 func set_scrap_resource(amount: int) -> void:
 	scrap = amount
 	scrap_ui.set_scrap_resource(amount)
+
+func kill_player():
+	map_node.on_player_death()

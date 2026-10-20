@@ -124,6 +124,13 @@ func _physics_process(delta: float) -> void:
 			applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_FRICTION * delta)
 		else:
 			applied_velocity.x = move_toward(applied_velocity.x, 0, APPLIED_VELOCITY_DRAG * delta)
+	
+	var already_died := false # Needed when hitting multiple death tiles at once
+	for i in get_slide_collision_count():
+		var collider : Node2D = get_slide_collision(i).get_collider()
+		if collider.is_in_group("death") and !already_died:
+			already_died = true
+			GameManager.kill_player()
 			
 func fall(delta : float):
 	var terminal_velocity : float
@@ -355,7 +362,7 @@ func create_bomb():
 	
 	var bomb := BOMB.instantiate() as Bomb
 
-	bomb_target_surface.add_child(bomb)
+	object_spawn_parent.add_child(bomb)
 
 	# Immediately put the actual bomb at its final gameplay position.
 	bomb.global_position = (

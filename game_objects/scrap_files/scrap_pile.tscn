@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bnmpaka6esg7u"]
+
+[ext_resource type="Script" uid="uid://b7tfackbnnpaj" path="res://game_objects/scrap_files/junk.gd" id="1_6a1lo"]
+[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_pulpc"]
+[ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_fihmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7bs1"]
+size = Vector2(192, 192)
+
+[node name="ScrapPile" type="Node2D" unique_id=1780945925 node_paths=PackedStringArray("explodable_component")]
+script = ExtResource("1_6a1lo")
+explodable_component = NodePath("ExplodableComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=914382358]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_pulpc")
+
+[node name="ExplodableComponent" parent="." unique_id=902603782 instance=ExtResource("3_fihmh")]
+
+[node name="CollisionShape2D" parent="ExplodableComponent/ExplosionDetectionArea" parent_id_path=PackedInt32Array(902603782, 1756107568) index="0" unique_id=1075704933]
+shape = SubResource("RectangleShape2D_f7bs1")
+
+[editable path="ExplodableComponent"]
