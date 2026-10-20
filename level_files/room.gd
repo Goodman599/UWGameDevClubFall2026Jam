@@ -42,6 +42,7 @@ func _ready() -> void:
 		$PlayerSpawnPoint/Player.hide()
 		$ScrapPile.scrap_amount = starting_scrap_count
 		if potential_special_properties.NO_SCRAP_PILE in special_properties:
+			$Tree.queue_free()
 			$ScrapPile.queue_free()
 		if potential_special_properties.HAS_FREE_SCRAP in special_properties:
 			for child in get_children():

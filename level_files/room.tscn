@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://mdoy5dg1hyvo" path="res://level_files/room.gd" id="1_8gfxe"]
 [ext_resource type="PackedScene" uid="uid://bnmpaka6esg7u" path="res://game_objects/scrap_files/scrap_pile.tscn" id="2_6r3s6"]
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="2_ouh47"]
+[ext_resource type="PackedScene" uid="uid://baqh3stspn22w" path="res://game_objects/tree_files/tree.tscn" id="4_skok3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouh47"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ngg"]
 size = Vector2(1920, 1080)
 
 [node name="Room" type="Area2D" unique_id=594688412]
@@ -14,7 +15,7 @@ script = ExtResource("1_8gfxe")
 
 [node name="BoundingBox" type="CollisionShape2D" parent="." unique_id=492741312]
 position = Vector2(960, 540)
-shape = SubResource("RectangleShape2D_ouh47")
+shape = SubResource("RectangleShape2D_e4ngg")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1306906192]
 scale = Vector2(5, 5)
@@ -26,6 +27,8 @@ script = null
 
 [node name="ScrapPile" parent="." unique_id=1780945925 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("2_6r3s6")]
 object_spawn_parent = NodePath("../Scrap")
+
+[node name="Tree" parent="." unique_id=1674240212 instance=ExtResource("4_skok3")]
 
 [node name="Scrap" type="Node2D" parent="." unique_id=463183284]
 

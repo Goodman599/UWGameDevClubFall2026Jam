@@ -17,6 +17,11 @@ size = Vector2(1440, 810)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=891497987]
 position = Vector2(960, 540)
 
+[node name="Player" parent="." unique_id=1773731800 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("1_0xm2m")]
+z_index = 1
+position = Vector2(224, 832)
+object_spawn_parent = NodePath("../PlayerMadeObjects")
+
 [node name="Map" parent="." unique_id=1424486311 node_paths=PackedStringArray("player_made_objects_node", "camera_node") instance=ExtResource("5_lquwl")]
 player_made_objects_node = NodePath("../PlayerMadeObjects")
 camera_node = NodePath("../Camera2D")
@@ -28,10 +33,6 @@ shape = SubResource("RectangleShape2D_h2yge")
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="PlayerMadeObjects" type="Node2D" parent="." unique_id=2120957893]
-
-[node name="Player" parent="." unique_id=1773731800 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("1_0xm2m")]
-position = Vector2(224, 832)
-object_spawn_parent = NodePath("../PlayerMadeObjects")
 
 [editable path="Map"]
 [editable path="Map/Rooms/Room"]

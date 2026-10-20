@@ -1,5 +1,5 @@
 extends Node2D
-const ENTER_TIME_SLOW_SPAN := 0.25 # how long in seconds the transition to stopped time is
+const ENTER_TIME_SLOW_SPAN := 0.1 # how long in seconds the transition to stopped time is
 const EXIT_TIME_SLOW_SPAN := 0.4 # how long in seconds the transition from stopped time is
 const TIME_SLOW_FINAL_SPEED := 0.1
 

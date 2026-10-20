@@ -45,6 +45,8 @@ var platform_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1)
 var aiming_bomb := false
 var bomb_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1)}
 
+var growing_tree := false
+
 func _ready() -> void:
 	GameManager.player_node = self
 	last_pressed_direction = Vector2(1, 0)
@@ -79,18 +81,20 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
-		if GameManager.scrap >= Platform.SCRAP_COST:
-			aiming_platform = true
-			TimeStop.stop_time()
-			create_platform_hologram()
-	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
-		if is_instance_valid(placed_bomb):
-			placed_bomb.detonate()
-			placed_bomb = null
-		else:
-			if GameManager.scrap >= Bomb.SCRAP_COST:
-				aiming_bomb = true
+		if !growing_tree:
+			if GameManager.scrap >= Platform.SCRAP_COST:
+				aiming_platform = true
 				TimeStop.stop_time()
+				create_platform_hologram()
+	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
+		if !growing_tree:
+			if is_instance_valid(placed_bomb):
+				placed_bomb.detonate()
+				placed_bomb = null
+			else:
+				if GameManager.scrap >= Bomb.SCRAP_COST:
+					aiming_bomb = true
+					TimeStop.stop_time()
 	if aiming_platform:
 		aim_platform()
 	if aiming_bomb:
@@ -425,8 +429,8 @@ func start_jump_hold_timer() -> void:
 # called when growing tree
 # turns off physics process until tree is finished growing
 # ends bomb/platform placement if currently placing
-func tree_growing() -> void:			
-	set_physics_process(false)
+func tree_growing() -> void:
+	growing_tree = true
 	if aiming_platform:
 		if platform_hologram_H:
 			platform_hologram_H.valid_hologram = false
@@ -443,5 +447,5 @@ func tree_growing() -> void:
 # called when tree is finished growing
 # turns back on physics process
 func tree_finished() -> void:
-	set_physics_process(true)
+	growing_tree = false
 	

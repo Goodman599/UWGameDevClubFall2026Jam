@@ -33,13 +33,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yv6r"]
-size = Vector2(190, 43.625)
+size = Vector2(190, 68)
 
 [node name="Tree" type="Node2D" unique_id=1674240212]
 script = ExtResource("1_xbhje")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
-position = Vector2(-1, 0)
+position = Vector2(-7.695737e-06, 1.2814999e-06)
+scale = Vector2(1.0086956, 1.0074074)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
 animation = &"sprout"
 
@@ -47,7 +48,7 @@ animation = &"sprout"
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1436547889]
-position = Vector2(-1, 115.8125)
+position = Vector2(-1, 102)
 shape = SubResource("RectangleShape2D_7yv6r")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
