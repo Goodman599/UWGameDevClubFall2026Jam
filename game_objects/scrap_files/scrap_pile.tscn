@@ -20,4 +20,6 @@ texture = ExtResource("2_pulpc")
 [node name="CollisionShape2D" parent="ExplodableComponent/ExplosionDetectionArea" parent_id_path=PackedInt32Array(902603782, 1756107568) index="0" unique_id=1075704933]
 shape = SubResource("RectangleShape2D_f7bs1")
 
+[node name="DestructionPlayer" type="AudioStreamPlayer" parent="." unique_id=1929975031]
+
 [editable path="ExplodableComponent"]

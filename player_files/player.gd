@@ -45,6 +45,7 @@ var platform_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1)
 var aiming_bomb := false
 var bomb_aim_direction := Vector2i(0, 0) # {(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (-1, 1), (1, -1)}
 
+const GROW_PLAYER_STOP_TIME := 0.5 # How long it takes to stop the player from moving when growing a tree
 var growing_tree := false
 
 func _ready() -> void:
@@ -109,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		create_bomb()
 	
 	# If aiming, then all direction inputs must become aiming instead of movement
-	if !aiming_bomb and !aiming_platform:
+	if !aiming_bomb and !aiming_platform and !growing_tree:
 		# Get the input direction and handle the movement/deceleration.
 		var direction := Input.get_axis("left", "right")
 		if direction:
@@ -153,6 +154,9 @@ func fall(delta : float):
 		velocity.y = move_toward(velocity.y, terminal_velocity, AIR_DRAG * delta)
 
 func attempt_jump() -> void:
+	if growing_tree:
+		return
+	
 	var can_jump := false
 	if is_on_floor():
 		can_jump = true
@@ -431,6 +435,11 @@ func start_jump_hold_timer() -> void:
 # ends bomb/platform placement if currently placing
 func tree_growing() -> void:
 	growing_tree = true
+	
+	var stopping_tween = get_tree().create_tween()
+	stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
+	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
+	
 	if aiming_platform:
 		if platform_hologram_H:
 			platform_hologram_H.valid_hologram = false

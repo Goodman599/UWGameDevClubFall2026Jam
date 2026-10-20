@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="2_ouh47"]
 [ext_resource type="PackedScene" uid="uid://baqh3stspn22w" path="res://game_objects/tree_files/tree.tscn" id="4_skok3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ngg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skok3"]
 size = Vector2(1920, 1080)
 
 [node name="Room" type="Area2D" unique_id=594688412]
@@ -15,13 +15,15 @@ script = ExtResource("1_8gfxe")
 
 [node name="BoundingBox" type="CollisionShape2D" parent="." unique_id=492741312]
 position = Vector2(960, 540)
-shape = SubResource("RectangleShape2D_e4ngg")
+shape = SubResource("RectangleShape2D_skok3")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1306906192]
 scale = Vector2(5, 5)
 
 [node name="Player" parent="PlayerSpawnPoint" unique_id=1773731800 instance=ExtResource("2_ouh47")]
 process_mode = 4
+visible = true
+position = Vector2(-0.4, 0)
 scale = Vector2(0.2, 0.2)
 script = null
 

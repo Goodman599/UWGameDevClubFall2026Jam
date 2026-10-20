@@ -3,7 +3,7 @@ extends Node2D
 
 var score := 0
 var perfect_score_threshold : int
-const GROW_RATE : float = 5 # how fast the tree grows in scrap per second 
+const GROW_RATE : float = 2 # how fast the tree grows in scrap per second 
 var player_node : Player
 var enabled := true # tree will be turned off if the player enters from the wrong direction or with more than one scrap
 

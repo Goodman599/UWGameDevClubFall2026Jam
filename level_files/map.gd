@@ -5,13 +5,13 @@ extends Node2D
 @export var camera_node : Camera2D
 const CAMERA_TWEEN_DURATION := 0.5
 
-#var room_history : Array[Room] # A stack that keeps track of rooms entered, to identify backtracking
+var room_history : Array[Room] # A stack that keeps track of rooms entered, to identify backtracking
 var current_room : Room
 var most_recent_junk_pile_room : Room # Junk piles should respawn on death (especially when backtracking)
 									  # But if you die in the same room you just destroyed a junk pile, it shouldn't respawn to save time.
 
-var last_room : Room
 var in_between_rooms := false
+var is_backtracking := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -63,6 +63,8 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
+	is_backtracking = false
+	
 	# Delete scrap on the floor
 	for scrap in room.get_node("Scrap").get_children():
 		scrap.queue_free()
@@ -70,8 +72,19 @@ func restart_room(room : Room) -> void:
 	for object in player_made_objects_node.get_children():
 		object.queue_free()
 
+func get_last_room() -> Room:
+	if room_history.size() > 2:
+		return room_history[room_history.size() - 2]
+	else:
+		return null
+
 func on_player_room_enter(room : Room) -> void:
-	last_room = current_room
+	if get_last_room() == room: # We backtracked
+		is_backtracking = true
+		room_history.pop_back()
+	else:
+		is_backtracking = false
+		room_history.append(room)
 	current_room = room
 	set_room_camera_position(room)
 	
@@ -80,7 +93,8 @@ func on_player_room_exit(room : Room) -> void:
 	# If we exit the last room we were in, that means we went forward. No issues
 	# If we backtracked, we would exit the current room
 	if room == current_room:
-		on_player_room_enter(last_room)
+		is_backtracking = true
+		on_player_room_enter(get_last_room())
 		
 func on_scrap_pile_destruction(room : Room) -> void:
 	most_recent_junk_pile_room = room

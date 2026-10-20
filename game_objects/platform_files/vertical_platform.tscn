@@ -43,6 +43,10 @@ shape = SubResource("RectangleShape2D_6l6gs")
 shape = SubResource("RectangleShape2D_oacvb")
 debug_color = Color(0, 0.630672, 0.46684557, 0.14901961)
 
+[node name="PlacementPlayer" type="AudioStreamPlayer" parent="." unique_id=1896711129]
+
+[node name="DestructionPlayer" type="AudioStreamPlayer" parent="." unique_id=1181668002]
+
 [connection signal="body_entered" from="HologramDetectionArea" to="." method="_on_hologram_detection_area_body_entered"]
 [connection signal="body_exited" from="HologramDetectionArea" to="." method="_on_hologram_detection_area_body_exited"]
 

@@ -51,6 +51,10 @@ collision_mask = 2
 position = Vector2(-1, 102)
 shape = SubResource("RectangleShape2D_7yv6r")
 
+[node name="DepositPlayer" type="AudioStreamPlayer" parent="." unique_id=757448123]
+
+[node name="RewardPlayer" type="AudioStreamPlayer" parent="." unique_id=2077356182]
+
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
