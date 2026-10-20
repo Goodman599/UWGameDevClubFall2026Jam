@@ -65,6 +65,9 @@ func magnetize_to_player() -> void:
 
 func collect() -> void:
 	GameManager.add_scrap_resource() 
+	$ScrapCollectionPlayer.play()
+	hide()
+	await $ScrapCollectionPlayer.finished
 	queue_free()
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:

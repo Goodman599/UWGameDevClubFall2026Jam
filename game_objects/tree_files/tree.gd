@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 			player_node.tree_finished()
 			if perfect_score_threshold <= score:
 				$AnimatedSprite2D.play("blossoming_tree")
+				$RewardPlayer.play()
 		else: # depositing scrap
 			player_node.tree_growing()
 			GameManager.remove_scrap_resource(1)
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 			# TODO sound effect
 			if score < perfect_score_threshold:
 				$AnimatedSprite2D.play("tree")
+				$DepositPlayer.play()
 	if grow_cooldown > 0:
 		grow_cooldown -= delta
 

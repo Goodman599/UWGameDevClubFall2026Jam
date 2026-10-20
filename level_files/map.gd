@@ -13,6 +13,10 @@ var most_recent_junk_pile_room : Room # Junk piles should respawn on death (espe
 var in_between_rooms := false
 var is_backtracking := false
 
+const FADE_TO_BLACK_DURATION := 0.25
+const FADE_BACK_DURATION := 0.25
+var fade_tween : Tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.map_node = self
@@ -29,7 +33,11 @@ func _process(delta: float) -> void:
 
 func on_player_death():
 	fade_to_black()
+	GameManager.player_node.set_physics_process(false)
+	await fade_tween.finished
 	restart_room(current_room)
+	await get_tree().create_timer(0.1).timeout
+	GameManager.player_node.set_physics_process(true)
 	fade_back_out()
 
 
@@ -110,7 +118,18 @@ func set_room_camera_position(room : Room) -> void:
 	camera_tween.parallel().tween_property(camera_node, "zoom", target_zoom, CAMERA_TWEEN_DURATION)
 
 func fade_to_black():
-	pass
-
+	# Get the player's 2D position and convert it to screen UV coordinates (0.0 to 1.0)
+	var screen_uv = GameManager.player_node.get_global_transform_with_canvas().origin / get_viewport_rect().size
+	$PlayerDeathFadeShader/Shader.material.set_shader_parameter("center", screen_uv)
+	fade_tween = create_tween()
+	fade_tween.set_ease(Tween.EASE_OUT)
+	fade_tween.set_trans(Tween.TRANS_LINEAR)
+	fade_tween.tween_property($PlayerDeathFadeShader/Shader.material, "shader_parameter/progress", 1.0, FADE_TO_BLACK_DURATION)
+	
 func fade_back_out():
-	pass
+	var screen_uv = GameManager.player_node.get_global_transform_with_canvas().origin / get_viewport_rect().size
+	$PlayerDeathFadeShader/Shader.material.set_shader_parameter("center", screen_uv)
+	fade_tween = create_tween()
+	fade_tween.set_ease(Tween.EASE_IN)
+	fade_tween.set_trans(Tween.TRANS_LINEAR)
+	fade_tween.tween_property($PlayerDeathFadeShader/Shader.material, "shader_parameter/progress", 0.0, FADE_BACK_DURATION)

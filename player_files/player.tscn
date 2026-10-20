@@ -8,7 +8,6 @@
 size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D" unique_id=1773731800]
-visible = false
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_8868v")
@@ -29,4 +28,4 @@ bus = &"SFX"
 
 [node name="DeathPlayer" type="AudioStreamPlayer" parent="." unique_id=916224308]
 
-[node name="ScrapCollectionPlayer" type="AudioStreamPlayer" parent="." unique_id=1109335016]
+[node name="BombLaunchPlayer" type="AudioStreamPlayer" parent="." unique_id=1603062201]

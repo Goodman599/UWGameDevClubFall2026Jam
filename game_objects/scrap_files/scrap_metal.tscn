@@ -30,4 +30,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_y7vrg")
 debug_color = Color(0.06901402, 0.6498834, 0, 0.41960785)
 
+[node name="ScrapCollectionPlayer" type="AudioStreamPlayer" parent="." unique_id=1681712986]
+
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]

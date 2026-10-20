@@ -115,10 +115,13 @@ func _physics_process(delta: float) -> void:
 		var direction := Input.get_axis("left", "right")
 		if direction:
 			velocity.x = direction * SPEED
+			$FootstepPlayer.play()
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			$FootstepPlayer.stop()
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		$FootstepPlayer.stop()
 	
 	velocity.x += applied_velocity.x
 	move_and_slide()
@@ -135,6 +138,7 @@ func _physics_process(delta: float) -> void:
 		var collider : Node2D = get_slide_collision(i).get_collider()
 		if collider.is_in_group("death") and !already_died:
 			already_died = true
+			$DeathPlayer.play()
 			GameManager.kill_player()
 			
 func fall(delta : float):
@@ -167,6 +171,7 @@ func attempt_jump() -> void:
 	
 	if can_jump:
 		velocity.y = JUMP_VELOCITY
+		$JumpPlayer.play()
 		can_coyote_jump = false # Any successful jump means no more coyote jumps 
 								# (would be a double jump otherwise)
 		can_jump_hold = true
@@ -193,6 +198,7 @@ func on_grounded_state_changed(just_landed : bool):
 
 func apply_velocity(incoming_velocity : Vector2):
 	applied_velocity += incoming_velocity
+	$BombLaunchPlayer.play()
 	if incoming_velocity.y < 0:
 		velocity.y = incoming_velocity.y
 	else:

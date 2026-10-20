@@ -53,6 +53,9 @@ func detonate():
 	new_explosion.hide()
 	new_explosion.global_position = self.global_position
 	player.object_spawn_parent.add_child(new_explosion)
+	$ExplodePlayer.play()
+	hide()
+	await $ExplodePlayer.finished
 	queue_free()
 
 
@@ -102,3 +105,5 @@ func play_placement_animation() -> void:
 		Vector2.ZERO,
 		0.12
 	)
+	
+	$PlacementPlayer.play()

@@ -33,6 +33,7 @@ func set_hologram(value : bool):
 		else:
 			valid_hologram = false
 			$HologramSprite.self_modulate = Color(1, 0, 0, 0.5)
+			$PlacementPlayer.play()
 			
 	else:
 		$CollisionBox.set_process_mode(PROCESS_MODE_INHERIT)
@@ -43,6 +44,9 @@ func set_hologram(value : bool):
 func destroy() -> void:
 	if !is_hologram:
 		spawn_scrap(SCRAP_REFUND)
+		$DestructionPlayer.play()
+		hide()
+		await $DestructionPlayer.finished
 		queue_free()
 
 func spawn_scrap(count : int) -> void:

@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://trtople2pdwl" path="res://level_files/room.tscn" id="3_mp5h8"]
 [ext_resource type="PackedScene" uid="uid://cxvn865pb7al8" path="res://level_files/spinner_tilemap.tscn" id="4_f5k0f"]
 [ext_resource type="PackedScene" uid="uid://80e7j42bq2d5" path="res://game_objects/scrap_files/scrap_metal.tscn" id="4_jddo5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5k0f"]
-size = Vector2(1920, 1080)
+[ext_resource type="PackedScene" uid="uid://du8m3d0mga4y6" path="res://player_files/player_death_fade_shader.tscn" id="7_d7q0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7q0s"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr36i"]
 size = Vector2(1440, 810)
 
 [node name="Map" type="Node2D" unique_id=1424486311]
@@ -31,7 +32,7 @@ tile_map_data = PackedByteArray("AAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAAQABEAAAAAAAA
 special_properties = Array[int]([0])
 
 [node name="BoundingBox" parent="Rooms/Room" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_f5k0f")
+shape = SubResource("RectangleShape2D_d7q0s")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room" index="1" unique_id=1306906192]
 position = Vector2(224, 832)
@@ -47,7 +48,7 @@ special_properties = Array[int]([1, 2])
 
 [node name="BoundingBox" parent="Rooms/Room2" index="0" unique_id=492741312]
 position = Vector2(720, 675)
-shape = SubResource("RectangleShape2D_d7q0s")
+shape = SubResource("RectangleShape2D_lr36i")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room2" index="1" unique_id=1306906192]
 position = Vector2(162, 834)
@@ -65,6 +66,8 @@ position = Vector2(144, -8)
 [node name="ScrapMetal" parent="Rooms/Room2" unique_id=635839251 instance=ExtResource("4_jddo5")]
 position = Vector2(352, 864)
 is_static = true
+
+[node name="PlayerDeathFadeShader" parent="." unique_id=379583079 instance=ExtResource("7_d7q0s")]
 
 [editable path="Rooms/Room"]
 [editable path="Rooms/Room/ScrapPile"]

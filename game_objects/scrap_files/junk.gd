@@ -24,6 +24,7 @@ func destroy():
 		new_scrap.global_position = global_position
 	
 	destroyed = true
+	$DestructionPlayer.play()
 	hide()
 
 func respawn():
