@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://4jqg6g7budga"]
+
+[ext_resource type="PackedScene" uid="uid://ddi8tw5wkuk6t" path="res://misc_scripts/arrow.tscn" id="1_u3cn7"]
+
+[node name="AimingArrows" type="Node2D" unique_id=1318538409]
+
+[node name="Orthogonal" type="Node2D" parent="." unique_id=1686889207]
+
+[node name="Arrow" parent="Orthogonal" unique_id=161312503 instance=ExtResource("1_u3cn7")]
+position = Vector2(-96, 0)
+
+[node name="Arrow2" parent="Orthogonal" unique_id=880398615 instance=ExtResource("1_u3cn7")]
+position = Vector2(-1.364242e-12, -95.99999)
+rotation = 1.5707964
+
+[node name="Arrow3" parent="Orthogonal" unique_id=1752888595 instance=ExtResource("1_u3cn7")]
+position = Vector2(96, 1.1368679e-12)
+rotation = 3.1415927
+
+[node name="Arrow4" parent="Orthogonal" unique_id=593617229 instance=ExtResource("1_u3cn7")]
+position = Vector2(-4.5474735e-13, 95.99999)
+rotation = 4.712389
+
+[node name="diagonal" type="Node2D" parent="." unique_id=1846314502]
+
+[node name="Arrow" parent="diagonal" unique_id=1744998643 instance=ExtResource("1_u3cn7")]
+position = Vector2(-96.00001, -96.00001)
+rotation = 0.7853982
+
+[node name="Arrow2" parent="diagonal" unique_id=1409096693 instance=ExtResource("1_u3cn7")]
+position = Vector2(96, -96)
+rotation = 2.3561945
+
+[node name="Arrow3" parent="diagonal" unique_id=883476884 instance=ExtResource("1_u3cn7")]
+position = Vector2(96.00001, 96)
+rotation = 3.926991
+
+[node name="Arrow4" parent="diagonal" unique_id=35316903 instance=ExtResource("1_u3cn7")]
+position = Vector2(-96, 96)
+rotation = 5.4977875

@@ -27,10 +27,6 @@ func _ready() -> void:
 		room.scrap_pile.explodable_component.explode.connect(on_scrap_pile_destruction.bind(room))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func on_player_death():
 	fade_to_black()
 	GameManager.player_node.set_physics_process(false)

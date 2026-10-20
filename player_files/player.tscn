@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bvbi3epahcp4a" path="res://player_files/player.gd" id="1_8868v"]
 [ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="1_vhd13"]
 [ext_resource type="PackedScene" uid="uid://ds66cqfx0ldvo" path="res://player_files/time_stop_shader.tscn" id="3_cvfxa"]
+[ext_resource type="PackedScene" uid="uid://4jqg6g7budga" path="res://misc_scripts/aiming_arrows.tscn" id="4_6rly7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
 size = Vector2(128, 128)
@@ -29,3 +30,5 @@ bus = &"SFX"
 [node name="DeathPlayer" type="AudioStreamPlayer" parent="." unique_id=916224308]
 
 [node name="BombLaunchPlayer" type="AudioStreamPlayer" parent="." unique_id=1603062201]
+
+[node name="AimingArrows" parent="." unique_id=1318538409 instance=ExtResource("4_6rly7")]

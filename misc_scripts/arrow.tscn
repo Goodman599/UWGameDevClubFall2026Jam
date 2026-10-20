@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ddi8tw5wkuk6t"]
+
+[ext_resource type="Shader" uid="uid://dpn0rbx0qr4wf" path="res://misc_scripts/arrow_color_shader.gdshader" id="1_7hocy"]
+[ext_resource type="Texture2D" uid="uid://cmy5tgfsjfaoq" path="res://misc_scripts/arrow.png" id="1_fkw50"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hocy"]
+shader = ExtResource("1_7hocy")
+shader_parameter/enabled = true
+shader_parameter/target_color = Color(0, 0.584, 1, 1)
+shader_parameter/replacement_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.1
+
+[node name="Arrow" type="Sprite2D" unique_id=161312503]
+material = SubResource("ShaderMaterial_7hocy")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_fkw50")

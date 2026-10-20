@@ -49,7 +49,8 @@ func _physics_process(delta: float) -> void:
 
 func override_scale(new_scale : Vector2) -> void:
 	for child in get_children():
-		child.scale *= new_scale
+		if "scale" in child:
+			child.scale *= new_scale
 
 func magnetize_to_player() -> void:
 	# Ignore terrain
