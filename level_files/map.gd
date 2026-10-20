@@ -89,11 +89,13 @@ func get_last_room() -> Room:
 func on_player_room_enter(room : Room) -> void:
 	if get_last_room() == room: # We backtracked
 		is_backtracking = true
-		room.get_node("Tree").enabled = false
+		if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
+			room.get_node("Tree").enabled = false
 		room_history.pop_back()
 	else:
 		is_backtracking = false
-		room.get_node("Tree").enabled = true
+		if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
+			room.get_node("Tree").enabled = true
 		room_history.append(room)
 	current_room = room
 	set_room_camera_position(room)
