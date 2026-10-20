@@ -92,7 +92,7 @@ func on_player_room_exit(room : Room) -> void:
 	# Exiting a room has 2 cases: Going forward & backtrack
 	# If we exit the last room we were in, that means we went forward. No issues
 	# If we backtracked, we would exit the current room
-	if room == current_room:
+	if room == current_room and get_last_room():
 		is_backtracking = true
 		on_player_room_enter(get_last_room())
 		
