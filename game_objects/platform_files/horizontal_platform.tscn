@@ -5,23 +5,23 @@
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_i2ne7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(384, 128)
+size = Vector2(188, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bko15"]
-size = Vector2(400, 144)
+size = Vector2(196, 128)
 
 [node name="HorizontalPlatform" type="Node2D" unique_id=889834616]
 script = ExtResource("1_i255e")
 
 [node name="PlatformSprite" type="Sprite2D" parent="." unique_id=895035086]
-position = Vector2(7.6293945e-06, 0)
-scale = Vector2(3, 1)
+position = Vector2(2.861023e-06, 1.66893e-06)
+scale = Vector2(1.46875, 0.9375)
 texture = ExtResource("2_17ym5")
 
 [node name="HologramSprite" type="Sprite2D" parent="." unique_id=994883865]
 self_modulate = Color(1, 1, 1, 0.49803922)
-position = Vector2(7.6293945e-06, 0)
-scale = Vector2(3, 1)
+position = Vector2(3.8146973e-06, -1.9073486e-06)
+scale = Vector2(1.46875, 0.9375)
 texture = ExtResource("2_17ym5")
 
 [node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454 groups=["bomb_surface"]]

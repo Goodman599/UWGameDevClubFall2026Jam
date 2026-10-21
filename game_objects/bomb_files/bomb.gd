@@ -3,8 +3,8 @@ extends Node2D
 
 const SCRAP_COST := 1
 
-@export var explosion_radius := 100.0
-@export var player_launch_speed := 800.0
+@export var explosion_radius := 150.0
+@export var player_launch_speed := 1050.0
 
 var surface_normal := Vector2.ZERO
 var player: Player = null

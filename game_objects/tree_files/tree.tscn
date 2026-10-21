@@ -39,7 +39,7 @@ size = Vector2(108, 68)
 script = ExtResource("1_xbhje")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
-position = Vector2(0, 63.25)
+position = Vector2(4, 16)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
 animation = &"sprout"

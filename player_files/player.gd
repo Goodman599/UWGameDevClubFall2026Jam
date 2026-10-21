@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED := 300.0
-const JUMP_VELOCITY := -450.0
+const JUMP_VELOCITY := -440.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
 const AIR_DRAG := 1000.0 # Used when falling faster than terminal velocity
@@ -12,7 +12,7 @@ const JUMP_HOLD_BOOST := -1500.0
 var can_jump_hold := true
 var jump_hold_timer := MAX_JUMP_HOLD_DURATION
 
-const COYOTE_WINDOW := 0.15 # In seconds
+const COYOTE_WINDOW := 0.10 # In seconds
 var can_coyote_jump := false
 var coyote_timer := COYOTE_WINDOW
 const JUMP_BUFFER_WINODW := 0.1 # In seconds
@@ -478,7 +478,8 @@ func tree_growing() -> void:
 	growing_tree = true
 	
 	var stopping_tween = get_tree().create_tween()
-	stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
+	velocity.x = 0
+	#stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	
 	force_stop_aiming()

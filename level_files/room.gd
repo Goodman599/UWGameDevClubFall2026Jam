@@ -17,6 +17,8 @@ const room_size := SCREEN_SIZE
 @export var starting_scrap_count := 0
 var big_junk_destroyed := false
 
+@export var perfect_score_threshold := 1
+
 @onready var bounding_box : CollisionShape2D = $BoundingBox
 @onready var respawn_point : Marker2D = $PlayerSpawnPoint
 @onready var scrap_pile : Node2D = $ScrapPile
@@ -35,6 +37,7 @@ const SCRAP_SCENE := preload("res://game_objects/scrap_files/scrap_metal.tscn")
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	_update_room_visuals()
+	$Tree.perfect_score_threshold = perfect_score_threshold
 	
 	if not Engine.is_editor_hint():
 		# If the project is running (not in the editor), remove the player hologram
