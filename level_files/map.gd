@@ -71,7 +71,8 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
 	is_backtracking = false
-	room.get_node("Tree").enabled = true
+	if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
+			room.get_node("Tree").enabled = true
 	
 	# Delete scrap on the floor
 	for scrap in room.get_node("Scrap").get_children():

@@ -2,7 +2,7 @@ class_name ScrapUI
 extends CanvasLayer
 var scrap: int
 
-const FONT_SIZE = 50
+const FONT_SIZE = 64
 
 
 func _ready() -> void:
@@ -15,25 +15,20 @@ func _ready() -> void:
 func add_scrap_resource(amount: int = 1) -> void:
 	scrap += amount
 	$ScrapCounter.text = "x" + str(scrap)
-	$ScrapIcon.show()
-	$ScrapCounter.show()
+	show()
 	
 # removes scrap from the counter, should only be done through the game manager
 func remove_scrap_resource(amount: int = 1) -> void:
 	scrap -= amount
 	$ScrapCounter.text = "x" + str(scrap)
 	if scrap == 0:
-		$ScrapIcon.hide()
-		$ScrapCounter.hide()
-
+		hide()
 # sets the amount of scrap for the counter, should only be done through the game manager
 func set_scrap_resource(amount: int) -> void:
 	scrap = amount
 	$ScrapCounter.text = "x" + str(scrap)
 	
 	if scrap == 0:
-		$ScrapIcon.hide()
-		$ScrapCounter.hide()
+		hide()
 	else:
-		$ScrapIcon.show()
-		$ScrapCounter.show()
+		show()

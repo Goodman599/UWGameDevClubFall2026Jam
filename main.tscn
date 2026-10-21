@@ -2,23 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3w7eu5fawrvb" path="res://ui_files/scrap_ui.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bq30hne4520re" path="res://ui_files/fruit_ui.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c88gcwxjej8yf" path="res://level_files/map.tscn" id="5_lquwl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(1920, 1080)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(1440, 810)
 
 [node name="Main" type="Node2D" unique_id=431489269]
 
 [node name="ScrapUI" parent="." unique_id=296093440 instance=ExtResource("1_1bvp3")]
 
+[node name="FruitUI" parent="." unique_id=340192280 instance=ExtResource("2_1bvp3")]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=891497987]
 position = Vector2(960, 540)
 
 [node name="Player" parent="." unique_id=1773731800 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("1_0xm2m")]
-visible = true
 z_index = 1
 position = Vector2(224, 832)
 object_spawn_parent = NodePath("../PlayerMadeObjects")
@@ -28,10 +30,10 @@ player_made_objects_node = NodePath("../PlayerMadeObjects")
 camera_node = NodePath("../Camera2D")
 
 [node name="BoundingBox" parent="Map/Rooms/Room" parent_id_path=PackedInt32Array(1424486311, 594688412) index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_h2yge")
+shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="BoundingBox" parent="Map/Rooms/Room2" parent_id_path=PackedInt32Array(1424486311, 2002090388) index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_1bvp3")
+shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="PlayerMadeObjects" type="Node2D" parent="." unique_id=2120957893]
 

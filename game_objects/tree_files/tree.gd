@@ -11,18 +11,16 @@ var player_touching := false
 var grow_cooldown := 0.0
 var fully_bloomed := false
 
+var has_bloomed := false
+
 func _ready() -> void:				
 	$AnimatedSprite2D.play("sprout")
 	player_node = GameManager.player_node
 
 func _process(delta: float) -> void:
 	if player_touching and grow_cooldown <= 0 and enabled:
-		if GameManager.scrap <= 1: # deposit process finished
-			player_node.tree_finished()
-			if perfect_score_threshold <= score:
-				$AnimatedSprite2D.play("blossoming_tree")
-				$RewardPlayer.play()
-		else: # depositing scrap
+		
+		if GameManager.scrap > 1: # depositing scrap
 			player_node.tree_growing()
 			GameManager.remove_scrap_resource(1)
 			score += 1
@@ -31,6 +29,14 @@ func _process(delta: float) -> void:
 			if score < perfect_score_threshold:
 				$AnimatedSprite2D.play("tree")
 				$DepositPlayer.play()
+			
+			if GameManager.scrap <= 1: # deposit process finished
+				player_node.tree_finished()
+				if perfect_score_threshold <= score and !has_bloomed:
+					has_bloomed = true
+					$AnimatedSprite2D.play("blossoming_tree")
+					$RewardPlayer.play()
+					GameManager.fruit_ui.add_fruit()
 	if grow_cooldown > 0:
 		grow_cooldown -= delta
 
@@ -49,6 +55,3 @@ func reset() -> void:
 	score = 0
 	enabled = true
 	$AnimatedSprite2D.play("sprout")
-
-func disable() -> void:
-	enabled = false

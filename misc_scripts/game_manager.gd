@@ -4,6 +4,7 @@ var player_node : Player = null
 var map_node : Map 
 var scrap : int
 var scrap_ui : ScrapUI
+var fruit_ui : FruitUI
 
 
 func _ready() -> void:
