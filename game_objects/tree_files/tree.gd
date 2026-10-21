@@ -2,7 +2,7 @@ class_name JunkTree
 extends Node2D
 
 var score := 0
-var perfect_score_threshold := 1
+var perfect_score_threshold := 1 # will be assigned by the room
 const GROW_RATE : float = 2 # how fast the tree grows in scrap per second 
 var player_node : Player
 var enabled := true # tree will be turned off if the player enters from the wrong direction or with more than one scrap
@@ -42,6 +42,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_touching = false
 
+# the room will assign this
 func set_perfect_score_threshold(threshold: int) -> void:
 	perfect_score_threshold = threshold
 	
