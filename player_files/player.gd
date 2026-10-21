@@ -64,6 +64,9 @@ func _ready() -> void:
 	bomb_hologram.hide()
 
 func _physics_process(delta: float) -> void:
+	if !GameManager.can_player_move:
+		return
+	
 	if Input.is_action_just_pressed("restart"):
 		GameManager.kill_player()
 		

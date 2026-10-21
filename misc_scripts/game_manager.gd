@@ -5,7 +5,7 @@ var map_node : Map
 var scrap : int
 var scrap_ui : ScrapUI
 var fruit_ui : FruitUI
-
+var can_player_move := true
 
 func _ready() -> void:
 	scrap = 0

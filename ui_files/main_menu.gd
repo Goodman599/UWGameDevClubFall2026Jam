@@ -18,6 +18,7 @@ func _ready() -> void:
 	start_button.pivot_offset = start_button.size / 2.0
 	if fruit_ui:
 		fruit_ui.hide()
+	GameManager.can_player_move = false
 
 func _on_start_button_mouse_entered() -> void:
 	if is_starting:
@@ -54,17 +55,21 @@ func start() -> void:
 	is_starting = true
 	start_button.disabled = true
 	
+	$StartButtonPlayer.play()
+	
 	# Kill any remaining hover tween so it doesn't fight the click/transition
 	if hover_tween and hover_tween.is_valid():
 		hover_tween.kill()
-		
-	if fruit_ui:
-		fruit_ui.show()
+	
+	
 	GameManager.player_node.global_position = PLAYER_LEVEL_1_START_POS
 	var fade_duration = 0.25
 	fade_to_black(fade_duration)
 	await get_tree().create_timer(fade_duration).timeout
+	if fruit_ui:
+		fruit_ui.show()
 	fade_from_black(fade_duration)
+	GameManager.can_player_move = true
 	
 
 func fade_to_black(duration: float = 1.0) -> void:

@@ -41,7 +41,7 @@ size = Vector2(108, 68)
 [node name="Tree" type="Node2D" unique_id=1674240212]
 script = ExtResource("1_xbhje")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=377880982]
+[node name="TreeSprite" type="AnimatedSprite2D" parent="." unique_id=377880982]
 position = Vector2(4, 16)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
@@ -68,9 +68,30 @@ offset_right = 128.0
 offset_bottom = -128.0
 theme_override_fonts/font = ExtResource("7_j808g")
 theme_override_font_sizes/font_size = 64
-text = "55/55"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="NotEnoughScrapDisplayBG" type="ColorRect" parent="." unique_id=956744191]
+offset_left = -192.0
+offset_top = -256.0
+offset_right = 192.0
+offset_bottom = -120.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="NotEnoughScrapDisplay" type="Label" parent="NotEnoughScrapDisplayBG" unique_id=2105137473]
+custom_minimum_size = Vector2(352, 132)
+custom_maximum_size = Vector2(384, 132)
+layout_mode = 0
+offset_top = 4.0
+offset_right = 384.0
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("7_j808g")
+theme_override_font_sizes/font_size = 42
+text = "You need to keep this piece of scrap to bring into the next level!"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

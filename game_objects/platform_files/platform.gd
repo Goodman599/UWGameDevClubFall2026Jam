@@ -34,12 +34,12 @@ func set_hologram(value : bool):
 		else:
 			valid_hologram = false
 			$HologramSprite.self_modulate = Color(1, 0, 0, 0.5)
-			$PlacementPlayer.play()
 			
 	else:
 		$CollisionBox.set_process_mode(PROCESS_MODE_INHERIT)
 		$HologramSprite.hide()
 		$PlatformSprite.show()
+		$PlacementPlayer.play()
 
 
 func destroy() -> void:
