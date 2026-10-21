@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxvn865pb7al8" path="res://level_files/spinner_tilemap.tscn" id="4_f5k0f"]
 [ext_resource type="PackedScene" uid="uid://80e7j42bq2d5" path="res://game_objects/scrap_files/scrap_metal.tscn" id="4_jddo5"]
 [ext_resource type="PackedScene" uid="uid://du8m3d0mga4y6" path="res://player_files/player_death_fade_shader.tscn" id="7_d7q0s"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr36i"]
-size = Vector2(1920, 1080)
+[ext_resource type="PackedScene" uid="uid://bkcib10tfic8t" path="res://ui_files/tutorial_popup.tscn" id="8_8mbbc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mbbc"]
 size = Vector2(1920, 1080)
@@ -45,6 +43,18 @@ size = Vector2(1920, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32f5n"]
 size = Vector2(1920, 1080)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt0q5"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptxl3"]
+size = Vector2(512, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgm0p"]
+size = Vector2(137, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6222"]
+size = Vector2(192, 76)
+
 [node name="Map" type="Node2D" unique_id=1424486311 node_paths=PackedStringArray("room_1")]
 script = ExtResource("1_ju26l")
 room_1 = NodePath("Rooms/Room1")
@@ -74,7 +84,7 @@ tile_map_data = PackedByteArray("AAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAARABEAAAAAAAA
 special_properties = Array[int]([0])
 
 [node name="BoundingBox" parent="Rooms/Room1" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_lr36i")
+shape = SubResource("RectangleShape2D_8mbbc")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room1" index="1" unique_id=1306906192]
 position = Vector2(224, 832)
@@ -89,7 +99,7 @@ perfect_score_threshold = 3
 special_properties = Array[int]([1, 2])
 
 [node name="BoundingBox" parent="Rooms/Room2" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_8mbbc")
+shape = SubResource("RectangleShape2D_3id54")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room2" index="1" unique_id=1306906192]
 position = Vector2(200, 832.00006)
@@ -117,7 +127,7 @@ starting_scrap_count = 10
 perfect_score_threshold = 4
 
 [node name="BoundingBox" parent="Rooms/Room3" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_3id54")
+shape = SubResource("RectangleShape2D_8qn65")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room3" index="1" unique_id=1306906192]
 position = Vector2(135.99998, 896)
@@ -140,7 +150,7 @@ starting_scrap_count = 11
 perfect_score_threshold = 5
 
 [node name="BoundingBox" parent="Rooms/Room4" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_8qn65")
+shape = SubResource("RectangleShape2D_vjkak")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room4" index="1" unique_id=1306906192]
 position = Vector2(175.99998, 960)
@@ -163,7 +173,7 @@ starting_scrap_count = 12
 perfect_score_threshold = 6
 
 [node name="BoundingBox" parent="Rooms/Room5" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_vjkak")
+shape = SubResource("RectangleShape2D_kn0f4")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room5" index="1" unique_id=1306906192]
 position = Vector2(167.99998, 896)
@@ -186,7 +196,7 @@ starting_scrap_count = 11
 perfect_score_threshold = 6
 
 [node name="BoundingBox" parent="Rooms/Room6" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_kn0f4")
+shape = SubResource("RectangleShape2D_5bc16")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room6" index="1" unique_id=1306906192]
 position = Vector2(127.99999, 895.99994)
@@ -209,7 +219,7 @@ starting_scrap_count = 6
 perfect_score_threshold = 2
 
 [node name="BoundingBox" parent="Rooms/Room7" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_5bc16")
+shape = SubResource("RectangleShape2D_a0mam")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room7" index="1" unique_id=1306906192]
 position = Vector2(167.99998, 903.99994)
@@ -232,7 +242,7 @@ starting_scrap_count = 10
 perfect_score_threshold = 3
 
 [node name="BoundingBox" parent="Rooms/Room8" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_a0mam")
+shape = SubResource("RectangleShape2D_6mhgl")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room8" index="1" unique_id=1306906192]
 position = Vector2(447.99997, 960)
@@ -255,7 +265,7 @@ starting_scrap_count = 23
 perfect_score_threshold = 14
 
 [node name="BoundingBox" parent="Rooms/Room9" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_6mhgl")
+shape = SubResource("RectangleShape2D_a5bjk")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room9" index="1" unique_id=1306906192]
 position = Vector2(160, 896)
@@ -278,7 +288,7 @@ starting_scrap_count = 10
 perfect_score_threshold = 5
 
 [node name="BoundingBox" parent="Rooms/Room10" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_a5bjk")
+shape = SubResource("RectangleShape2D_ydfro")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room10" index="1" unique_id=1306906192]
 position = Vector2(223.99998, 895.99994)
@@ -301,7 +311,7 @@ starting_scrap_count = 14
 perfect_score_threshold = 6
 
 [node name="BoundingBox" parent="Rooms/Room11" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_ydfro")
+shape = SubResource("RectangleShape2D_32f5n")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room11" index="1" unique_id=1306906192]
 position = Vector2(191.99998, 895.99994)
@@ -324,7 +334,7 @@ starting_scrap_count = 25
 perfect_score_threshold = 5
 
 [node name="BoundingBox" parent="Rooms/Room12" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_32f5n")
+shape = SubResource("RectangleShape2D_kt0q5")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room12" index="1" unique_id=1306906192]
 position = Vector2(295.99997, 895.99994)
@@ -340,6 +350,98 @@ offset_left = -136.0
 offset_top = -184.0
 offset_right = 120.0
 offset_bottom = 1096.0
+
+[node name="Tutorials" type="Node2D" parent="." unique_id=1310583769]
+
+[node name="TutorialPopup" parent="Tutorials" unique_id=1306549303 instance=ExtResource("8_8mbbc")]
+position = Vector2(256, 672)
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialPopup/Area2D" parent_id_path=PackedInt32Array(1306549303, 831925913) index="0" unique_id=610000882]
+position = Vector2(64, 160)
+shape = SubResource("RectangleShape2D_ptxl3")
+
+[node name="ColorRect" parent="Tutorials/TutorialPopup" index="1" unique_id=1565696807]
+offset_left = -52.0
+offset_top = -64.0
+offset_right = 200.0
+offset_bottom = 84.0
+
+[node name="Label" parent="Tutorials/TutorialPopup" index="2" unique_id=1134208400]
+offset_left = -52.0
+offset_top = -52.0
+offset_right = 190.0
+offset_bottom = 81.0
+text = "To move and jump
+Use ASD + SPACE
+or
+ the ARROW KEYS + C"
+
+[node name="TutorialPopup2" parent="Tutorials" unique_id=2107576532 instance=ExtResource("8_8mbbc")]
+position = Vector2(2240, 896)
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialPopup2/Area2D" parent_id_path=PackedInt32Array(2107576532, 831925913) index="0" unique_id=610000882]
+position = Vector2(63.5, 97)
+shape = SubResource("RectangleShape2D_fgm0p")
+
+[node name="ColorRect" parent="Tutorials/TutorialPopup2" index="1" unique_id=1565696807]
+offset_left = -132.0
+offset_top = -168.0
+offset_right = 264.0
+offset_bottom = -96.0
+
+[node name="Label" parent="Tutorials/TutorialPopup2" index="2" unique_id=1134208400]
+offset_left = -128.0
+offset_top = -164.0
+offset_right = 252.0
+offset_bottom = -103.0
+text = "You just got a scrap!
+You can use it to create bombs!"
+
+[node name="TutorialPopup3" parent="Tutorials" unique_id=491047437 instance=ExtResource("8_8mbbc")]
+position = Vector2(2376, 832)
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialPopup3/Area2D" parent_id_path=PackedInt32Array(491047437, 831925913) index="0" unique_id=610000882]
+position = Vector2(117.5, 102)
+shape = SubResource("RectangleShape2D_j6222")
+
+[node name="ColorRect" parent="Tutorials/TutorialPopup3" index="1" unique_id=1565696807]
+offset_left = -116.0
+offset_top = -216.0
+offset_right = 324.0
+offset_bottom = -112.0
+
+[node name="Label" parent="Tutorials/TutorialPopup3" index="2" unique_id=1134208400]
+offset_left = -112.0
+offset_top = -212.0
+offset_right = 321.0
+offset_bottom = -119.0
+text = "To create a bomb, press K or X
+and use your movement keys to aim!
+Destroy this pile of junk for scrap!"
+
+[node name="TutorialPopup4" parent="Tutorials" unique_id=1016069001 instance=ExtResource("8_8mbbc")]
+position = Vector2(4200, 628)
+
+[node name="CollisionShape2D" parent="Tutorials/TutorialPopup4/Area2D" parent_id_path=PackedInt32Array(1016069001, 831925913) index="0" unique_id=610000882]
+position = Vector2(120, 102)
+shape = SubResource("RectangleShape2D_j6222")
+
+[node name="ColorRect" parent="Tutorials/TutorialPopup4" index="1" unique_id=1565696807]
+offset_left = -48.0
+offset_top = -144.0
+offset_right = 304.0
+offset_bottom = -12.0
+
+[node name="Label" parent="Tutorials/TutorialPopup4" index="2" unique_id=1134208400]
+offset_left = -44.0
+offset_top = -140.0
+offset_right = 305.0
+offset_bottom = 17.0
+text = "To create a scrap platform, 
+press J or Z
+and use your movement 
+keys to aim!
+"
 
 [node name="PlayerDeathFadeShader" parent="." unique_id=379583079 instance=ExtResource("7_d7q0s")]
 
@@ -379,3 +481,7 @@ offset_bottom = 1096.0
 [editable path="Rooms/Room12"]
 [editable path="Rooms/Room12/ScrapPile"]
 [editable path="Rooms/Room12/ScrapPile/ExplodableComponent"]
+[editable path="Tutorials/TutorialPopup"]
+[editable path="Tutorials/TutorialPopup2"]
+[editable path="Tutorials/TutorialPopup3"]
+[editable path="Tutorials/TutorialPopup4"]
