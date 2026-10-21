@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bnmpaka6esg7u" path="res://game_objects/scrap_files/scrap_pile.tscn" id="2_6r3s6"]
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="2_ouh47"]
 [ext_resource type="PackedScene" uid="uid://baqh3stspn22w" path="res://game_objects/tree_files/tree.tscn" id="4_skok3"]
+[ext_resource type="PackedScene" uid="uid://covdcmavqad0x" path="res://game_objects/laser_door_files/laser_door.tscn" id="5_e4ngg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_skok3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4ngg"]
 size = Vector2(1920, 1080)
 
 [node name="Room" type="Area2D" unique_id=594688412]
@@ -15,7 +16,7 @@ script = ExtResource("1_8gfxe")
 
 [node name="BoundingBox" type="CollisionShape2D" parent="." unique_id=492741312]
 position = Vector2(960, 540)
-shape = SubResource("RectangleShape2D_skok3")
+shape = SubResource("RectangleShape2D_e4ngg")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1306906192]
 scale = Vector2(5, 5)
@@ -44,7 +45,10 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" parent="ScrapPile/ExplodableComponent/ExplosionDetectionArea" index="0" unique_id=1075704933]
 metadata/_edit_lock_ = true
 
-[node name="Tree" parent="." unique_id=1674240212 instance=ExtResource("4_skok3")]
+[node name="Tree" parent="." unique_id=1674240212 node_paths=PackedStringArray("laser_door") instance=ExtResource("4_skok3")]
+laser_door = NodePath("LaserDoor")
+
+[node name="LaserDoor" parent="Tree" unique_id=1894875390 instance=ExtResource("5_e4ngg")]
 
 [node name="Scrap" type="Node2D" parent="." unique_id=463183284]
 metadata/_edit_lock_ = true

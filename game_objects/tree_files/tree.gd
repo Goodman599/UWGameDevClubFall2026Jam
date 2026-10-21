@@ -12,16 +12,16 @@ var grow_cooldown := 0.0
 var fully_bloomed := false
 
 var has_bloomed := false
+@export var laser_door : LaserDoor
 
 func _ready() -> void:				
 	$AnimatedSprite2D.play("sprout")
 	player_node = GameManager.player_node
 
 func _process(delta: float) -> void:
+	
 	if player_touching and grow_cooldown <= 0 and enabled:
-		
 		if GameManager.scrap > 1: # depositing scrap
-			player_node.tree_growing()
 			GameManager.remove_scrap_resource(1)
 			score += 1
 			grow_cooldown += 1 / GROW_RATE
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 				$AnimatedSprite2D.play("tree")
 				$DepositPlayer.play()
 			
-			if GameManager.scrap <= 1: # deposit process finished
+			if GameManager.scrap == 1: # deposit process finished
 				player_node.tree_finished()
 				if perfect_score_threshold <= score and !has_bloomed:
 					has_bloomed = true
@@ -41,8 +41,15 @@ func _process(delta: float) -> void:
 		grow_cooldown -= delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and GameManager.scrap > 1:
 		player_touching = true
+		player_node.tree_growing()
+		if laser_door:
+			laser_door.fade()
+		print("====")
+		print(player_touching)
+		print(grow_cooldown <= 0)
+		print(enabled)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
@@ -52,6 +59,9 @@ func set_perfect_score_threshold(threshold: int) -> void:
 	perfect_score_threshold = threshold
 	
 func reset() -> void:
+	print("tree reset")
 	score = 0
 	enabled = true
 	$AnimatedSprite2D.play("sprout")
+	if laser_door:
+		laser_door.appear()

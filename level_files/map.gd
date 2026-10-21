@@ -5,6 +5,7 @@ extends Node2D
 @export var camera_node : Camera2D
 const CAMERA_TWEEN_DURATION := 0.5
 
+@export var room_1 : Room # needed to add to room history.
 var room_history : Array[Room] # A stack that keeps track of rooms entered, to identify backtracking
 var current_room : Room
 var most_recent_junk_pile_room : Room # Junk piles should respawn on death (especially when backtracking)
@@ -21,6 +22,7 @@ var fade_tween : Tween
 func _ready() -> void:
 	GameManager.map_node = self
 	var room_parent = $Rooms
+	room_history.append(room_1)
 	for room : Room in room_parent.get_children():
 		room.player_entered_room.connect(on_player_room_enter)
 		room.player_exited_room.connect(on_player_room_exit)
@@ -70,9 +72,12 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
+	GameManager.player_node.can_create_objects = true
+	
 	is_backtracking = false
 	if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
-			room.get_node("Tree").enabled = true
+		room.get_node("Tree").enabled = true
+		room.get_node("Tree").laser_door.appear()
 	
 	# Delete scrap on the floor
 	for scrap in room.get_node("Scrap").get_children():
@@ -80,6 +85,7 @@ func restart_room(room : Room) -> void:
 	
 	for object in player_made_objects_node.get_children():
 		object.queue_free()
+	
 
 func get_last_room() -> Room:
 	if room_history.size() > 2:
@@ -107,7 +113,8 @@ func on_player_room_exit(room : Room) -> void:
 	# If we backtracked, we would exit the current room
 	if room == current_room and get_last_room():
 		is_backtracking = true
-		room.get_node("Tree").enabled = false
+		if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
+			room.get_node("Tree").enabled = false
 		on_player_room_enter(get_last_room())
 		
 func on_scrap_pile_destruction(room : Room) -> void:

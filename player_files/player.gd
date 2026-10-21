@@ -21,6 +21,8 @@ var jump_buffer_timer := JUMP_BUFFER_WINODW
 var was_on_floor_last_frame : bool # Used to start/stop CoyoteTimer and JumpBufferTimer
 
 @export var object_spawn_parent : Node2D
+var can_create_objects := true
+
 const PLATFORM_PLACE_OFFSET := 150.0
 const HORIZONTAL_PLATFORM := preload("res://game_objects/platform_files/horizontal_platform.tscn")
 const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_platform.tscn")
@@ -88,14 +90,14 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("create_platform") and !aiming_bomb and !aiming_platform:
-		if !growing_tree:
+		if can_create_objects:
 			if GameManager.scrap >= Platform.SCRAP_COST:
 				aiming_platform = true
 				TimeStop.stop_time()
 				create_platform_hologram()
 				$AimingArrows.show_orthogonal()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
-		if !growing_tree:
+		if can_create_objects:
 			if is_instance_valid(placed_bomb):
 				placed_bomb.detonate()
 				placed_bomb = null
@@ -480,6 +482,7 @@ func tree_growing() -> void:
 	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	
 	force_stop_aiming()
+	can_create_objects = false # Set back to true by Map on room enter
 
 # called when tree is finished growing
 # turns back on physics process
