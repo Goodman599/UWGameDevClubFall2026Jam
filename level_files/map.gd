@@ -72,8 +72,6 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
 	
-	GameManager.player_node.can_create_objects = true
-	
 	is_backtracking = false
 	if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
 		room.get_node("Tree").enabled = true
@@ -94,6 +92,7 @@ func get_last_room() -> Room:
 		return null
 
 func on_player_room_enter(room : Room) -> void:
+	GameManager.player_node.can_create_objects = true
 	if get_last_room() == room: # We backtracked
 		is_backtracking = true
 		if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
