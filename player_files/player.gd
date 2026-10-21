@@ -502,9 +502,9 @@ func tree_growing() -> void:
 	growing_tree = true
 	
 	var stopping_tween = get_tree().create_tween()
-	velocity.x = 0
-	applied_velocity.x = 0
-	#stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
+	#velocity.x = 0
+	#applied_velocity.x = 0
+	stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	
 	force_stop_aiming()
