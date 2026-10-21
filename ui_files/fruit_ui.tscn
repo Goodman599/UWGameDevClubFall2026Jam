@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bq30hne4520re"]
+
+[ext_resource type="Script" uid="uid://btvkumb4gsnun" path="res://ui_files/fruit_ui.gd" id="1_76iqv"]
+[ext_resource type="Texture2D" uid="uid://b6jfssljiu0pj" path="res://game_objects/tree_files/apple.png" id="2_76iqv"]
+[ext_resource type="FontFile" uid="uid://cxf346r44kc7d" path="res://ui_files/metal_font.otf" id="3_altit"]
+
+[node name="FruitUI" type="CanvasLayer" unique_id=296093440]
+script = ExtResource("1_76iqv")
+
+[node name="Background" type="ColorRect" parent="." unique_id=607689727]
+offset_left = 1672.0
+offset_top = 32.0
+offset_right = 1912.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.1254902)
+
+[node name="FruitIcon" type="Sprite2D" parent="." unique_id=97376541]
+position = Vector2(1715.9999, 76)
+scale = Vector2(0.28124997, 0.28124997)
+texture = ExtResource("2_76iqv")
+
+[node name="FruitCounter" type="RichTextLabel" parent="." unique_id=266070296]
+offset_left = 1680.0
+offset_top = 48.0
+offset_right = 1904.0
+offset_bottom = 120.0
+theme_override_fonts/normal_font = ExtResource("3_altit")
+theme_override_font_sizes/normal_font_size = 64
+text = "123/24"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dkxi4l44opjeg" path="res://ui_files/scrap_ui.gd" id="1_e7rrv"]
 [ext_resource type="Texture2D" uid="uid://yfm4dkwefson" path="res://game_objects/scrap_files/scrap.png" id="2_e7rrv"]
+[ext_resource type="FontFile" uid="uid://cxf346r44kc7d" path="res://ui_files/metal_font.otf" id="3_jnnuw"]
 
 [node name="ScrapUI" type="CanvasLayer" unique_id=296093440]
 script = ExtResource("1_e7rrv")
+
+[node name="Background" type="ColorRect" parent="." unique_id=607689727]
+offset_top = 32.0
+offset_right = 240.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.1254902)
 
 [node name="ScrapIcon" type="Sprite2D" parent="." unique_id=97376541]
 position = Vector2(72, 64)
@@ -12,10 +19,14 @@ scale = Vector2(0.50000006, 0.50000006)
 texture = ExtResource("2_e7rrv")
 
 [node name="ScrapCounter" type="RichTextLabel" parent="." unique_id=266070296]
-offset_left = 169.0
-offset_top = 46.0
-offset_right = 280.0
-offset_bottom = 118.0
-theme_override_font_sizes/normal_font_size = 48
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 232.0
+offset_bottom = 120.0
+theme_override_fonts/normal_font = ExtResource("3_jnnuw")
+theme_override_font_sizes/normal_font_size = 64
+text = "123"
 fit_content = true
 scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
