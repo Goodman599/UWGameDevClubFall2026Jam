@@ -49,7 +49,6 @@ tile_map_data = PackedByteArray("AAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAARABEAAAAAAAA
 
 [node name="Room" parent="Rooms" unique_id=594688412 instance=ExtResource("3_mp5h8")]
 position = Vector2(0, 8)
-perfect_score_threshold = null
 special_properties = Array[int]([0])
 
 [node name="BoundingBox" parent="Rooms/Room" index="0" unique_id=492741312]
@@ -64,7 +63,6 @@ position = Vector2(528, 792)
 [node name="Room2" parent="Rooms" unique_id=2002090388 instance=ExtResource("3_mp5h8")]
 position = Vector2(1920, 8)
 starting_scrap_count = 5
-perfect_score_threshold = null
 special_properties = Array[int]([1, 2])
 
 [node name="BoundingBox" parent="Rooms/Room2" index="0" unique_id=492741312]
@@ -93,7 +91,6 @@ is_static = true
 [node name="Room3" parent="Rooms" unique_id=656223346 instance=ExtResource("3_mp5h8")]
 position = Vector2(3840, 8)
 starting_scrap_count = 8
-perfect_score_threshold = null
 
 [node name="BoundingBox" parent="Rooms/Room3" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_3id54")
@@ -110,7 +107,6 @@ position = Vector2(1672, 744)
 [node name="Room4" parent="Rooms" unique_id=509811412 instance=ExtResource("3_mp5h8")]
 position = Vector2(5760, 8)
 starting_scrap_count = 11
-perfect_score_threshold = null
 
 [node name="BoundingBox" parent="Rooms/Room4" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_8qn65")
@@ -127,7 +123,6 @@ position = Vector2(1584, 800)
 [node name="Room5" parent="Rooms" unique_id=1049328132 instance=ExtResource("3_mp5h8")]
 position = Vector2(7680, 8)
 starting_scrap_count = 10
-perfect_score_threshold = null
 
 [node name="BoundingBox" parent="Rooms/Room5" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_vjkak")
