@@ -102,6 +102,8 @@ func reset() -> void:
 	score_req_display.text = str(score) + "/" + str(perfect_score_threshold)
 	_on_area_2d_body_exited(player_node, true)
 	enabled = true
+	player_node.tree_finished()
+	player_touching = false
 	if !has_bloomed:
 		sprite.play("sprout")
 		sprite.position.y = SPROUT_SPRITE_Y
