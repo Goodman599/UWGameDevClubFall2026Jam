@@ -8,7 +8,7 @@ const JUMP_VELOCITY := -440.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
 const AIR_DRAG := 1000.0 # Used when falling faster than terminal velocity
-const IGNORE_GRAVITY_THRESHOLD := 200.0 # If applied horizontal velocity is higher than this, gravity will only work when vertical velocity > 0
+const IGNORE_GRAVITY_THRESHOLD := 650.0 # If applied horizontal velocity is higher than this, gravity will only work when vertical velocity > 0
 
 const MAX_JUMP_HOLD_DURATION = 0.3 # In seconds
 const JUMP_HOLD_BOOST := -1500.0
