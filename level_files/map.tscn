@@ -46,6 +46,9 @@ size = Vector2(1920, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt0q5"]
 size = Vector2(1920, 1080)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7t66"]
+size = Vector2(3072, 1728)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptxl3"]
 size = Vector2(512, 128)
 
@@ -351,6 +354,23 @@ offset_top = -184.0
 offset_right = 120.0
 offset_bottom = 1096.0
 
+[node name="Room13" parent="Rooms" unique_id=934319589 instance=ExtResource("3_mp5h8")]
+position = Vector2(18624, -1468)
+room_size_multiplier = Vector2(1.6, 1.6)
+starting_scrap_count = 99
+
+[node name="BoundingBox" parent="Rooms/Room13" index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_g7t66")
+
+[node name="PlayerSpawnPoint" parent="Rooms/Room13" index="1" unique_id=1306906192]
+position = Vector2(2311.9998, 1084)
+
+[node name="ScrapPile" parent="Rooms/Room13" index="2" unique_id=1780945925]
+position = Vector2(2056, 1188)
+
+[node name="Tree" parent="Rooms/Room13" index="3" unique_id=1674240212]
+position = Vector2(680, -612)
+
 [node name="Tutorials" type="Node2D" parent="." unique_id=1310583769]
 
 [node name="TutorialPopup" parent="Tutorials" unique_id=1306549303 instance=ExtResource("8_8mbbc")]
@@ -442,22 +462,6 @@ press J or Z
 and use your movement 
 keys to aim!
 "
-[node name="Room13" parent="Rooms" unique_id=934319589 instance=ExtResource("3_mp5h8")]
-position = Vector2(18624, -1468)
-room_size_multiplier = Vector2(1.6, 1.6)
-starting_scrap_count = 99
-
-[node name="BoundingBox" parent="Rooms/Room13" index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_kt0q5")
-
-[node name="PlayerSpawnPoint" parent="Rooms/Room13" index="1" unique_id=1306906192]
-position = Vector2(2311.9998, 1084)
-
-[node name="ScrapPile" parent="Rooms/Room13" index="2" unique_id=1780945925]
-position = Vector2(2056, 1188)
-
-[node name="Tree" parent="Rooms/Room13" index="3" unique_id=1674240212]
-position = Vector2(680, -612)
 
 [node name="PlayerDeathFadeShader" parent="." unique_id=379583079 instance=ExtResource("7_d7q0s")]
 
@@ -497,10 +501,10 @@ position = Vector2(680, -612)
 [editable path="Rooms/Room12"]
 [editable path="Rooms/Room12/ScrapPile"]
 [editable path="Rooms/Room12/ScrapPile/ExplodableComponent"]
+[editable path="Rooms/Room13"]
+[editable path="Rooms/Room13/ScrapPile"]
+[editable path="Rooms/Room13/ScrapPile/ExplodableComponent"]
 [editable path="Tutorials/TutorialPopup"]
 [editable path="Tutorials/TutorialPopup2"]
 [editable path="Tutorials/TutorialPopup3"]
 [editable path="Tutorials/TutorialPopup4"]
-[editable path="Rooms/Room13"]
-[editable path="Rooms/Room13/ScrapPile"]
-[editable path="Rooms/Room13/ScrapPile/ExplodableComponent"]
