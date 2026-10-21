@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if player_touching and grow_cooldown <= 0 and enabled:
+	if player_touching and grow_cooldown <= 0:
 		if GameManager.scrap > 1: # depositing scrap
 			GameManager.remove_scrap_resource(1)
 			score += 1
@@ -47,22 +47,17 @@ func _process(delta: float) -> void:
 		grow_cooldown -= delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player and GameManager.scrap > 1:
+	if body is Player and GameManager.scrap > 1 and enabled:
 		player_touching = true
 		player_node.tree_growing()
 		if laser_door:
 			laser_door.fade()
-		print("====")
-		print(player_touching)
-		print(grow_cooldown <= 0)
-		print(enabled)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_touching = false
 	
 func reset() -> void:
-	print("tree reset")
 	score = 0
 	enabled = true
 	$AnimatedSprite2D.play("sprout")
