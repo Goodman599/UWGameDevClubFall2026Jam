@@ -3,21 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://dl4howmdppkeh" path="res://player_files/player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3w7eu5fawrvb" path="res://ui_files/scrap_ui.tscn" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bq30hne4520re" path="res://ui_files/fruit_ui.tscn" id="2_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bynb7obglk3tc" path="res://bgm.mp3" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://c88gcwxjej8yf" path="res://level_files/map.tscn" id="5_lquwl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(1920, 1080)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(1920, 1080)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
-size = Vector2(1920, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(1920, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 size = Vector2(1920, 1080)
 
 [node name="Main" type="Node2D" unique_id=431489269]
@@ -36,19 +37,19 @@ player_made_objects_node = NodePath("../PlayerMadeObjects")
 camera_node = NodePath("../Camera2D")
 
 [node name="BoundingBox" parent="Map/Rooms/Room" parent_id_path=PackedInt32Array(1424486311, 594688412) index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_1bvp3")
-
-[node name="BoundingBox" parent="Map/Rooms/Room2" parent_id_path=PackedInt32Array(1424486311, 2002090388) index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_lquwl")
-
-[node name="BoundingBox" parent="Map/Rooms/Room3" parent_id_path=PackedInt32Array(1424486311, 656223346) index="0" unique_id=492741312]
-shape = SubResource("RectangleShape2D_7mycd")
-
-[node name="BoundingBox" parent="Map/Rooms/Room4" parent_id_path=PackedInt32Array(1424486311, 509811412) index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_272bh")
 
-[node name="BoundingBox" parent="Map/Rooms/Room5" parent_id_path=PackedInt32Array(1424486311, 1049328132) index="0" unique_id=492741312]
+[node name="BoundingBox" parent="Map/Rooms/Room2" parent_id_path=PackedInt32Array(1424486311, 2002090388) index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="BoundingBox" parent="Map/Rooms/Room3" parent_id_path=PackedInt32Array(1424486311, 656223346) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="BoundingBox" parent="Map/Rooms/Room4" parent_id_path=PackedInt32Array(1424486311, 509811412) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_4c57u")
+
+[node name="BoundingBox" parent="Map/Rooms/Room5" parent_id_path=PackedInt32Array(1424486311, 1049328132) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_efxa6")
 
 [node name="PlayerMadeObjects" type="Node2D" parent="." unique_id=2120957893]
 
@@ -56,6 +57,8 @@ shape = SubResource("RectangleShape2D_5vw27")
 position = Vector2(960, 540)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=549878190]
+stream = ExtResource("5_7mycd")
+volume_db = -15.0
 autoplay = true
 bus = &"Music"
 

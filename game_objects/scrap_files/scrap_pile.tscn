@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7tfackbnnpaj" path="res://game_objects/scrap_files/junk.gd" id="1_6a1lo"]
 [ext_resource type="Texture2D" uid="uid://bwv1o3xv0268r" path="res://game_objects/scrap_files/scrap_pile.png" id="2_6a1lo"]
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_fihmh"]
+[ext_resource type="AudioStream" uid="uid://cobsbjpx130fg" path="res://game_objects/platform_files/platform_breaking.mp3" id="4_pulpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6a1lo"]
 size = Vector2(240, 192)
@@ -20,5 +21,6 @@ texture = ExtResource("2_6a1lo")
 shape = SubResource("RectangleShape2D_6a1lo")
 
 [node name="DestructionPlayer" type="AudioStreamPlayer" parent="." unique_id=1929975031]
+stream = ExtResource("4_pulpc")
 
 [editable path="ExplodableComponent"]

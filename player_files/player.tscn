@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bt375wnhek520" path="res://player_files/robot.png" id="2_6rly7"]
 [ext_resource type="PackedScene" uid="uid://ds66cqfx0ldvo" path="res://player_files/time_stop_shader.tscn" id="3_cvfxa"]
 [ext_resource type="PackedScene" uid="uid://4jqg6g7budga" path="res://misc_scripts/aiming_arrows.tscn" id="4_6rly7"]
+[ext_resource type="AudioStream" uid="uid://cj1aeuciqclmj" path="res://player_files/tank_treads.mp3" id="4_mlchk"]
+[ext_resource type="AudioStream" uid="uid://df0pu6p0gieaa" path="res://player_files/steam_hiss.mp3" id="5_lug6a"]
+[ext_resource type="AudioStream" uid="uid://dyialjo4n0ira" path="res://player_files/power_down.mp3" id="6_lug6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
 size = Vector2(80, 128)
@@ -24,12 +27,16 @@ shape = SubResource("RectangleShape2D_jreem")
 [node name="TimeStopShader" parent="." unique_id=2032691790 instance=ExtResource("3_cvfxa")]
 
 [node name="FootstepPlayer" type="AudioStreamPlayer" parent="." unique_id=1966329308]
+stream = ExtResource("4_mlchk")
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="." unique_id=1766844852]
+stream = ExtResource("5_lug6a")
 bus = &"SFX"
 
 [node name="DeathPlayer" type="AudioStreamPlayer" parent="." unique_id=916224308]
+stream = ExtResource("6_lug6a")
 
 [node name="BombLaunchPlayer" type="AudioStreamPlayer" parent="." unique_id=1603062201]
 

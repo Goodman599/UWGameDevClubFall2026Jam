@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d1ivimd2ih01o" path="res://game_objects/platform_files/platform.gd" id="1_mqikw"]
 [ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_oacvb"]
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_oacvb"]
+[ext_resource type="AudioStream" uid="uid://dlhx1ureuq4jh" path="res://game_objects/bomb_files/tinkering.mp3" id="4_6l6gs"]
+[ext_resource type="AudioStream" uid="uid://cobsbjpx130fg" path="res://game_objects/platform_files/platform_breaking.mp3" id="5_728qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6env"]
 size = Vector2(120, 188)
@@ -44,8 +46,10 @@ shape = SubResource("RectangleShape2D_oacvb")
 debug_color = Color(0, 0.630672, 0.46684557, 0.14901961)
 
 [node name="PlacementPlayer" type="AudioStreamPlayer" parent="." unique_id=1896711129]
+stream = ExtResource("4_6l6gs")
 
 [node name="DestructionPlayer" type="AudioStreamPlayer" parent="." unique_id=1181668002]
+stream = ExtResource("5_728qc")
 
 [connection signal="body_entered" from="HologramDetectionArea" to="." method="_on_hologram_detection_area_body_entered"]
 [connection signal="body_exited" from="HologramDetectionArea" to="." method="_on_hologram_detection_area_body_exited"]
