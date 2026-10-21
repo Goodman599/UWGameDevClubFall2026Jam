@@ -20,8 +20,11 @@ collision_shape = NodePath("LaserDoor/CollisionShape2D")
 
 [node name="LaserDoor" type="StaticBody2D" parent="." unique_id=1073534263]
 scale = Vector2(4, 4)
+collision_layer = 15
+collision_mask = 15
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserDoor" unique_id=160150517]
-position = Vector2(32, 96)
+position = Vector2(32, -48)
+scale = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_dxnw5")
