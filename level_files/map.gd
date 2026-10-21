@@ -79,8 +79,7 @@ func restart_room(room : Room) -> void:
 	
 	is_backtracking = false
 	if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
-		room.get_node("Tree").enabled = true
-		room.get_node("Tree").laser_door.appear()
+		room.get_node("Tree").reset()
 	
 	# Delete scrap on the floor
 	for scrap in room.get_node("Scrap").get_children():

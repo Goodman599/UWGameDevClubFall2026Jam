@@ -136,6 +136,11 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * SPEED
 			if !$FootstepPlayer.playing:
 				$FootstepPlayer.play()
+			
+			if direction > 0:
+				$PlayerSprite.flip_h = false
+			else:
+				$PlayerSprite.flip_h = true
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			$FootstepPlayer.stop()

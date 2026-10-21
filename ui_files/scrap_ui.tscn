@@ -11,6 +11,7 @@ script = ExtResource("1_e7rrv")
 offset_top = 32.0
 offset_right = 240.0
 offset_bottom = 120.0
+mouse_filter = 1
 color = Color(0, 0, 0, 0.1254902)
 
 [node name="ScrapIcon" type="Sprite2D" parent="." unique_id=97376541]
@@ -23,6 +24,7 @@ offset_left = 8.0
 offset_top = 48.0
 offset_right = 232.0
 offset_bottom = 120.0
+mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("3_jnnuw")
 theme_override_font_sizes/normal_font_size = 64
 text = "123"

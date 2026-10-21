@@ -12,6 +12,7 @@ offset_left = 1672.0
 offset_top = 32.0
 offset_right = 1912.0
 offset_bottom = 120.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.1254902)
 
 [node name="FruitIcon" type="Sprite2D" parent="." unique_id=97376541]
@@ -24,6 +25,7 @@ offset_left = 1680.0
 offset_top = 48.0
 offset_right = 1904.0
 offset_bottom = 120.0
+mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_altit")
 theme_override_font_sizes/normal_font_size = 64
 text = "123/24"

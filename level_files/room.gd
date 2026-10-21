@@ -93,11 +93,7 @@ func _on_scrap_pile_explodable_component_explode() -> void:
 func respawn_junk():
 	big_junk_destroyed = false
 	if scrap_tree:
-		if scrap_tree.has_bloomed: # doesn't reset sprite if perfect score achieved
-			scrap_tree.enabled = true
-			scrap_tree.laser_door.appear()
-		else:
-			scrap_tree.reset()
+		scrap_tree.reset()
 	
 	if get_node_or_null("ScrapPile"):
 		$ScrapPile.respawn()

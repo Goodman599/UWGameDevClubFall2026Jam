@@ -41,6 +41,7 @@ layer = -1
 z_index = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource("2_lr36i")
 
 [node name="LevelTileMap" parent="." unique_id=1227630218 groups=["bomb_surface"] instance=ExtResource("2_mp5h8")]
@@ -85,7 +86,7 @@ scrap_amount = 10
 [node name="Tree" parent="Rooms/Room2" index="3" unique_id=1674240212]
 position = Vector2(1584, 832)
 
-[node name="LaserDoor" parent="Rooms/Room2/Tree" index="4" unique_id=1894875390]
+[node name="LaserDoor" parent="Rooms/Room2/Tree" index="5" unique_id=1894875390]
 offset_left = 272.0
 offset_top = -256.0
 offset_right = 528.0
@@ -112,7 +113,7 @@ position = Vector2(216, 864)
 [node name="Tree" parent="Rooms/Room3" index="3" unique_id=1674240212]
 position = Vector2(1656, 768)
 
-[node name="LaserDoor" parent="Rooms/Room3/Tree" index="4" unique_id=1894875390]
+[node name="LaserDoor" parent="Rooms/Room3/Tree" index="5" unique_id=1894875390]
 offset_left = 200.0
 offset_top = -128.0
 offset_right = 456.0
@@ -135,7 +136,7 @@ position = Vector2(248, 928)
 [node name="Tree" parent="Rooms/Room4" index="3" unique_id=1674240212]
 position = Vector2(1584, 832)
 
-[node name="LaserDoor" parent="Rooms/Room4/Tree" index="4" unique_id=1894875390]
+[node name="LaserDoor" parent="Rooms/Room4/Tree" index="5" unique_id=1894875390]
 offset_left = 208.0
 offset_top = -320.0
 offset_right = 464.0
@@ -158,7 +159,7 @@ position = Vector2(248, 864)
 [node name="Tree" parent="Rooms/Room5" index="3" unique_id=1674240212]
 position = Vector2(1728, 816)
 
-[node name="LaserDoor" parent="Rooms/Room5/Tree" index="4" unique_id=1894875390]
+[node name="LaserDoor" parent="Rooms/Room5/Tree" index="5" unique_id=1894875390]
 offset_left = 128.0
 offset_top = -240.0
 offset_right = 384.0
@@ -181,7 +182,7 @@ position = Vector2(208, 864)
 [node name="Tree" parent="Rooms/Room6" index="3" unique_id=1674240212]
 position = Vector2(1688, 816)
 
-[node name="LaserDoor" parent="Rooms/Room6/Tree" index="4" unique_id=1894875390]
+[node name="LaserDoor" parent="Rooms/Room6/Tree" index="5" unique_id=1894875390]
 offset_left = 168.0
 offset_top = -304.0
 offset_right = 424.0

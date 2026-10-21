@@ -17,10 +17,13 @@ var has_bloomed := false
 const SPROUT_SPRITE_Y = 64
 const TREE_SPRITE_Y = 16
 
+var display_fade_tween : Tween
+
 func _ready() -> void:				
 	$AnimatedSprite2D.play("sprout")
 	$AnimatedSprite2D.position.y = SPROUT_SPRITE_Y
 	player_node = GameManager.player_node
+	$ScoreReqDisplay.text = "0/" + str(perfect_score_threshold)
 
 func _process(delta: float) -> void:
 	
@@ -28,21 +31,26 @@ func _process(delta: float) -> void:
 		if GameManager.scrap > 1: # depositing scrap
 			GameManager.remove_scrap_resource(1)
 			score += 1
+			$ScoreReqDisplay.text = str(score) + "/" + str(perfect_score_threshold)
 			grow_cooldown += 1 / GROW_RATE
 			# TODO sound effect
 			if score < perfect_score_threshold:
 				$AnimatedSprite2D.play("tree")
 				$AnimatedSprite2D.position.y = TREE_SPRITE_Y
+			if score != perfect_score_threshold or has_bloomed:
 				$DepositPlayer.play()
 			
-			if GameManager.scrap == 1: # deposit process finished
-				player_node.tree_finished()
+			if score == perfect_score_threshold: # deposit process finished
 				if perfect_score_threshold <= score and !has_bloomed:
 					has_bloomed = true
 					$AnimatedSprite2D.play("blossoming_tree")
 					$AnimatedSprite2D.position.y = TREE_SPRITE_Y
 					$RewardPlayer.play()
 					GameManager.fruit_ui.add_fruit()
+			
+			if GameManager.scrap == 1:
+				player_node.tree_finished()
+	
 	if grow_cooldown > 0:
 		grow_cooldown -= delta
 
@@ -52,15 +60,31 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player_node.tree_growing()
 		if laser_door:
 			laser_door.fade()
+		
+		if display_fade_tween:
+			display_fade_tween.kill()
+		display_fade_tween = create_tween()
+		display_fade_tween.tween_property($ScoreReqDisplay, "self_modulate:a", 1.0, 0.5)
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
+func _on_area_2d_body_exited(body: Node2D, instant := false) -> void:
 	if body is Player:
 		player_touching = false
+		
+		if display_fade_tween:
+			display_fade_tween.kill()
+		if instant:
+			$ScoreReqDisplay.self_modulate.a = 0.0
+		else:
+			display_fade_tween = create_tween()
+			display_fade_tween.tween_property($ScoreReqDisplay, "self_modulate:a", 0.0, 1.0)
 	
 func reset() -> void:
 	score = 0
+	$ScoreReqDisplay.text = str(score) + "/" + str(perfect_score_threshold)
+	_on_area_2d_body_exited(player_node, true)
 	enabled = true
-	$AnimatedSprite2D.play("sprout")
-	$AnimatedSprite2D.position.y = SPROUT_SPRITE_Y
+	if !has_bloomed:
+		$AnimatedSprite2D.play("sprout")
+		$AnimatedSprite2D.position.y = SPROUT_SPRITE_Y
 	if laser_door:
 		laser_door.appear()

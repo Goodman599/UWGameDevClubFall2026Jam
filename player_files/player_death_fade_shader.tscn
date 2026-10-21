@@ -14,3 +14,4 @@ shader_parameter/smoothness = 0.05
 material = SubResource("ShaderMaterial_jreem")
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
