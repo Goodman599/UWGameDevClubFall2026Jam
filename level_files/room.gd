@@ -37,7 +37,7 @@ const SCRAP_SCENE := preload("res://game_objects/scrap_files/scrap_metal.tscn")
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	_update_room_visuals()
-	scrap_tree.set_perfect_score_threshold(perfect_score_threshold)
+	$Tree.perfect_score_threshold = perfect_score_threshold
 	
 	if not Engine.is_editor_hint():
 		# If the project is running (not in the editor), remove the player hologram

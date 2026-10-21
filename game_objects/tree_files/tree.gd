@@ -47,10 +47,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_touching = false
-
-# the room will assign this
-func set_perfect_score_threshold(threshold: int) -> void:
-	perfect_score_threshold = threshold
 	
 func reset() -> void:
 	score = 0
