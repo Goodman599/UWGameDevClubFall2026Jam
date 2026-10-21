@@ -2,7 +2,7 @@ class_name Platform
 extends Node2D
 
 const SCRAP_COST := 2
-const SCRAP_REFUND := 2
+const SCRAP_REFUND := 1
 const SCRAP_SCENE := preload("res://game_objects/scrap_files/scrap_metal.tscn")
 
 var object_spawn_parent : Node2D
