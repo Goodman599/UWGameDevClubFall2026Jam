@@ -24,6 +24,12 @@ size = Vector2(1920, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjkak"]
 size = Vector2(1920, 1080)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn0f4"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bc16"]
+size = Vector2(1920, 1080)
+
 [node name="Map" type="Node2D" unique_id=1424486311 node_paths=PackedStringArray("room_1")]
 script = ExtResource("1_ju26l")
 room_1 = NodePath("Rooms/Room")
@@ -159,6 +165,9 @@ offset_bottom = 1296.0
 [node name="Room6" parent="Rooms" unique_id=1863328097 instance=ExtResource("3_mp5h8")]
 position = Vector2(9600, 0)
 
+[node name="BoundingBox" parent="Rooms/Room6" index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_kn0f4")
+
 [node name="PlayerSpawnPoint" parent="Rooms/Room6" index="1" unique_id=1306906192]
 position = Vector2(127.99999, 895.99994)
 
@@ -178,6 +187,9 @@ offset_bottom = 1488.0
 position = Vector2(11520, 0)
 starting_scrap_count = 7
 perfect_score_threshold = 3
+
+[node name="BoundingBox" parent="Rooms/Room7" index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_5bc16")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room7" index="1" unique_id=1306906192]
 position = Vector2(167.99998, 903.99994)
