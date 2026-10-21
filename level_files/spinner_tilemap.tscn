@@ -1,10 +1,39 @@
 [gd_scene format=3 uid="uid://cxvn865pb7al8"]
 
-[ext_resource type="Texture2D" uid="uid://cuc6a4nvybvkk" path="res://level_files/level_assets/gear.png" id="1_ha3t4"]
+[ext_resource type="Texture2D" uid="uid://bc4y4o01aysps" path="res://level_files/level_assets/gear_spritesheet.png" id="1_ha3t4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynn12"]
 texture = ExtResource("1_ha3t4")
 texture_region_size = Vector2i(256, 256)
+0:0/animation_columns = 27
+0:0/animation_speed = 20.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/animation_frame_14/duration = 1.0
+0:0/animation_frame_15/duration = 1.0
+0:0/animation_frame_16/duration = 1.0
+0:0/animation_frame_17/duration = 1.0
+0:0/animation_frame_18/duration = 1.0
+0:0/animation_frame_19/duration = 1.0
+0:0/animation_frame_20/duration = 1.0
+0:0/animation_frame_21/duration = 1.0
+0:0/animation_frame_22/duration = 1.0
+0:0/animation_frame_23/duration = 1.0
+0:0/animation_frame_24/duration = 1.0
+0:0/animation_frame_25/duration = 1.0
+0:0/animation_frame_26/duration = 1.0
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-70, 70, -70, -70, 70, -70, 70, 70)
 
@@ -16,4 +45,5 @@ sources/0 = SubResource("TileSetAtlasSource_ynn12")
 
 [node name="SpinnerTilemap" type="TileMapLayer" unique_id=593172244 groups=["death"]]
 scale = Vector2(0.25, 0.25)
+tile_map_data = PackedByteArray(0, 0, 12, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_jreem")

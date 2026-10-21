@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8jonm2sx0nfb"]
 
 [ext_resource type="Script" uid="uid://d1ivimd2ih01o" path="res://game_objects/platform_files/platform.gd" id="1_mqikw"]
-[ext_resource type="Texture2D" uid="uid://d3ltd0mands33" path="res://icon.svg" id="2_oacvb"]
+[ext_resource type="Texture2D" uid="uid://c74usrtlc2wmb" path="res://game_objects/platform_files/platform.png" id="2_728qc"]
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_oacvb"]
 [ext_resource type="AudioStream" uid="uid://dlhx1ureuq4jh" path="res://game_objects/bomb_files/tinkering.mp3" id="4_6l6gs"]
 [ext_resource type="AudioStream" uid="uid://cobsbjpx130fg" path="res://game_objects/platform_files/platform_breaking.mp3" id="5_728qc"]
@@ -20,14 +20,16 @@ script = ExtResource("1_mqikw")
 
 [node name="PlatformSprite" type="Sprite2D" parent="." unique_id=895035086]
 position = Vector2(1.66893e-06, 3.8146973e-06)
-scale = Vector2(0.93750006, 1.46875)
-texture = ExtResource("2_oacvb")
+rotation = 1.5707964
+scale = Vector2(0.245, 0.234)
+texture = ExtResource("2_728qc")
 
 [node name="HologramSprite" type="Sprite2D" parent="." unique_id=1287757554]
 self_modulate = Color(1, 1, 1, 0.49803922)
 position = Vector2(1.66893e-06, 3.8146973e-06)
-scale = Vector2(0.93750006, 1.46875)
-texture = ExtResource("2_oacvb")
+rotation = 1.5707964
+scale = Vector2(0.245, 0.234)
+texture = ExtResource("2_728qc")
 
 [node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454 groups=["bomb_surface"]]
 
