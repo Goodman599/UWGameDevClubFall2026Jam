@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb8j57x82swnr" path="res://game_objects/tree_files/tree.png" id="4_u213v"]
 [ext_resource type="AudioStream" uid="uid://digtoi7gepds6" path="res://game_objects/tree_files/bell.mp3" id="5_u213v"]
 [ext_resource type="AudioStream" uid="uid://ccus2oblttohf" path="res://game_objects/tree_files/reward.mp3" id="6_j808g"]
+[ext_resource type="FontFile" uid="uid://cxf346r44kc7d" path="res://ui_files/metal_font.otf" id="7_j808g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7yv6r"]
 animations = [{
@@ -58,6 +59,18 @@ stream = ExtResource("5_u213v")
 
 [node name="RewardPlayer" type="AudioStreamPlayer" parent="." unique_id=2077356182]
 stream = ExtResource("6_j808g")
+
+[node name="ScoreReqDisplay" type="Label" parent="." unique_id=994904881]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -128.0
+offset_top = -192.0
+offset_right = 128.0
+offset_bottom = -128.0
+theme_override_fonts/font = ExtResource("7_j808g")
+theme_override_font_sizes/font_size = 64
+text = "55/55"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
