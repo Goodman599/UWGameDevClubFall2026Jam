@@ -26,7 +26,7 @@ var was_on_floor_last_frame : bool # Used to start/stop CoyoteTimer and JumpBuff
 @export var object_spawn_parent : Node2D
 var can_create_objects := true
 
-const PLATFORM_PLACE_OFFSET := 150.0
+const PLATFORM_PLACE_OFFSET := 136.0
 const HORIZONTAL_PLATFORM := preload("res://game_objects/platform_files/horizontal_platform.tscn")
 const VERTICAL_PLATFORM := preload("res://game_objects/platform_files/vertical_platform.tscn")
 var platform_hologram_H : Platform
@@ -503,6 +503,7 @@ func tree_growing() -> void:
 	
 	var stopping_tween = get_tree().create_tween()
 	velocity.x = 0
+	applied_velocity.x = 0
 	#stopping_tween.tween_property(self, "velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	stopping_tween.parallel().tween_property(self, "applied_velocity:x", 0, GROW_PLAYER_STOP_TIME)
 	

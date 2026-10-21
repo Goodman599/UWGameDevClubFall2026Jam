@@ -1,6 +1,8 @@
 extends Node2D
-const ENTER_TIME_SLOW_SPAN := 0.1 # how long in seconds the transition to stopped time is
+const ENTER_TIME_SLOW_SPAN := 0.04 # how long in seconds the transition to stopped time is
+const SHADER_FADE_IN := 0.15 # how long in seconds the transition to stopped time is
 const EXIT_TIME_SLOW_SPAN := 0.4 # how long in seconds the transition from stopped time is
+const SHADER_FADE_OUT := 0.4 # how long in seconds the transition to stopped time is
 const TIME_SLOW_FINAL_SPEED := 0.1
 
 # if pausing is used 
@@ -52,7 +54,7 @@ func start_shader() -> void:
 	GameManager.player_node.get_node("TimeStopShader/Shader").material.set_shader_parameter("intensity", 0.0)
 	tween = create_tween()
 	tween.set_ignore_time_scale(true)
-	tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.25, ENTER_TIME_SLOW_SPAN)
+	tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.25, SHADER_FADE_IN)
 
 # (polish, not a priority)
 # fades out the time stop shader
@@ -64,6 +66,6 @@ func end_shader(instant: bool = false) -> void:
 	if !instant:
 		tween = create_tween()
 		tween.set_ignore_time_scale(true)
-		tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.0, EXIT_TIME_SLOW_SPAN)
+		tween.tween_property(GameManager.player_node.get_node("TimeStopShader/Shader").material, "shader_parameter/intensity", 0.0, SHADER_FADE_OUT)
 	else:
 		GameManager.player_node.get_node("TimeStopShader/Shader").material.set_shader_parameter("intensity", 0.0)
