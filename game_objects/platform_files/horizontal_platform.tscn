@@ -7,26 +7,26 @@
 [ext_resource type="AudioStream" uid="uid://cobsbjpx130fg" path="res://game_objects/platform_files/platform_breaking.mp3" id="5_thsk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu0a7"]
-size = Vector2(208, 120)
+size = Vector2(176, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bko15"]
-size = Vector2(216, 128)
+size = Vector2(184, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(208, 120)
+size = Vector2(176, 112)
 
 [node name="HorizontalPlatform" type="Node2D" unique_id=889834616]
 script = ExtResource("1_i255e")
 
 [node name="PlatformSprite" type="Sprite2D" parent="." unique_id=895035086]
 position = Vector2(0, 1.1368684e-13)
-scale = Vector2(0.27, 0.234)
+scale = Vector2(0.229, 0.219)
 texture = ExtResource("2_thsk5")
 
 [node name="HologramSprite" type="Sprite2D" parent="." unique_id=994883865]
 self_modulate = Color(1, 1, 1, 0.49803922)
 position = Vector2(3.8146973e-06, -1.9073486e-06)
-scale = Vector2(0.27, 0.234)
+scale = Vector2(0.229, 0.219)
 texture = ExtResource("2_thsk5")
 
 [node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454 groups=["bomb_surface"]]
