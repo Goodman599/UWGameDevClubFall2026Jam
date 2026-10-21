@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-const DEV_MODE = true # enables teleport to mouse with \
+const DEV_MODE = false # enables teleport to mouse with \
 
 const SPEED := 300.0 # was 300
 const JUMP_VELOCITY := -440.0
