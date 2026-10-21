@@ -19,7 +19,6 @@ var big_junk_destroyed := false
 
 @export var perfect_score_threshold := 1
 
-@export var next_room : Room
 @onready var bounding_box : CollisionShape2D = $BoundingBox
 @onready var respawn_point : Marker2D = $PlayerSpawnPoint
 @onready var scrap_pile : Node2D = $ScrapPile
