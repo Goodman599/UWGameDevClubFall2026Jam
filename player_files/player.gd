@@ -1,7 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-const SPEED := 300.0
+const DEV_MODE = true # enables teleport to mouse with \
+
+const SPEED := 300.0 # was 300
 const JUMP_VELOCITY := -440.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
@@ -64,6 +66,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("restart"):
 		GameManager.kill_player()
+		
+	if Input.is_action_just_pressed("teleport to mouse (devtool)") and DEV_MODE:
+		global_position = get_global_mouse_position()
 	
 	# Add the gravity.
 	if not is_on_floor():
