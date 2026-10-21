@@ -8,7 +8,7 @@ const MAX_LAUNCH_VELOCITY := 1000.0
 const MIN_ANGULAR_VELOCITY := 10.0
 const MAX_ANGULAR_VELOCITY := 25.0
 
-const MAGNETIZE_DELAY := 1.5 # In seconds
+const MAGNETIZE_DELAY := 1.25 # In seconds
 var is_magnetizing := false
 
 const ACCELERATION_TO_PLAYER := 1000.0
