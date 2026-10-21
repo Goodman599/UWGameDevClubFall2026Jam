@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bi2qr25mpcunr" path="res://ui_files/main_menu.gd" id="1_f5lqv"]
 [ext_resource type="Texture2D" uid="uid://di7bkho561d5o" path="res://ui_files/pipes_menu_bg.png" id="1_r00fg"]
-[ext_resource type="Texture2D" uid="uid://dhaapvht1rn72" path="res://ui_files/pipes_menu_button.png" id="2_f5lqv"]
 [ext_resource type="Texture2D" uid="uid://1r0021xe38t3" path="res://ui_files/start_button_animation_sheet.png" id="3_m56y0"]
+[ext_resource type="Texture2D" uid="uid://eufudfmtpk35" path="res://ui_files/start_text.png" id="4_uy8qs"]
 [ext_resource type="Shader" uid="uid://7npg7s3k7cd5" path="res://ui_files/fade_to_black.gdshader" id="5_ljmbq"]
 [ext_resource type="AudioStream" uid="uid://dxna2sjm27qji" path="res://ui_files/start_button_sfx.mp3" id="6_wt4pj"]
 
@@ -325,7 +325,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_m56y0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m56y0")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_m56y0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_d3lw4")
-text = "Here"
 
 [node name="StartButtonTexture" type="AnimatedSprite2D" parent="StartButton" unique_id=226819785]
 position = Vector2(264, 104)
@@ -333,10 +332,14 @@ sprite_frames = SubResource("SpriteFrames_jreem")
 animation = &"spin"
 frame_progress = 0.36820275
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=563668196]
-visible = false
-position = Vector2(1712, 164)
-texture = ExtResource("2_f5lqv")
+[node name="TextureRect" type="TextureRect" parent="StartButton" unique_id=574940069]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 327.0
+offset_bottom = 154.0
+mouse_filter = 2
+texture = ExtResource("4_uy8qs")
 
 [node name="FadeToBlackShader" type="CanvasLayer" parent="." unique_id=358327649]
 
