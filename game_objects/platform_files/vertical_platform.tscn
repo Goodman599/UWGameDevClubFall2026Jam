@@ -5,26 +5,26 @@
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_oacvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6env"]
-size = Vector2(128, 384)
+size = Vector2(120, 188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6l6gs"]
-size = Vector2(144, 400)
+size = Vector2(128, 196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oacvb"]
-size = Vector2(128, 384)
+size = Vector2(120, 188)
 
 [node name="VerticalPlatform" type="Node2D" unique_id=889834616]
 script = ExtResource("1_mqikw")
 
 [node name="PlatformSprite" type="Sprite2D" parent="." unique_id=895035086]
-position = Vector2(-3.8146973e-06, 0)
-scale = Vector2(0.99999994, 3)
+position = Vector2(1.66893e-06, 3.8146973e-06)
+scale = Vector2(0.93750006, 1.46875)
 texture = ExtResource("2_oacvb")
 
 [node name="HologramSprite" type="Sprite2D" parent="." unique_id=1287757554]
 self_modulate = Color(1, 1, 1, 0.49803922)
-position = Vector2(-3.8146973e-06, 0)
-scale = Vector2(0.99999994, 3)
+position = Vector2(1.66893e-06, 3.8146973e-06)
+scale = Vector2(0.93750006, 1.46875)
 texture = ExtResource("2_oacvb")
 
 [node name="CollisionBox" type="StaticBody2D" parent="." unique_id=560734454 groups=["bomb_surface"]]
