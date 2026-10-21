@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dyialjo4n0ira" path="res://player_files/power_down.mp3" id="6_lug6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(80, 128)
+size = Vector2(80, 112)
 
 [node name="Player" type="CharacterBody2D" unique_id=1773731800]
 collision_layer = 2
@@ -22,6 +22,7 @@ scale = Vector2(0.33333334, 0.30555555)
 texture = ExtResource("2_6rly7")
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="." unique_id=2065976699]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_jreem")
 
 [node name="TimeStopShader" parent="." unique_id=2032691790 instance=ExtResource("3_cvfxa")]

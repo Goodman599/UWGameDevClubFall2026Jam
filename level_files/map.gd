@@ -74,7 +74,7 @@ func restart_room(room : Room) -> void:
 	GameManager.player_node.global_position = room.respawn_point.global_position
 	GameManager.player_node.velocity = Vector2.ZERO
 	GameManager.player_node.applied_velocity = Vector2.ZERO
-	
+	GameManager.player_node.tree_finished()
 	GameManager.player_node.can_create_objects = true
 	
 	is_backtracking = false
