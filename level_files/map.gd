@@ -97,6 +97,9 @@ func get_last_room() -> Room:
 		return null
 
 func on_player_room_enter(room : Room) -> void:
+	if current_room == room:
+		return
+	
 	if not room in overlapped_rooms:
 		overlapped_rooms.append(room)
 
