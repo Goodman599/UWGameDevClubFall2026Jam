@@ -34,6 +34,7 @@ bus = &"SFX"
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="." unique_id=1766844852]
 stream = ExtResource("5_lug6a")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="DeathPlayer" type="AudioStreamPlayer" parent="." unique_id=916224308]

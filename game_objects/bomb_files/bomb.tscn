@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcn8807i8uubf" path="res://game_objects/bomb_files/bomb.gd" id="1_2f5yr"]
 [ext_resource type="Texture2D" uid="uid://doka606nljbua" path="res://game_objects/bomb_files/bomb.png" id="2_2f5yr"]
-[ext_resource type="AudioStream" uid="uid://dlhx1ureuq4jh" path="res://game_objects/bomb_files/tinkering.mp3" id="3_yaf18"]
+[ext_resource type="AudioStream" uid="uid://cpma57tdlkno2" path="res://game_objects/bomb_files/metal_clang.mp3" id="3_yaf18"]
 [ext_resource type="AudioStream" uid="uid://dg0vva8ay63d3" path="res://game_objects/bomb_files/explosion.mp3" id="4_l1k8l"]
 
 [node name="Bomb" type="Node2D" unique_id=625780472]
@@ -14,6 +14,7 @@ texture = ExtResource("2_2f5yr")
 
 [node name="PlacementPlayer" type="AudioStreamPlayer" parent="." unique_id=663435580]
 stream = ExtResource("3_yaf18")
+volume_db = 5.0
 
 [node name="ExplodePlayer" type="AudioStreamPlayer" parent="." unique_id=1225196145]
 stream = ExtResource("4_l1k8l")

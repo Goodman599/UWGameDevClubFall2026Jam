@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d1ivimd2ih01o" path="res://game_objects/platform_files/platform.gd" id="1_mqikw"]
 [ext_resource type="Texture2D" uid="uid://c74usrtlc2wmb" path="res://game_objects/platform_files/platform.png" id="2_728qc"]
 [ext_resource type="PackedScene" uid="uid://b8krm3600icxw" path="res://game_objects/explodable_component.tscn" id="3_oacvb"]
-[ext_resource type="AudioStream" uid="uid://dlhx1ureuq4jh" path="res://game_objects/bomb_files/tinkering.mp3" id="4_6l6gs"]
+[ext_resource type="AudioStream" uid="uid://cpma57tdlkno2" path="res://game_objects/bomb_files/metal_clang.mp3" id="4_6l6gs"]
 [ext_resource type="AudioStream" uid="uid://cobsbjpx130fg" path="res://game_objects/platform_files/platform_breaking.mp3" id="5_728qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6env"]
