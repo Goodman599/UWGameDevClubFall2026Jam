@@ -42,7 +42,7 @@ script = ExtResource("1_xbhje")
 position = Vector2(4, 16)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7yv6r")
-animation = &"sprout"
+animation = &"blossoming_tree"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=8844438]
 collision_mask = 2

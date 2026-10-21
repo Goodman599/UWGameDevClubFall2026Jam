@@ -43,12 +43,11 @@ tile_map_data = PackedByteArray("AAAdAAAAKAAAAAAAAAAcAAAAKgAAAAAAAAAbAAAAKgAAAAA
 tile_map_data = PackedByteArray("AABGABAAAgAAAAAAAABHABAAAwAAAAAAAABNABAAAgAAAAAAAABOABAAAQAAAAAAAABPABAAAQAAAAAAAABQABAAAwAAAAAAAABkAA4ABQAAAAAAAABkAA0ABAAAAAAAAABkAAwABAAAAAAAAABkAAsABAAAAAAAAABkAAoABAAAAAAAAABkAAkABAAAAAAAAABkAAgABAAAAAAAAABkAAcABAAAAAAAAABkAAYABgAAAAAAAABqAA4ABQAAAAAAAABqAA0ABAAAAAAAAABqAAwABAAAAAAAAABqAAsABgAAAAAAAAA=")
 
 [node name="SpinnerTilemap" parent="." unique_id=593172244 instance=ExtResource("4_f5k0f")]
-tile_map_data = PackedByteArray("AAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAARABEAAAAAAAAAAAASABEAAAAAAAAAAAATABEAAAAAAAAAAAAUABEAAAAAAAAAAAAVABEAAAAAAAAAAABFABEAAAAAAAAAAABGABEAAAAAAAAAAABHABEAAAAAAAAAAABIABEAAAAAAAAAAABMABEAAAAAAAAAAABNABEAAAAAAAAAAABOABEAAAAAAAAAAABPABEAAAAAAAAAAABQABEAAAAAAAAAAABRABEAAAAAAAAAAAB4AAcAAAAAAAAAAAB4AAYAAAAAAAAAAAB4AAUAAAAAAAAAAAB4AAQAAAAAAAAAAAB4AAMAAAAAAAAAAAB4AAIAAAAAAAAAAAB4AAEAAAAAAAAAAAB4AAAAAAAAAAAAAACAAAwAAAAAAAAAAACAAA0AAAAAAAAAAACAAA4AAAAAAAAAAACAAA8AAAAAAAAAAACAABAAAAAAAAAAAACAAAcAAAAAAAAAAACAAAYAAAAAAAAAAACAAAUAAAAAAAAAAACAAAQAAAAAAAAAAACAAAMAAAAAAAAAAACAAAIAAAAAAAAAAACAAAEAAAAAAAAAAACIAAoAAAAAAAAAAACIAAsAAAAAAAAAAACIAAwAAAAAAAAAAACIAA0AAAAAAAAAAACIAA4AAAAAAAAAAACIAA8AAAAAAAAAAACIABAAAAAAAAAAAACIAAUAAAAAAAAAAACIAAQAAAAAAAAAAACIAAMAAAAAAAAAAACIAAIAAAAAAAAAAACIAAEAAAAAAAAAAAB+ABEAAAAAAAAAAAB/ABEAAAAAAAAAAACAABEAAAAAAAAAAACBABEAAAAAAAAAAACCABEAAAAAAAAAAACDABEAAAAAAAAAAACEABEAAAAAAAAAAACFABEAAAAAAAAAAACGABEAAAAAAAAAAACHABEAAAAAAAAAAACIABEAAAAAAAAAAACJABEAAAAAAAAAAACKABEAAAAAAAAAAACLABEAAAAAAAAAAACMABEAAAAAAAAAAACNABEAAAAAAAAAAACOABEAAAAAAAAAAACPABEAAAAAAAAAAACQABEAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAARABEAAAAAAAAAAAASABEAAAAAAAAAAAATABEAAAAAAAAAAAAUABEAAAAAAAAAAAAVABEAAAAAAAAAAABFABEAAAAAAAAAAABGABEAAAAAAAAAAABHABEAAAAAAAAAAABIABEAAAAAAAAAAABMABEAAAAAAAAAAABNABEAAAAAAAAAAABOABEAAAAAAAAAAABPABEAAAAAAAAAAABQABEAAAAAAAAAAABRABEAAAAAAAAAAAB4AAcAAAAAAAAAAAB4AAYAAAAAAAAAAAB4AAUAAAAAAAAAAAB4AAQAAAAAAAAAAAB4AAMAAAAAAAAAAAB4AAIAAAAAAAAAAAB4AAEAAAAAAAAAAACAAAwAAAAAAAAAAACAAA0AAAAAAAAAAACAAA4AAAAAAAAAAACAAA8AAAAAAAAAAACAABAAAAAAAAAAAACAAAcAAAAAAAAAAACAAAYAAAAAAAAAAACAAAUAAAAAAAAAAACAAAQAAAAAAAAAAACAAAMAAAAAAAAAAACAAAIAAAAAAAAAAACAAAEAAAAAAAAAAACIAAoAAAAAAAAAAACIAAsAAAAAAAAAAACIAAwAAAAAAAAAAACIAA0AAAAAAAAAAACIAA4AAAAAAAAAAACIAA8AAAAAAAAAAACIABAAAAAAAAAAAACIAAUAAAAAAAAAAACIAAQAAAAAAAAAAACIAAMAAAAAAAAAAACIAAIAAAAAAAAAAACIAAEAAAAAAAAAAAB+ABEAAAAAAAAAAAB/ABEAAAAAAAAAAACAABEAAAAAAAAAAACBABEAAAAAAAAAAACCABEAAAAAAAAAAACDABEAAAAAAAAAAACEABEAAAAAAAAAAACFABEAAAAAAAAAAACGABEAAAAAAAAAAACHABEAAAAAAAAAAACIABEAAAAAAAAAAACJABEAAAAAAAAAAACKABEAAAAAAAAAAACLABEAAAAAAAAAAACMABEAAAAAAAAAAACNABEAAAAAAAAAAACOABEAAAAAAAAAAACPABEAAAAAAAAAAACQABEAAAAAAAAAAAA=")
 
 [node name="Rooms" type="Node2D" parent="." unique_id=840571859]
 
 [node name="Room" parent="Rooms" unique_id=594688412 instance=ExtResource("3_mp5h8")]
-position = Vector2(0, 8)
 special_properties = Array[int]([0])
 
 [node name="BoundingBox" parent="Rooms/Room" index="0" unique_id=492741312]
@@ -61,7 +60,7 @@ position = Vector2(224, 832)
 position = Vector2(528, 792)
 
 [node name="Room2" parent="Rooms" unique_id=2002090388 instance=ExtResource("3_mp5h8")]
-position = Vector2(1920, 8)
+position = Vector2(1920, 0)
 starting_scrap_count = 5
 special_properties = Array[int]([1, 2])
 
@@ -69,72 +68,90 @@ special_properties = Array[int]([1, 2])
 shape = SubResource("RectangleShape2D_8mbbc")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room2" index="1" unique_id=1306906192]
-position = Vector2(168, 824)
+position = Vector2(168, 832)
 
 [node name="ScrapPile" parent="Rooms/Room2" index="2" unique_id=1780945925]
-position = Vector2(240, 792)
+position = Vector2(240, 800)
 scrap_amount = 10
 
 [node name="Tree" parent="Rooms/Room2" index="3" unique_id=1674240212]
-position = Vector2(1584, 808)
+position = Vector2(1584, 832)
 
 [node name="LaserDoor" parent="Rooms/Room2/Tree" index="4" unique_id=1894875390]
-offset_left = 140.0
-offset_top = -56.0
-offset_right = 396.0
-offset_bottom = 712.0
+offset_left = 272.0
+offset_top = -256.0
+offset_right = 528.0
+offset_bottom = 1280.0
 
 [node name="ScrapMetal" parent="Rooms/Room2" unique_id=635839251 instance=ExtResource("4_jddo5")]
 position = Vector2(136, 840)
 is_static = true
 
 [node name="Room3" parent="Rooms" unique_id=656223346 instance=ExtResource("3_mp5h8")]
-position = Vector2(3840, 8)
+position = Vector2(3840, 0)
 starting_scrap_count = 8
 
 [node name="BoundingBox" parent="Rooms/Room3" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_3id54")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room3" index="1" unique_id=1306906192]
-position = Vector2(135.99998, 888)
+position = Vector2(135.99998, 896)
 
 [node name="ScrapPile" parent="Rooms/Room3" index="2" unique_id=1780945925]
-position = Vector2(216, 856)
+position = Vector2(216, 864)
 
 [node name="Tree" parent="Rooms/Room3" index="3" unique_id=1674240212]
-position = Vector2(1672, 744)
+position = Vector2(1656, 768)
+
+[node name="LaserDoor" parent="Rooms/Room3/Tree" index="4" unique_id=1894875390]
+offset_left = 200.0
+offset_top = -128.0
+offset_right = 456.0
+offset_bottom = 1408.0
 
 [node name="Room4" parent="Rooms" unique_id=509811412 instance=ExtResource("3_mp5h8")]
-position = Vector2(5760, 8)
+position = Vector2(5760, 0)
 starting_scrap_count = 11
 
 [node name="BoundingBox" parent="Rooms/Room4" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_8qn65")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room4" index="1" unique_id=1306906192]
-position = Vector2(175.99998, 952.00006)
+position = Vector2(175.99998, 960)
 
 [node name="ScrapPile" parent="Rooms/Room4" index="2" unique_id=1780945925]
-position = Vector2(248, 920)
+position = Vector2(248, 928)
 
 [node name="Tree" parent="Rooms/Room4" index="3" unique_id=1674240212]
-position = Vector2(1584, 800)
+position = Vector2(1584, 832)
+
+[node name="LaserDoor" parent="Rooms/Room4/Tree" index="4" unique_id=1894875390]
+offset_left = 208.0
+offset_top = -320.0
+offset_right = 464.0
+offset_bottom = 1472.0
 
 [node name="Room5" parent="Rooms" unique_id=1049328132 instance=ExtResource("3_mp5h8")]
-position = Vector2(7680, 8)
+position = Vector2(7680, 0)
 starting_scrap_count = 10
 
 [node name="BoundingBox" parent="Rooms/Room5" index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_vjkak")
 
 [node name="PlayerSpawnPoint" parent="Rooms/Room5" index="1" unique_id=1306906192]
-position = Vector2(167.99998, 887.99994)
+position = Vector2(167.99998, 896)
 
 [node name="ScrapPile" parent="Rooms/Room5" index="2" unique_id=1780945925]
-position = Vector2(248, 856)
+position = Vector2(248, 864)
 
 [node name="Tree" parent="Rooms/Room5" index="3" unique_id=1674240212]
-position = Vector2(1728, 808)
+position = Vector2(1728, 816)
+
+[node name="LaserDoor" parent="Rooms/Room5/Tree" index="4" unique_id=1894875390]
+offset_left = 128.0
+offset_top = -752.0
+offset_right = 384.0
+offset_bottom = 2832.0
 
 [node name="PlayerDeathFadeShader" parent="." unique_id=379583079 instance=ExtResource("7_d7q0s")]
 

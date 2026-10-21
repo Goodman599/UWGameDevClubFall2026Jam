@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cdad68dssm7lm" path="res://game_objects/laser_door_files/laser_door.gd" id="2_dxnw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jreem"]
-size = Vector2(24, 192)
+size = Vector2(24, 448)
 
 [node name="LaserDoor" type="NinePatchRect" unique_id=1894875390 node_paths=PackedStringArray("collision_shape")]
 offset_right = 256.0

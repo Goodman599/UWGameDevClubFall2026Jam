@@ -14,8 +14,12 @@ var fully_bloomed := false
 var has_bloomed := false
 @export var laser_door : LaserDoor
 
+const SPROUT_SPRITE_Y = 64
+const TREE_SPRITE_Y = 16
+
 func _ready() -> void:				
 	$AnimatedSprite2D.play("sprout")
+	$AnimatedSprite2D.position.y = SPROUT_SPRITE_Y
 	player_node = GameManager.player_node
 
 func _process(delta: float) -> void:
@@ -28,6 +32,7 @@ func _process(delta: float) -> void:
 			# TODO sound effect
 			if score < perfect_score_threshold:
 				$AnimatedSprite2D.play("tree")
+				$AnimatedSprite2D.position.y = TREE_SPRITE_Y
 				$DepositPlayer.play()
 			
 			if GameManager.scrap == 1: # deposit process finished
@@ -35,6 +40,7 @@ func _process(delta: float) -> void:
 				if perfect_score_threshold <= score and !has_bloomed:
 					has_bloomed = true
 					$AnimatedSprite2D.play("blossoming_tree")
+					$AnimatedSprite2D.position.y = TREE_SPRITE_Y
 					$RewardPlayer.play()
 					GameManager.fruit_ui.add_fruit()
 	if grow_cooldown > 0:
@@ -60,5 +66,6 @@ func reset() -> void:
 	score = 0
 	enabled = true
 	$AnimatedSprite2D.play("sprout")
+	$AnimatedSprite2D.position.y = SPROUT_SPRITE_Y
 	if laser_door:
 		laser_door.appear()

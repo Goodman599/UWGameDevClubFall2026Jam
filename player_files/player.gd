@@ -61,6 +61,9 @@ func _ready() -> void:
 	bomb_hologram.hide()
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("restart"):
+		GameManager.kill_player()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		fall(delta)
@@ -210,7 +213,10 @@ func apply_velocity(incoming_velocity : Vector2):
 	applied_velocity += incoming_velocity
 	$BombLaunchPlayer.play()
 	if incoming_velocity.y < 0:
-		velocity.y = incoming_velocity.y
+		if velocity.y <= 0:
+			velocity.y = incoming_velocity.y - velocity.y / 2
+		else:
+			velocity.y = incoming_velocity.y
 	else:
 		velocity.y += incoming_velocity.y
 

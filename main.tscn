@@ -9,16 +9,22 @@
 size = Vector2(1920, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(1440, 810)
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(1920, 1080)
 
 [node name="Main" type="Node2D" unique_id=431489269]
 
 [node name="ScrapUI" parent="." unique_id=296093440 instance=ExtResource("1_1bvp3")]
 
 [node name="FruitUI" parent="." unique_id=340192280 instance=ExtResource("2_1bvp3")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=891497987]
-position = Vector2(960, 540)
 
 [node name="Player" parent="." unique_id=1773731800 node_paths=PackedStringArray("object_spawn_parent") instance=ExtResource("1_0xm2m")]
 z_index = 1
@@ -35,7 +41,19 @@ shape = SubResource("RectangleShape2D_1bvp3")
 [node name="BoundingBox" parent="Map/Rooms/Room2" parent_id_path=PackedInt32Array(1424486311, 2002090388) index="0" unique_id=492741312]
 shape = SubResource("RectangleShape2D_lquwl")
 
+[node name="BoundingBox" parent="Map/Rooms/Room3" parent_id_path=PackedInt32Array(1424486311, 656223346) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="BoundingBox" parent="Map/Rooms/Room4" parent_id_path=PackedInt32Array(1424486311, 509811412) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="BoundingBox" parent="Map/Rooms/Room5" parent_id_path=PackedInt32Array(1424486311, 1049328132) index="0" unique_id=492741312]
+shape = SubResource("RectangleShape2D_5vw27")
+
 [node name="PlayerMadeObjects" type="Node2D" parent="." unique_id=2120957893]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=891497987]
+position = Vector2(960, 540)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=549878190]
 autoplay = true
@@ -48,3 +66,12 @@ bus = &"Music"
 [editable path="Map/Rooms/Room2"]
 [editable path="Map/Rooms/Room2/ScrapPile"]
 [editable path="Map/Rooms/Room2/ScrapPile/ExplodableComponent"]
+[editable path="Map/Rooms/Room3"]
+[editable path="Map/Rooms/Room3/ScrapPile"]
+[editable path="Map/Rooms/Room3/ScrapPile/ExplodableComponent"]
+[editable path="Map/Rooms/Room4"]
+[editable path="Map/Rooms/Room4/ScrapPile"]
+[editable path="Map/Rooms/Room4/ScrapPile/ExplodableComponent"]
+[editable path="Map/Rooms/Room5"]
+[editable path="Map/Rooms/Room5/ScrapPile"]
+[editable path="Map/Rooms/Room5/ScrapPile/ExplodableComponent"]
