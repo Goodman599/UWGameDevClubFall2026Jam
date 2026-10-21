@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 			
 			if GameManager.scrap == 1:
 				player_node.tree_finished()
+				player_touching = false
 	
 	if grow_cooldown > 0:
 		grow_cooldown -= delta
@@ -85,7 +86,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 func _on_area_2d_body_exited(body: Node2D, instant := false) -> void:
 	if body is Player:
-		player_touching = false
+		#player_touching = false
 		
 		if display_fade_tween:
 			display_fade_tween.kill()

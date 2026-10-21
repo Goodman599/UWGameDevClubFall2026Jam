@@ -109,12 +109,12 @@ func _physics_process(delta: float) -> void:
 				create_platform_hologram()
 				$AimingArrows.show_orthogonal()
 	if Input.is_action_just_pressed("create_bomb") and !aiming_platform and !aiming_bomb:
-		if can_create_objects:
-			if is_instance_valid(placed_bomb):
-				placed_bomb.detonate()
-				placed_bomb = null
-			else:
-				if GameManager.scrap >= Bomb.SCRAP_COST:
+		if is_instance_valid(placed_bomb):
+			placed_bomb.detonate()
+			placed_bomb = null
+		else:
+			if GameManager.scrap >= Bomb.SCRAP_COST:
+				if can_create_objects:
 					aiming_bomb = true
 					TimeStop.stop_time()
 					$AimingArrows.show_diagonal()
