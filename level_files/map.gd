@@ -18,11 +18,14 @@ const FADE_TO_BLACK_DURATION := 0.25
 const FADE_BACK_DURATION := 0.25
 var fade_tween : Tween
 
+var overlapped_rooms : Array[Room]
+var camera_target_room : Room
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.map_node = self
 	var room_parent = $Rooms
-	room_history.append(room_1)
+	#on_player_room_enter(room_1)
 	for room : Room in room_parent.get_children():
 		room.player_entered_room.connect(on_player_room_enter)
 		room.player_exited_room.connect(on_player_room_exit)
@@ -88,12 +91,15 @@ func restart_room(room : Room) -> void:
 	
 
 func get_last_room() -> Room:
-	if room_history.size() > 2:
+	if room_history.size() >= 2:
 		return room_history[room_history.size() - 2]
 	else:
 		return null
 
 func on_player_room_enter(room : Room) -> void:
+	if not room in overlapped_rooms:
+		overlapped_rooms.append(room)
+
 	GameManager.player_node.can_create_objects = true
 	if get_last_room() == room: # We backtracked
 		is_backtracking = true
@@ -112,16 +118,44 @@ func on_player_room_exit(room : Room) -> void:
 	# Exiting a room has 2 cases: Going forward & backtrack
 	# If we exit the last room we were in, that means we went forward. No issues
 	# If we backtracked, we would exit the current room
-	if room == current_room and get_last_room():
-		is_backtracking = true
-		if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
-			room.get_node("Tree").enabled = false
-		on_player_room_enter(get_last_room())
+	
+	
+	
+	
+	if overlapped_rooms.size() != 2:
+		return
+		
+	var room_to_enter : Room
+
+	if overlapped_rooms[0] == room:
+		room_to_enter = overlapped_rooms[1]
+	else:
+		room_to_enter = overlapped_rooms[0]
+	overlapped_rooms.erase(room)
+	
+	on_player_room_enter(room_to_enter)
+	
+	
+	
+	
+	#if room == current_room or room == current_room.next_room:
+		#is_backtracking = true
+		#if not (Room.potential_special_properties.NO_SCRAP_PILE in room.special_properties):
+			#room.get_node("Tree").enabled = false
+		##on_player_room_enter(get_last_room())
+		#on_player_room_enter(room_history[room_history.size() - 1])
+	#else: # Not backtracking, go forward
+		#if room.next_room:
+			#on_player_room_enter(room.next_room)
 		
 func on_scrap_pile_destruction(room : Room) -> void:
 	most_recent_junk_pile_room = room
 
 func set_room_camera_position(room : Room) -> void:
+	if room == camera_target_room: # Repeat the same room target, ignore:
+		return
+	
+	camera_target_room = room
 	var target_pos := room.bounding_box.global_position
 	var target_zoom := Vector2(1, 1) / room.room_size_multiplier
 	
