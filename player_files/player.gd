@@ -6,6 +6,7 @@ const JUMP_VELOCITY := -440.0
 const TERMINAL_VELOCITY := 1000.0
 const ACCELERATED_TERMINAL_VELOCITY := 1500.0 # Used when holding downwards
 const AIR_DRAG := 1000.0 # Used when falling faster than terminal velocity
+const IGNORE_GRAVITY_THRESHOLD := 200.0 # If applied horizontal velocity is higher than this, gravity will only work when vertical velocity > 0
 
 const MAX_JUMP_HOLD_DURATION = 0.3 # In seconds
 const JUMP_HOLD_BOOST := -1500.0
@@ -156,6 +157,9 @@ func _physics_process(delta: float) -> void:
 			GameManager.kill_player()
 			
 func fall(delta : float):
+	if abs(applied_velocity.x) > IGNORE_GRAVITY_THRESHOLD:
+		if velocity.y + applied_velocity.y > 0:
+			return
 	var terminal_velocity : float
 	if Input.is_action_pressed("down") and !aiming_bomb and !aiming_platform:
 		terminal_velocity = ACCELERATED_TERMINAL_VELOCITY
