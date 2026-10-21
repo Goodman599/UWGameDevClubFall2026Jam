@@ -7,8 +7,13 @@ extends NinePatchRect
 const FADE_DURATION := 1.0
 var fade_tween : Tween
 
+ 
+
+
 func _ready() -> void:
 	collision_shape.shape = collision_shape.shape.duplicate(true)
+	# Uncomment this to force update all collisionshapes
+	#_update_collision_shape()
 
 func _notification(what: int) -> void:
 	# Triggers automatically whenever the Control's size or rect changes
